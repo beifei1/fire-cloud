@@ -10,11 +10,13 @@
     <packaging>pom</packaging>
 
     <properties>
+        <fire-cloud.version>0.0.1-SNAPSHOT</fire-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
         <project-lombok.version>1.18.12</project-lombok.version>
         <guava.version>29.0-jre</guava.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -88,6 +90,20 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.fire</groupId>
+                <artifactId>fire-common</artifactId>
+                <version>${fire-cloud.version}</version>
+            </dependency>
+
+
 
         </dependencies>
     </dependencyManagement>
