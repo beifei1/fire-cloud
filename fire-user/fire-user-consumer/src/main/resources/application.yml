@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: fire-user-consumer
+server:
+  port: 9100

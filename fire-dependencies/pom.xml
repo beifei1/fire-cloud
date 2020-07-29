@@ -103,6 +103,12 @@
                 <version>${fire-cloud.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>cn.fire</groupId>
+                <artifactId>fire-common-web</artifactId>
+                <version>${fire-cloud.version}</version>
+            </dependency>
+
 
 
         </dependencies>
