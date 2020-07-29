@@ -19,9 +19,16 @@ public class Response<T> implements Serializable {
     @Getter
     private T t;
 
-    public Response() {
-
+    public Response(boolean success,Integer code,String msg) {
+        this.meta = new Meta(success,code,msg);
     }
+
+    public Response(T t) {
+        this.meta = new Meta(true,OK);
+        this.t = t;
+    }
+
+
 
     public Response ok() {
         this.meta = new Meta(true,OK);
