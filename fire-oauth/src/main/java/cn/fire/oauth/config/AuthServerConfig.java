@@ -2,11 +2,14 @@ package cn.fire.oauth.config;
 
 import cn.fire.oauth.config.enhancer.JwtTokenEnhancer;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -19,6 +22,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: wangzhichao
@@ -41,9 +45,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("app").secret(passwordEncoder.encode("123456")).scopes("app").authorizedGrantTypes("refresh_token","password")
+                .withClient("app").secret("123456").scopes("app").authorizedGrantTypes("refresh_token","password")
                 .and()
-                .withClient("system").secret(passwordEncoder.encode("123456")).scopes("system").authorizedGrantTypes("refresh_token","password")
+                .withClient("system").secret("123456").scopes("system").authorizedGrantTypes("refresh_token","password")
                 .accessTokenValiditySeconds(3600);
     }
 
