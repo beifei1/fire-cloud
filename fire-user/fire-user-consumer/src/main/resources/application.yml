@@ -1,5 +1,7 @@
+server:
+  port: 9100
 spring:
   application:
     name: fire-user-consumer
-server:
-  port: 9100
+logging:
+  config: classpath:log4j2-config.xml

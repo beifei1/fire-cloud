@@ -17,6 +17,7 @@
         <project-lombok.version>1.18.12</project-lombok.version>
         <guava.version>29.0-jre</guava.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <javax-validation.version>2.0.1.Final</javax-validation.version>
     </properties>
 
     <dependencyManagement>
@@ -109,6 +110,11 @@
                 <version>${fire-cloud.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax-validation.version}</version>
+            </dependency>
 
 
         </dependencies>
