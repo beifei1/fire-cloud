@@ -10,8 +10,8 @@
     <!-- %logger{36} 表示 Logger 名字最长36个字符 -->
     <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
     <!-- 定义日志存储的路径 -->
-    <property name="FILE_PATH" value="更换为你的日志路径" />
-    <property name="FILE_NAME" value="更换为你的项目名" />
+    <property name="FILE_PATH" value="/logs" />
+    <property name="FILE_NAME" value="fire-oauth" />
   </Properties>
 
   <appenders>
