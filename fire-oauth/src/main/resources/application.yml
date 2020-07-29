@@ -1,2 +1,4 @@
 logging:
-  config: log4j2-config.xml
+  config: classpath:log4j2-config.xml
+server:
+  port: 8888

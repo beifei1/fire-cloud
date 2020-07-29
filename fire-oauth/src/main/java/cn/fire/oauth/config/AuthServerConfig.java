@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -34,12 +35,15 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("app").secret("123456").scopes("app").authorizedGrantTypes("refresh_token","password")
+                .withClient("app").secret(passwordEncoder.encode("123456")).scopes("app").authorizedGrantTypes("refresh_token","password")
                 .and()
-                .withClient("system").secret("123456").scopes("system").authorizedGrantTypes("refresh_token","password")
+                .withClient("system").secret(passwordEncoder.encode("123456")).scopes("system").authorizedGrantTypes("refresh_token","password")
                 .accessTokenValiditySeconds(3600);
     }
 
@@ -55,7 +59,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     private JwtAccessTokenConverter jwtAccessTokenConverter() {
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("cnsesan-jwt.jks"),"cnsesan123".toCharArray());
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/cnsesan-jwt.jks"),"cnsesan123".toCharArray());
 
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("cnsesan-jwt"));
