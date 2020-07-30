@@ -45,9 +45,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("app").secret("123456").scopes("app").authorizedGrantTypes("refresh_token","password")
+                .withClient("app").secret(passwordEncoder.encode("123456")).scopes("app").authorizedGrantTypes("refresh_token","password")
                 .and()
-                .withClient("system").secret("123456").scopes("system").authorizedGrantTypes("refresh_token","password")
+                .withClient("system").secret(passwordEncoder.encode("123456")).scopes("system").authorizedGrantTypes("refresh_token","password")
                 .accessTokenValiditySeconds(3600);
     }
 

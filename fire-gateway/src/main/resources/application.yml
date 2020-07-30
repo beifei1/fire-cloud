@@ -3,17 +3,20 @@ server:
 spring:
   application:
     name: fire-gateway
-    cloud:
-      gateway:
-        routes:
-          - id: fire-oauth
-            uri: lb://fire-oauth
-            predicates:
-              - Path=/oauth/**
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:6030
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: fire-oauth
+          uri: lb://fire-oauth
+          predicates:
+            - Path=/oauth/**
 
 #            filters: 暂不处理fallback
 #              - name: Hystrix
