@@ -2,6 +2,7 @@ package cn.fire.user.controller;
 
 import cn.fire.common.web.core.R;
 import cn.fire.user.pojo.ao.UserRegisterAO;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,13 @@ public class UserController {
     public R<String> register(@Valid @RequestBody UserRegisterAO param) {
 
         return R.ok("dfdf");
+    }
+
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/test")
+    public R<String> test() {
+        return R.ok("success");
     }
 
 }
