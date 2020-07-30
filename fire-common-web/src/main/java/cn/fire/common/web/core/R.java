@@ -1,6 +1,7 @@
 package cn.fire.common.web.core;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -9,6 +10,7 @@ import java.io.Serializable;
  * @Date: 2020/7/29 15:00
  */
 
+@ToString
 public class R<T> implements Serializable {
 
     private static final String OK = "ok";
