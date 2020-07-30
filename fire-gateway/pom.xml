@@ -58,6 +58,11 @@
             <groupId>cn.fire</groupId>
             <artifactId>fire-common-web</artifactId>
         </dependency>
+        <!-- spring cloud alibaba-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
 
     </dependencies>
 
