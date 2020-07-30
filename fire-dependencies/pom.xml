@@ -19,6 +19,7 @@
         <guava.version>29.0-jre</guava.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <javax-validation.version>2.0.1.Final</javax-validation.version>
+        <fastjson.version></fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -110,6 +111,11 @@
                 <version>${javax-validation.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
