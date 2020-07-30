@@ -13,7 +13,8 @@
         <fire-cloud.version>0.0.1-SNAPSHOT</fire-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
-        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+        <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
         <project-lombok.version>1.18.12</project-lombok.version>
         <guava.version>29.0-jre</guava.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
@@ -35,6 +36,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
