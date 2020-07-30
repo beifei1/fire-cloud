@@ -18,6 +18,11 @@ spring:
           predicates:
             - Path=/oauth/**
 
+        - id: fire-user-consumer
+          uri: lb://fire-user-consumer
+          predicates:
+            - Path=/user/**
+
 #            filters: 暂不处理fallback
 #              - name: Hystrix
 #                order: -1

@@ -3,5 +3,9 @@ server:
 spring:
   application:
     name: fire-user-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:6030
 logging:
   config: classpath:log4j2-config.xml
