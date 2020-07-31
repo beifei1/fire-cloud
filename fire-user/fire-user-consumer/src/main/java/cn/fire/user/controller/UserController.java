@@ -1,7 +1,7 @@
 package cn.fire.user.controller;
 
-import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
+import cn.fire.user.api.exception.UserException;
 import cn.fire.user.pojo.ao.UserRegisterAO;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +37,7 @@ public class UserController {
 
     @PostMapping("/exception")
     public R<String> exception() {
-        throw BaseException.instance(BaseException.DATA_NOT_EXISTS,"error");
+        throw UserException.instance(UserException.USER_NOT_EXIST,"用户不存在");
     }
 
 }

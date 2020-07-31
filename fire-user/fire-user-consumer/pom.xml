@@ -38,6 +38,10 @@
             <groupId>cn.fire</groupId>
             <artifactId>fire-common-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.fire</groupId>
+            <artifactId>fire-user-api</artifactId>
+        </dependency>
 
         <!-- spring cloud alibaba-->
         <dependency>

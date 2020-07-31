@@ -106,6 +106,12 @@
             </dependency>
 
             <dependency>
+                <groupId>cn.fire</groupId>
+                <artifactId>fire-user-api</artifactId>
+                <version>${fire-cloud.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${javax-validation.version}</version>
