@@ -1,14 +1,17 @@
 package cn.fire.common.enums;
 
+import com.baomidou.mybatisplus.core.enums.IEnum;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * @Author: wangzc
  * @Date: 2020/7/31 9:26
  */
 
-public enum PublicEnum {
+public enum PublicEnum implements IEnum {
 
     NO("否",0),YES("是",1);
 
@@ -29,12 +32,13 @@ public enum PublicEnum {
 		this.desc = desc;
 	}
 
-	public int getValue() {
-		return value;
-	}
 
 	public void setValue(int value) {
 		this.value = value;
 	}
 
+    @Override
+    public Serializable getValue() {
+        return value;
+    }
 }
