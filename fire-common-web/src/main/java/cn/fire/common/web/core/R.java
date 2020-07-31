@@ -46,10 +46,6 @@ public class R<T> implements Serializable {
         return new R();
     }
 
-    public static R ok(String message) {
-        return new R(true,message);
-    }
-
     public static <T> R<T> ok(T data) {
         return new R(data);
     }
