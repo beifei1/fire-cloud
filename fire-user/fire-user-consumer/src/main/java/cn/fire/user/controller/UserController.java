@@ -37,7 +37,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/test")
     public R<UserDO> test() {
-        return R.ok(userServiceFeignClient.getById(1l));
+        return R.ok(userServiceFeignClient.getById(1L));
     }
 
 
