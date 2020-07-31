@@ -2,7 +2,10 @@ package cn.fire.user.controller;
 
 import cn.fire.common.web.core.R;
 import cn.fire.user.api.exception.UserException;
+import cn.fire.user.api.pojo.entity.UserDO;
+import cn.fire.user.feign.UserServiceFeignClient;
 import cn.fire.user.pojo.ao.UserRegisterAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +24,9 @@ import javax.validation.Valid;
 public class UserController {
 
 
+    @Autowired
+    private UserServiceFeignClient userServiceFeignClient;
+
     @PostMapping("/reg")
     public R<String> register(@Valid @RequestBody UserRegisterAO param) {
 
@@ -30,8 +36,8 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/test")
-    public R<String> test() {
-        return R.ok("success");
+    public R<UserDO> test() {
+        return R.ok(userServiceFeignClient.getById(1l));
     }
 
 
