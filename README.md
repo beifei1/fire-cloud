@@ -7,15 +7,17 @@
 
 基于spring cloud的微服务脚手架，目前处于开发阶段，随时可能进行结构及组件调整。
 
-**技术选型如下**
+**技术选型**
 
-|                |                               |
-| -------------- | ----------------------------- |
-| 网关           | Spring Cloud Gateway 2.0      |
-| 权限控制       | Spring Cloud Security Oauth2  |
-| 任务调度       | xxl-Job                       |
-| 注册及配置中心 | Spring Cloud Alibaba Nacos    |
-| 熔断及限流     | Spring Cloud Alibaba Sentinel |
-| 持久层框架     | MyBatis和MyBatis-Plus         |
-| 消息队列       | Kafka                         |
+|                    |                               |
+| ------------------ | ----------------------------- |
+| 网关               | Spring Cloud Gateway 2.0      |
+| 权限控制           | Spring Cloud Security Oauth2  |
+| 任务调度           | xxl-Job                       |
+| 服务治理及配置中心 | Spring Cloud Alibaba Nacos    |
+| 熔断及限流         | Spring Cloud Alibaba Sentinel |
+| 持久层框架         | MyBatis和MyBatis-Plus         |
+| 消息队列           | Kafka                         |
+| 服务调用           | OpenFeign                     |
 
+对于在项目中用到的关键技术点，后期我会在会wiki中标注
