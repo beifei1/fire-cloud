@@ -25,7 +25,7 @@ public class CommonExceptionHandler {
     }
 
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @ExceptionHandler(BaseException.class)
     public R baseExceptionHandler(BaseException e) {
         return R.fail(e.getCode(),e.getMessage());
