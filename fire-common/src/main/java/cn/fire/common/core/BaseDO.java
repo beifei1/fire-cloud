@@ -1,5 +1,6 @@
 package cn.fire.common.core;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Data
 public class BaseDO implements Serializable {
 
+    @TableId
     private Long id;
 
     @Version

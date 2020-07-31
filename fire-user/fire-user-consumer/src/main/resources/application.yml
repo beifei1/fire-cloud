@@ -7,5 +7,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:6030
+        group: fire-user
 logging:
   config: classpath:log4j2-config.xml
