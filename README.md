@@ -1,7 +1,7 @@
 # fire-cloud
 
-[![GitHub license](https://img.shields.io/github/license/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/blob/master/LICENSE)    [![GitHub issues](https://img.shields.io/github/issues/beifei1/fire-cloud?style=plastic)](https://github.com/beifei1/fire-cloud/issues)    [![GitHub stars](https://img.shields.io/github/stars/beifei1/fire-cloud)](https://github.com/beifei1/fire-cloud/stargazers)    [![GitHub forks](https://img.shields.io/github/forks/beifei1/fire-cloud)](https://github.com/beifei1/fire-cloud/network)
-
+[![GitHub license](https://img.shields.io/github/license/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/blob/master/LICENSE)    [![GitHub forks](https://img.shields.io/github/forks/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/network)    [![GitHub stars](https://img.shields.io/github/stars/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/stargazers)   [![GitHub issues](https://img.shields.io/github/issues/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/issues)
+   
 
 ## 简介：
 
