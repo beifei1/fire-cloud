@@ -1,5 +1,6 @@
 package cn.fire.common.web.handler;
 
+import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -24,4 +25,9 @@ public class CommonExceptionHandler {
     }
 
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ExceptionHandler(BaseException.class)
+    public R baseExceptionHandler(BaseException e) {
+        return R.fail(e.getCode(),e.getMessage());
+    }
 }

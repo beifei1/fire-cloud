@@ -22,6 +22,15 @@ public class BaseException extends RuntimeException {
 	protected Object object;
 
 
+	public static BaseException instance(Integer code,String msg) {
+	    return new BaseException(code,msg);
+    }
+
+    public static BaseException instance(String msg) {
+	    return new BaseException(msg);
+    }
+
+
     public BaseException(Integer code, String msg, Object... args) {
         super(String.format(msg, args));
         this.code = code;

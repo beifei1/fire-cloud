@@ -1,5 +1,6 @@
 package cn.fire.user.controller;
 
+import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import cn.fire.user.pojo.ao.UserRegisterAO;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,6 +32,12 @@ public class UserController {
     @PostMapping("/test")
     public R<String> test() {
         return R.ok("success");
+    }
+
+
+    @PostMapping("/exception")
+    public R<String> exception() {
+        throw BaseException.instance(BaseException.DATA_NOT_EXISTS,"error");
     }
 
 }

@@ -59,6 +59,10 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.fire</groupId>
+            <artifactId>fire-common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
