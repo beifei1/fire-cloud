@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements IUserService {
+
     @Override
     public UserDO getById(Long userId) {
         return super.getById(userId);
