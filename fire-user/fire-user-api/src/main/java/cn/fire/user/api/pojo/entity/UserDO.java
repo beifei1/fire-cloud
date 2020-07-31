@@ -4,6 +4,7 @@ import cn.fire.common.core.BaseDO;
 import cn.fire.common.enums.GenderEnum;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**

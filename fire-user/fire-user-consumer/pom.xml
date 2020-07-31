@@ -42,6 +42,12 @@
             <groupId>cn.fire</groupId>
             <artifactId>fire-user-api</artifactId>
         </dependency>
+        
+        <!--spring cloud -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
 
         <!-- spring cloud alibaba-->
         <dependency>
