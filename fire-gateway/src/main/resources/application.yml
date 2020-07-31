@@ -7,7 +7,7 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:6030
-        group: fire-base
+        group: fire-cloud-1
     gateway:
       discovery:
         locator:
