@@ -1,6 +1,7 @@
 package cn.fire.common.web.handler;
 
 import cn.fire.common.web.core.R;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,9 +30,9 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         try {
             if(cause instanceof InvalidTokenException) {
-                response.getWriter().write(R.fail("无效的Token").toString());
+                response.getWriter().write(JSONObject.toJSONString(R.fail("invalid token")));
             }else{
-                response.getWriter().write(R.fail(e.getMessage()).toString());
+                response.getWriter().write(JSONObject.toJSONString(R.fail(e.getMessage())));
             }
         } catch (IOException ex) {
             log.error(ex.getMessage());

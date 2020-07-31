@@ -1,6 +1,7 @@
 package cn.fire.common.web.handler;
 
 import cn.fire.common.web.core.R;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +26,7 @@ public class AccessDenyEntryPoint implements AccessDeniedHandler {
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         try {
-            response.getWriter().write(R.fail("接口权限不足").toString());
+            response.getWriter().write(JSONObject.toJSONString(R.fail("permission denied")));
         } catch (IOException ex) {
             log.error("接口权限不足");
         }
