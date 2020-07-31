@@ -4,18 +4,13 @@ import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: wangzc
  * @Date: 2020/7/30 16:19
  */
-
-@ResponseBody
-@ControllerAdvice
+@RestControllerAdvice
 public class CommonExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
