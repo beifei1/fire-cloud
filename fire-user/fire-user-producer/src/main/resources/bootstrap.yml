@@ -5,8 +5,8 @@ spring:
     nacos:
       config:
         file-extension: yaml
-        shared-configs[0]:
-          data-id: fire-redis-config.yml
-          group: DEFAULT_GROUP
-          refresh: true
+        extension-configs:
+         - data-id: fire-redis-config.yaml
+           group: DEFAULT_GROUP
+           refresh: true
       server-addr: 127.0.0.1:6030
