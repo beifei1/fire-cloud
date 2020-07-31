@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.SocketTimeoutException;
+
 /**
  * @Author: wangzc
  * @Date: 2020/7/30 16:19
@@ -24,5 +26,11 @@ public class CommonExceptionHandler {
     @ExceptionHandler(BaseException.class)
     public R baseExceptionHandler(BaseException e) {
         return R.fail(e.getCode(),e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(SocketTimeoutException.class)
+    public R readTimeOutExceptionHandler(SocketTimeoutException e) {
+        return R.fail(e.getMessage());
     }
 }
