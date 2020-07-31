@@ -1,6 +1,8 @@
 spring:
+  application:
+    name: fire-user-consumer
   cloud:
     nacos:
-      server-addr: 127.0.0.1:6030
       config:
         file-extension: yaml
+      server-addr: 127.0.0.1:6030
