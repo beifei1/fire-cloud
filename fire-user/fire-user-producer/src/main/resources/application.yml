@@ -7,7 +7,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:6030
-        group: fire-cloud-1
   datasource:
     type: com.zaxxer.hikari.HikariDataSource  #使用Hikari连接池
     driverClassName: com.mysql.cj.jdbc.Driver

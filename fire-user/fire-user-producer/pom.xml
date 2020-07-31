@@ -58,6 +58,11 @@
             <artifactId>fire-user-api</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.fire</groupId>
+            <artifactId>fire-config</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
