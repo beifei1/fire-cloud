@@ -1,5 +1,6 @@
 package cn.fire.user.service.impl;
 
+import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.UserDO;
 import cn.fire.user.dao.UserMapper;
 import cn.fire.user.service.IUserService;
@@ -21,12 +22,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     private UserMapper userMapper;
 
     @Override
-    public UserDO getById(Long userId) {
+    public UserDO getById(Long userId) throws UserException {
         return super.getById(userId);
     }
 
     @Override
-    public UserDO getByMobile(String mobile) {
+    public UserDO getByMobile(String mobile) throws UserException {
         return userMapper.selectOne(new QueryWrapper<UserDO>().eq(StringUtils.isNoneBlank(mobile),"mobile",mobile));
     }
 

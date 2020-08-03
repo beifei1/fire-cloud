@@ -1,5 +1,6 @@
 package cn.fire.user.service;
 
+import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.UserDO;
 
 /**
@@ -14,9 +15,9 @@ public interface IUserService {
      * @param userId
      * @return
      */
-    UserDO getById(Long userId);
+    UserDO getById(Long userId) throws UserException;
 
 
-    UserDO getByMobile(String mobile);
+    UserDO getByMobile(String mobile) throws UserException;
 
 }

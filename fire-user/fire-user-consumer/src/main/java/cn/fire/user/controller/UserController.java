@@ -1,6 +1,6 @@
 package cn.fire.user.controller;
 
-import cn.fire.user.feign.UserServiceFeignClient;
+import cn.fire.user.feign.UserServiceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ public class UserController {
 
 
     @Autowired
-    private UserServiceFeignClient userServiceFeignClient;
+    private UserServiceFeign userServiceFeign;
 
 
 
