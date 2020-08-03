@@ -3,12 +3,14 @@ spring:
     name: fire-user-producer
   cloud:
     nacos:
+      server-addr: http://192.144.176.31:80
       config:
         file-extension: yaml
-        ext-config:
-          - data-id: fire-mybatis-plus-config.yml
-            group: DEFAULT_GROUP
-            refresh: true
-          - data-id: fire-redis-config.yml
-            group: DEFAULT_GROUP
-      server-addr: http://192.144.176.31:80
+        extension-configs[0]:
+          data-id: fire-mybatis-plus-config.yaml
+          group: DEFAULT_GROUP
+          refresh: true
+        extension-configs[1]:
+          data-id: fire-redis-config.yaml
+          group: DEFAULT_GROUP
+          refresh: true

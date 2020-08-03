@@ -1,6 +1,5 @@
 package cn.fire.user;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +15,7 @@ public class FireUserProducerApplication {
         SpringApplication.run(FireUserProducerApplication.class, args);
     }
 
-    @Value("${redis.name}")
+    @Value("${redis.name:}")
     private String name;
 
     @Bean
