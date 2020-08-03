@@ -5,4 +5,9 @@ spring:
     nacos:
       config:
         file-extension: yaml
+        extension-configs:
+          - data-id: fire-service-names.yml
+            group: DEFAULT_GROUP
+            refresh: true
+
       server-addr: http://192.144.176.31:80

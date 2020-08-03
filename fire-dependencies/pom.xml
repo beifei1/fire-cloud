@@ -21,6 +21,7 @@
         <javax-validation.version>2.0.1.Final</javax-validation.version>
         <fastjson.version>1.2.73</fastjson.version>
         <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
+        <springdoc.version>1.4.3</springdoc.version>
     </properties>
 
     <dependencyManagement>
@@ -135,6 +136,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
 
         </dependencies>

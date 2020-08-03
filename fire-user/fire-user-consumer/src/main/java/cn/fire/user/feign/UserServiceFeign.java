@@ -11,6 +11,6 @@ import static cn.fire.user.api.consts.Names.PRODUCER_APPLICATION_NAME;
  * @Date: 2020/7/31 11:44
  */
 
-@FeignClient(name = PRODUCER_APPLICATION_NAME,contextId = "userServiceFeign",configuration = FeignConfig.class)
+@FeignClient(name = "${fire.producer-name.user:}",contextId = "userServiceFeign",configuration = FeignConfig.class)
 public interface UserServiceFeign extends UserFeignClient {
 }
