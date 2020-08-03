@@ -5,15 +5,8 @@ spring:
     nacos:
       config:
         file-extension: yaml
-        shared-configs[0]:
-           data-id: fire-redis-config.yaml
+        extension-configs[0]:
+           data-id: fire-mybatis-plus-config.yaml
            group: DEFAULT_GROUP
            refresh: true
       server-addr: http://192.144.176.31:80
-
-mybatis-plus:
-  type-aliases-package:
-  global-config:
-    db-config:
-      table-prefix: t_
-      table-underline: false

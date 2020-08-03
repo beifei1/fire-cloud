@@ -1,6 +1,7 @@
 package cn.fire.user;
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,13 +16,13 @@ public class FireUserProducerApplication {
         SpringApplication.run(FireUserProducerApplication.class, args);
     }
 
-    @NacosValue("${redis.name}")
-    private String name;
+//    @Value("${redis.name}")
+//    private String name;
 
-    @Bean
-    CommandLineRunner run () {
-        return (arg) -> {
-            System.out.println("==================:" + name);
-        };
-    }
+//    @Bean
+//    CommandLineRunner run () {
+//        return (arg) -> {
+//            System.out.println("==================:" + name);
+//        };
+//    }
 }
