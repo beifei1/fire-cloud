@@ -31,7 +31,7 @@ public class CommonExceptionHandler {
      * @param e
      * @return
      */
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(BaseException.class)
     public R baseExceptionHandler(BaseException e) {
         return R.fail(e.getCode(),e.getMessage());
