@@ -2,7 +2,7 @@ package cn.fire.user.api.pojo.entity;
 
 import cn.fire.common.core.BaseDO;
 import cn.fire.common.enums.GenderEnum;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @Date: 2020/7/29 14:47
  */
 @Data
-@TableName(value = "t_user")
+@TableName("t_user")
 public class UserDO extends BaseDO {
 
     private String userName;

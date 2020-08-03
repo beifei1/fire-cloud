@@ -21,7 +21,6 @@
         <javax-validation.version>2.0.1.Final</javax-validation.version>
         <fastjson.version>1.2.73</fastjson.version>
         <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
-        <mybatis-plus.version>2.3.3</mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -97,7 +96,7 @@
 
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-support</artifactId>
+                <artifactId>mybatis-plus</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
