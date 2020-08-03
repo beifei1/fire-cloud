@@ -16,13 +16,13 @@ public class FireUserProducerApplication {
         SpringApplication.run(FireUserProducerApplication.class, args);
     }
 
-//    @Value("${redis.name}")
-//    private String name;
+    @Value("${redis.name}")
+    private String name;
 
-//    @Bean
-//    CommandLineRunner run () {
-//        return (arg) -> {
-//            System.out.println("==================:" + name);
-//        };
-//    }
+    @Bean
+    CommandLineRunner run () {
+        return (arg) -> {
+            System.out.println("==================:" + name);
+        };
+    }
 }
