@@ -9,4 +9,4 @@ spring:
          - data-id: fire-redis-config.yaml
            group: DEFAULT_GROUP
            refresh: true
-      server-addr: 127.0.0.1:6030
+      server-addr: http://192.144.176.31:80

@@ -5,4 +5,4 @@ spring:
     nacos:
       config:
         file-extension: yaml
-      server-addr: 127.0.0.1:6030
+      server-addr: http://192.144.176.31:80
