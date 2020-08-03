@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @Date: 2020/7/29 14:47
  */
 @Data
-@TableName("t_user")
+@TableName(value = "t_user")
 public class UserDO extends BaseDO {
 
     private String userName;
