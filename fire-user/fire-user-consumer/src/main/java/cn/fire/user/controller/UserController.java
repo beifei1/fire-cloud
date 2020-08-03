@@ -1,7 +1,10 @@
 package cn.fire.user.controller;
 
+import cn.fire.common.web.core.R;
+import cn.fire.user.api.pojo.entity.UserDO;
 import cn.fire.user.feign.UserServiceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +20,12 @@ public class UserController {
 
 
     @Autowired
-    private UserServiceFeign userServiceFeign;
+    private UserServiceFeign userServiceFeignClient;
 
 
 
-
+    @PostMapping("/test")
+    public R<UserDO> test() {
+        return R.ok(userServiceFeignClient.getById(1L));
+    }
 }

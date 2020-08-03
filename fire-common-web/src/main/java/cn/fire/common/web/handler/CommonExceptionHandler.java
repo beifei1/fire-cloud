@@ -15,19 +15,33 @@ import java.net.SocketTimeoutException;
 @RestControllerAdvice
 public class CommonExceptionHandler {
 
+    /**
+     * 缺少参数
+     * @param e
+     * @return
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public R missingParameterException(MissingServletRequestParameterException e) {
         return R.fail(e.getMessage());
     }
 
-
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    /**
+     * 业务异常
+     * @param e
+     * @return
+     */
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BaseException.class)
     public R baseExceptionHandler(BaseException e) {
         return R.fail(e.getCode(),e.getMessage());
     }
 
+    /**
+     * 连接错误
+     * @param e
+     * @return
+     */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(SocketTimeoutException.class)
     public R readTimeOutExceptionHandler(SocketTimeoutException e) {

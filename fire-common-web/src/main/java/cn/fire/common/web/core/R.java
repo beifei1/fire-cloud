@@ -1,6 +1,8 @@
 package cn.fire.common.web.core;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -17,9 +19,13 @@ public class R<T> implements Serializable {
     private static final String ERROR = "deny";
 
     @Getter
+    @Setter
     private Meta meta;
+    @Setter
     @Getter
     private T data;
+
+
 
     public R(boolean success, Integer code, String msg) {
         this.meta = new Meta(success,code,msg);
