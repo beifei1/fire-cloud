@@ -3,5 +3,4 @@ spring:
     name: fire-oauth
   cloud:
     nacos:
-      discovery:
-        server-addr: http://192.144.176.31:80
+      server-addr: http://192.144.176.31:80
