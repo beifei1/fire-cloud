@@ -1,12 +1,16 @@
 package cn.fire.user.controller;
 
 import cn.fire.common.web.core.R;
-import cn.fire.user.api.pojo.entity.UserDO;
 import cn.fire.user.feign.UserServiceFeign;
+import cn.fire.user.pojo.ao.UserLoginAO;
+import cn.fire.user.pojo.vo.UserLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 
 /**
@@ -20,12 +24,13 @@ public class UserController {
 
 
     @Autowired
-    private UserServiceFeign userServiceFeignClient;
+    private UserServiceFeign userServiceFeign;
 
 
+    @PostMapping("/login")
+    public R<UserLoginVO> login(@Valid @RequestBody UserLoginAO param) {
 
-    @PostMapping("/test")
-    public R<UserDO> test() {
-        return R.ok(userServiceFeignClient.getById(1L));
+
+        return R.ok();
     }
 }
