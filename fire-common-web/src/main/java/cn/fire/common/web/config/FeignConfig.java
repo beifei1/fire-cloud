@@ -50,14 +50,12 @@ class BusinessErrorHandler implements ErrorDecoder {
                         IOUtils.toString(response.body().asReader(Charset.defaultCharset())),
                         R.class
                 );
-                log.error(JSONObject.toJSONString(r));
                 return BaseException.instance(r.getMeta().getCode(), r.getMeta().getMsg());
             } catch (IOException e) {
                 log.error("处理异常响应体错误:{}", e.getMessage());
             }
 
         }
-
         return BaseException.instance(response.status(),response.reason());
     }
 
