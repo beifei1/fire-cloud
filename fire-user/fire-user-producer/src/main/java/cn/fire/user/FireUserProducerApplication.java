@@ -15,13 +15,13 @@ public class FireUserProducerApplication {
         SpringApplication.run(FireUserProducerApplication.class, args);
     }
 
-//    @NacosValue("${redis.name}")
-//    private String name;
-//
-//    @Bean
-//    CommandLineRunner run () {
-//        return (arg) -> {
-//            System.out.println("==================:" + name);
-//        };
-//    }
+    @NacosValue("${redis.name}")
+    private String name;
+
+    @Bean
+    CommandLineRunner run () {
+        return (arg) -> {
+            System.out.println("==================:" + name);
+        };
+    }
 }
