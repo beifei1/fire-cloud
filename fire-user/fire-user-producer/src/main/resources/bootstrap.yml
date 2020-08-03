@@ -7,10 +7,6 @@ spring:
       config:
         file-extension: yaml
         extension-configs[0]:
-          data-id: fire-mybatis-plus-config.yaml
-          group: DEFAULT_GROUP
-          refresh: true
-        extension-configs[1]:
-          data-id: fire-redis-config.yaml
-          group: DEFAULT_GROUP
+          data-id: fire-common-mybatis-config.yaml
+          group: common
           refresh: true

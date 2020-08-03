@@ -6,8 +6,8 @@ spring:
       config:
         file-extension: yaml
         extension-configs:
-          - data-id: fire-service-names.yml
-            group: DEFAULT_GROUP
+          - data-id: fire-common-service-config.yml
+            group: common
             refresh: true
 
       server-addr: http://192.144.176.31:80
