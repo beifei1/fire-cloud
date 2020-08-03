@@ -21,6 +21,8 @@ public class UserDO extends BaseDO {
 
     private GenderEnum gender;
 
+    private String password;
+
     private String avatar;
 
     private LocalDateTime birthDate;
@@ -30,5 +32,7 @@ public class UserDO extends BaseDO {
     private LocalDateTime update_time;
 
     private LocalDateTime createTime;
+
+    private Boolean locked;
 
 }

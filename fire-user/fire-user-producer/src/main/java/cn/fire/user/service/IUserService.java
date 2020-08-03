@@ -16,4 +16,7 @@ public interface IUserService {
      */
     UserDO getById(Long userId);
 
+
+    UserDO getByMobile(String mobile);
+
 }

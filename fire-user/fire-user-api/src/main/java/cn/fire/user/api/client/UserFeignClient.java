@@ -20,4 +20,13 @@ public interface UserFeignClient {
     @RequestMapping("service/user/getById")
     UserDO getById(@RequestParam(value = "userId") Long userId);
 
+
+    /**
+     * 根据Mobile获取对象
+     * @param mobile
+     * @return
+     */
+    @RequestMapping("service/user/getByMobile")
+    UserDO getByMobile(@RequestParam(value = "mobile") String mobile);
+
 }

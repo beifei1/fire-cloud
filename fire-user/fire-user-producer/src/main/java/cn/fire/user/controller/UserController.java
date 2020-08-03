@@ -23,4 +23,9 @@ public class UserController implements UserFeignClient {
         return userService.getById(userId);
     }
 
+    @Override
+    public UserDO getByMobile(String mobile) {
+        return userService.getByMobile(mobile);
+    }
+
 }
