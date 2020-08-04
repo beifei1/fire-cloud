@@ -1,6 +1,7 @@
 package cn.fire.user.controller;
 
 import cn.fire.common.web.core.R;
+import cn.fire.common.web.core.Request;
 import cn.fire.user.feign.UserServiceFeign;
 import cn.fire.user.pojo.ao.UserLoginAO;
 import cn.fire.user.pojo.vo.UserLoginVO;
@@ -32,7 +33,7 @@ public class UserController {
 
     @PostMapping("/login")
     @Operation(summary = "手机密码登录Summary",description = "手机密码登录Descrption")
-    public R<UserLoginVO> login(@Valid @RequestBody UserLoginAO param) {
+    public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
         return R.ok();
     }

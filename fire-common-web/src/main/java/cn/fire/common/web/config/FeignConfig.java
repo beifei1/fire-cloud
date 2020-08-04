@@ -7,9 +7,11 @@ import com.alibaba.fastjson.JSONObject;
 import feign.Logger;
 import feign.Response;
 import feign.Retryer;
+import feign.auth.BasicAuthRequestInterceptor;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,12 +29,22 @@ import java.nio.charset.Charset;
 @ConditionalOnClass(feign.Retryer.class)
 public class FeignConfig {
 
+    @Value("${spring.security.user.name:}")
+    private String httpBasicUserName;
+    @Value("${spring.security.user.password:}")
+    private String httpBasicPassword;
+
     @Bean
     Retryer retryer () { return Retryer.NEVER_RETRY; }
 
     @Bean
     ErrorDecoder errorDecoder() {
         return new BusinessErrorHandler();
+    }
+
+
+    BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+        return new BasicAuthRequestInterceptor(httpBasicUserName, httpBasicPassword);
     }
 
 }
