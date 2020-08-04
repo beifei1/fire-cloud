@@ -42,7 +42,7 @@ public class FeignConfig {
         return new BusinessErrorHandler();
     }
 
-
+    @Bean
     BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
         return new BasicAuthRequestInterceptor(httpBasicUserName, httpBasicPassword);
     }
