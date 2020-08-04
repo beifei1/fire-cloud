@@ -13,14 +13,14 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
-@Schema(name = "UserLoginAO:name",title = "UserLoginAO:title")
+@Schema(title = "用户登录请求体")
 public class UserLoginAO {
 
-    @Schema(name = "电话号码",title = "电话号码")
+    @Schema(description = "电话号码")
     @NotBlank(message = "电话号码不能为空")
     private String mobile;
 
-    @Schema(name = "登录密码", title = "登录密码")
+    @Schema(description = "密码")
     @NotBlank(message = "密码不能为空")
     private String password;
 

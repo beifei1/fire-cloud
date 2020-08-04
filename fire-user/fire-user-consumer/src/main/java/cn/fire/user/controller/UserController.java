@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
-@Tag(name = "用户控制器",description = "")
+@Tag(name ="用户控制器")
 public class UserController {
 
 
@@ -31,8 +31,14 @@ public class UserController {
     private UserServiceFeign userServiceFeign;
 
 
+    @PostMapping("/test")
+    public R<String> test() {
+        return R.ok(userServiceFeign.getById(3L).toString());
+    }
+
+
     @PostMapping("/login")
-    @Operation(summary = "手机密码登录Summary",description = "手机密码登录Descrption")
+    @Operation(description = "手机密码登录")
     public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
         return R.ok();

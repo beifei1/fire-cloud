@@ -64,6 +64,12 @@
             <groupId>cn.fire</groupId>
             <artifactId>fire-common</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>

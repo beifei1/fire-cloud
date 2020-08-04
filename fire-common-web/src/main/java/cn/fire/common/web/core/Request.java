@@ -1,5 +1,6 @@
 package cn.fire.common.web.core;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -8,10 +9,16 @@ import lombok.Data;
  */
 
 @Data
+@Schema(title = "请求参数")
 public class Request<T> {
 
+    @Schema(title = "数据签名")
     private String sign;
-    
+
+    @Schema(title = "请求时间")
+    private String timestamp;
+
+    @Schema(title = "请求数据")
     private T data;
 
 }
