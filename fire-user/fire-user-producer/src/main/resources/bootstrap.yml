@@ -5,8 +5,12 @@ spring:
     nacos:
       server-addr: http://192.144.176.31:80
       config:
-        file-extension: yaml
         extension-configs[0]:
-          data-id: fire-common-mybatis-config.yaml
+          data-id: fire-common-mybatis-plus.properties
           group: common
           refresh: true
+        namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
+        group: service
+      discovery:
+        namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
+        group: base-service

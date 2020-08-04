@@ -5,4 +5,8 @@ spring:
     nacos:
       server-addr: http://192.144.176.31:80
       config:
-        file-extension: yaml
+        namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
+        group: service
+      discovery:
+        namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
+        group: base-service
