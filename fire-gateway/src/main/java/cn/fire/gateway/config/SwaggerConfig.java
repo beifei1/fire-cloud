@@ -21,16 +21,15 @@ public class SwaggerConfig {
     @Bean
     List<GroupedOpenApi> apis(SwaggerUiConfigParameters swaggerUiConfigParameters, RouteDefinitionLocator locator) {
         List<GroupedOpenApi> groups = new ArrayList<>();
-        //获取所有Route声明
         List<RouteDefinition> definitions = locator.getRouteDefinitions().collectList().block();
-        definitions.stream().filter(routeDefinition -> routeDefinition.getId().matches(".*-consumer")).forEach(routeDefinition -> {
-            String name = routeDefinition.getId().replaceAll("-consumer", "");
-            swaggerUiConfigParameters.addGroup(name);
-            GroupedOpenApi groupedOpenApi = GroupedOpenApi.builder().pathsToMatch("/" + name + "/**").group(name).build();
-            groupedOpenApi.getOpenApiCustomisers().forEach(a -> {
+		definitions.stream().filter(routeDefinition -> routeDefinition.getId().matches(".*-consumer")).forEach(routeDefinition -> {
+			String name = routeDefinition.getId().replaceAll("-consumer", "").replace("fire-","");
+			swaggerUiConfigParameters.addGroup(name);
+			swaggerUiConfigParameters.setUiRootPath(name);
 
-            });
-        });
+            System.out.println(name);
+//			GroupedOpenApi g = GroupedOpenApi.builder().pathsToMatch("/" + name + "/**").group(name).build();
+		});
         return groups;
     }
 
