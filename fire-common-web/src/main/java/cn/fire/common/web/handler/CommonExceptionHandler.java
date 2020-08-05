@@ -43,7 +43,7 @@ public class CommonExceptionHandler {
         e.getBindingResult().getFieldErrors().stream().forEach(field -> {
             msgs.add(field.getDefaultMessage());
         });
-        return R.fail(StringUtils.join(msgs,','));
+        return R.fail(BaseException.INVALID_PARAMTER_ERROR,StringUtils.join(msgs,','));
     }
 
     /**
