@@ -10,9 +10,6 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.support.NameUtils;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
