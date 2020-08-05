@@ -15,7 +15,7 @@ import java.util.Map;
 @Data
 @Component
 @ConfigurationProperties(prefix = "customer.route.define.map")
-public class RouteDefine {
+public class RouteInfoDefine {
 
     private Map<String,String> routes = new LinkedHashMap<>();
 

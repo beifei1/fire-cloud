@@ -26,7 +26,7 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 public class SwaggerConfig implements SwaggerResourcesProvider {
 
     @Autowired
-    private RouteDefine routeDefine;
+    private RouteInfoDefine routeDefine;
     private final RouteLocator routeLocator;
     private final GatewayProperties gatewayProperties;
 
