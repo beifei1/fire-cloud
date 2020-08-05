@@ -21,8 +21,7 @@ public class UserController implements UserFeignClient {
 
     @Override
     public UserDO getById(Long userId) {
-        throw UserException.instance(UserException.DATA_NOT_EXISTS,"用户不存在");
-//        return userService.getById(userId);
+        return userService.getById(userId);
     }
 
     @Override

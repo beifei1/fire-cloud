@@ -27,9 +27,7 @@ public class UserDO extends BaseDO {
 
     private LocalDateTime birthDate;
 
-    private LocalDateTime lastLoginTime;
-
-    private LocalDateTime update_time;
+    private LocalDateTime updateTime;
 
     private LocalDateTime createTime;
 
