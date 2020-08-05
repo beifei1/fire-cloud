@@ -32,7 +32,7 @@ public class SwaggerConfig {
             definitions.stream().filter(routeDefinition -> routeDefinition.getId().equalsIgnoreCase(routeId)).forEach(routeDefinition -> {
                 String name = StringUtils.replaceEachRepeatedly(routeDefinition.getId(), new String[]{"-","consumer","fire"},new String[]{"","",""});
                 swaggerUiConfigParameters.addGroup(name);
-                GroupedOpenApi.builder().pathsToMatch("/" + name + "/**").group(description).build();
+                GroupedOpenApi.builder().pathsToMatch("/" + name + "/**").group(name).build();
             });
         });
 
