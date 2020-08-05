@@ -20,4 +20,7 @@ public interface IUserService {
 
     UserDO getByMobile(String mobile) throws UserException;
 
+
+    Boolean deleteByUserId(Long userId) throws UserException;
+
 }

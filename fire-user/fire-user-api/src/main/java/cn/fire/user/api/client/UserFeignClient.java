@@ -29,4 +29,9 @@ public interface UserFeignClient {
     @RequestMapping("service/user/getByMobile")
     UserDO getByMobile(@RequestParam(value = "mobile") String mobile);
 
+
+
+    @RequestMapping("service/user/deleteByUserId")
+    Boolean deleteByUserId(@RequestParam("userId") Long userId);
+
 }

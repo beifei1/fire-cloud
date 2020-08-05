@@ -58,7 +58,7 @@ public class UserController {
     @ApiOperation("删除用户")
     @ApiOperationSupport(author = "wangzhichao")
     public R delete(@PathVariable("userId") Long userId) {
-        return R.ok();
+        return R.ok(userServiceFeign.deleteByUserId(userId));
     }
 
 

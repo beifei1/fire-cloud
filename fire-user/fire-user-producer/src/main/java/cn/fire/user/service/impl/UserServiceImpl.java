@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 /**
  * @Author: wangzc
  * @Date: 2020/7/31 11:17
@@ -30,6 +32,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     @Override
     public UserDO getByMobile(String mobile) throws UserException {
         return userMapper.selectOne(new QueryWrapper<UserDO>().eq(StringUtils.isNoneBlank(mobile),"mobile",mobile));
+    }
+
+    @Override
+    public Boolean deleteByUserId(Long userId) throws UserException {
+        UserDO user = userMapper.selectById(userId);
+        if (Objects.isNull(user)) {
+            throw UserException.instance(UserException.DATA_NOT_EXISTS,"用户不存在");
+        }
+        return userMapper.deleteById(userId) > 0;
+
     }
 
 

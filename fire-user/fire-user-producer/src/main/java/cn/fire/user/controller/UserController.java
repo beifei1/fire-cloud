@@ -29,4 +29,9 @@ public class UserController implements UserFeignClient {
         return userService.getByMobile(mobile);
     }
 
+    @Override
+    public Boolean deleteByUserId(Long userId) {
+        return userService.deleteByUserId(userId);
+    }
+
 }
