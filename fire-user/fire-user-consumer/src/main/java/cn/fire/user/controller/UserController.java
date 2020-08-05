@@ -5,6 +5,9 @@ import cn.fire.common.web.core.Request;
 import cn.fire.user.feign.UserServiceFeign;
 import cn.fire.user.pojo.ao.UserLoginAO;
 import cn.fire.user.pojo.vo.UserLoginVO;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +24,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
+@Api("用户控制器")
 public class UserController {
 
 
@@ -29,12 +33,14 @@ public class UserController {
 
 
     @PostMapping("/test")
+    @ApiOperation("测试方法")
     public R<String> test() {
         return R.ok(userServiceFeign.getById(3L).toString());
     }
 
 
     @PostMapping("/login")
+    @ApiOperation("用户登录")
     public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
         return R.ok();
