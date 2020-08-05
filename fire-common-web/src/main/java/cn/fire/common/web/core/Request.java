@@ -1,5 +1,7 @@
 package cn.fire.common.web.core;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -8,12 +10,16 @@ import lombok.Data;
  */
 
 @Data
+@ApiModel(description = "统一请求体Wrapper")
 public class Request<T> {
 
+    @ApiModelProperty(name = "数据签名")
     private String sign;
 
+    @ApiModelProperty(name = "时间戳")
     private String timestamp;
 
+    @ApiModelProperty(name = "请求数据")
     private T data;
 
 }

@@ -74,7 +74,6 @@
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-micro-spring-boot-starter</artifactId>

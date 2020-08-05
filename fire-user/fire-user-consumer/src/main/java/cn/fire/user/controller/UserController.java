@@ -24,7 +24,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
-@Api("用户控制器")
+@Api(tags = "用户控制器")
 public class UserController {
 
 
@@ -34,6 +34,7 @@ public class UserController {
 
     @PostMapping("/test")
     @ApiOperation("测试方法")
+    @ApiOperationSupport(author = "wangzhichao")
     public R<String> test() {
         return R.ok(userServiceFeign.getById(3L).toString());
     }
@@ -41,6 +42,7 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation("用户登录")
+    @ApiOperationSupport(author = "wangzhichao")
     public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
         return R.ok();
