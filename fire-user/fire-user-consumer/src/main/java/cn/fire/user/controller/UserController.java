@@ -33,7 +33,6 @@ public class UserController {
     private UserServiceFeign userServiceFeign;
 
 
-
     @PostMapping("/register")
     @ApiOperation("用户注册")
     @ApiOperationSupport(author = "wangzhichao")
@@ -42,17 +41,24 @@ public class UserController {
     }
 
 
-
     @GetMapping("/{userId}")
     @ApiOperation("用户详情")
     @ApiOperationSupport(author = "wangzhichao")
-    public R<UserDetailVO> detail(@Valid @PathVariable("userId") Long userId) {
+    public R<UserDetailVO> detail(@PathVariable("userId") Long userId) {
         UserDO user = userServiceFeign.getById(userId);
 
         UserDetailVO userDetail = UserDetailVO.builder().build();
         BeanUtils.copyProperties(user,userDetail);
 
         return R.ok(userDetail);
+    }
+
+
+    @DeleteMapping("/{userId}")
+    @ApiOperation("删除用户")
+    @ApiOperationSupport(author = "wangzhichao")
+    public R delete(@PathVariable("userId") Long userId) {
+        return R.ok();
     }
 
 
