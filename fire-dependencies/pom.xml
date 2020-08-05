@@ -22,6 +22,7 @@
         <fastjson.version>1.2.73</fastjson.version>
         <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
         <springdoc.version>1.4.3</springdoc.version>
+        <knife4j.starter.version>2.0.4</knife4j.starter.version>
     </properties>
 
     <dependencyManagement>
@@ -139,15 +140,18 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                <version>${springdoc.version}</version>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.starter.version}</version>
             </dependency>
+
             <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webflux-ui</artifactId>
-                <version>${springdoc.version}</version>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+                <!--在引用时请在maven中央仓库搜索最新版本号-->
+                <version>${knife4j.starter.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

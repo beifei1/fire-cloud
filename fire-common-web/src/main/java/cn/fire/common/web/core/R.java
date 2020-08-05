@@ -1,7 +1,5 @@
 package cn.fire.common.web.core;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,21 +12,16 @@ import java.io.Serializable;
  */
 
 @ToString
-@Schema(title = "统一响应体")
 public class R<T> implements Serializable {
 
-    @Schema(description = "成功消息体",name ="OK")
     private static final String OK = "ok";
-    @Schema(description = "失败消息体",name = "ERROR")
     private static final String ERROR = "deny";
 
     @Getter
     @Setter
-    @Schema(description = "响应头")
     private Meta meta;
     @Setter
     @Getter
-    @Schema(description = "响应体")
     private T data;
 
 
@@ -77,13 +70,10 @@ public class R<T> implements Serializable {
     public class Meta {
 
         @Getter
-        @Schema(title = "本次请求是否成功",name = "success")
         private boolean success;
         @Getter
-        @Schema(title = "响应消息",name = "msg")
         private String msg;
         @Getter
-        @Schema(title = "业务码",name = "msg")
         private Integer code;
 
         public Meta(boolean success) {

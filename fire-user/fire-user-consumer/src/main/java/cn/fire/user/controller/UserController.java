@@ -5,8 +5,6 @@ import cn.fire.common.web.core.Request;
 import cn.fire.user.feign.UserServiceFeign;
 import cn.fire.user.pojo.ao.UserLoginAO;
 import cn.fire.user.pojo.vo.UserLoginVO;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +21,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
-@Tag(name ="用户控制器")
 public class UserController {
 
 
@@ -38,7 +35,6 @@ public class UserController {
 
 
     @PostMapping("/login")
-    @Operation(description = "手机密码登录")
     public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
         return R.ok();
