@@ -35,7 +35,7 @@ public class UserController {
 
     @PostMapping("/register")
     @ApiOperation("用户注册")
-    @ApiOperationSupport(author = "wangzhichao")
+    @ApiOperationSupport(author = "beifei")
     public R register(@Valid @RequestBody Request<UserRegisterAO> param) {
         return R.ok();
     }
@@ -43,7 +43,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     @ApiOperation("用户详情")
-    @ApiOperationSupport(author = "wangzhichao")
+    @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@PathVariable("userId") Long userId) {
         UserDO user = userServiceFeign.getById(userId);
 
@@ -56,7 +56,7 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
-    @ApiOperationSupport(author = "wangzhichao")
+    @ApiOperationSupport(author = "beifei")
     public R delete(@PathVariable("userId") Long userId) {
         return R.ok(userServiceFeign.deleteByUserId(userId));
     }
@@ -64,7 +64,7 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation("用户登录")
-    @ApiOperationSupport(author = "wangzhichao")
+    @ApiOperationSupport(author = "beifei")
     public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
         return R.ok();
