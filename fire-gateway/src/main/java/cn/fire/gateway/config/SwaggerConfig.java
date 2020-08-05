@@ -25,10 +25,8 @@ public class SwaggerConfig {
 		definitions.stream().filter(routeDefinition -> routeDefinition.getId().matches(".*-consumer")).forEach(routeDefinition -> {
 			String name = routeDefinition.getId().replaceAll("-consumer", "").replace("fire-","");
 			swaggerUiConfigParameters.addGroup(name);
-			swaggerUiConfigParameters.setUiRootPath(name);
 
-            System.out.println(name);
-//			GroupedOpenApi g = GroupedOpenApi.builder().pathsToMatch("/" + name + "/**").group(name).build();
+			GroupedOpenApi.builder().pathsToMatch("/" + name + "/**").group(name).build();
 		});
         return groups;
     }
