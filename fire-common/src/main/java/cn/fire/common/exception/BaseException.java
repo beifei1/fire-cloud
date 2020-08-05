@@ -16,6 +16,8 @@ public class BaseException extends RuntimeException {
 	public static final Integer UPDATE_OBJECT_ERROR = 103;//更新对象失败
 	public static final Integer DATA_VERSION_ERROR = 104;//数据版本错误(乐观锁)
 	public static final Integer SYSTEM_BIZ_ERROR = 105; //业务处理异常
+    public static final Integer INVALID_TOKEN = 106;//token无效
+    public static final Integer TOKEN_UNAUTHORIZAD = 107;//token权限不足
 
     protected String msg;
 	protected Integer code;

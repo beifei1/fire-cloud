@@ -1,5 +1,6 @@
 package cn.fire.common.web.handler;
 
+import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class AccessDenyEntryPoint implements AccessDeniedHandler {
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         try {
-            response.getWriter().write(JSONObject.toJSONString(R.fail("permission denied")));
+            response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.TOKEN_UNAUTHORIZAD,"权限不足")));
         } catch (IOException ex) {
             log.error("接口权限不足");
         }

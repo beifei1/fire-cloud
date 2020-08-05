@@ -1,5 +1,6 @@
 package cn.fire.common.web.handler;
 
+import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         try {
             if(cause instanceof InvalidTokenException) {
-                response.getWriter().write(JSONObject.toJSONString(R.fail("invalid token")));
+                response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.INVALID_TOKEN,"无效的Token")));
             }else{
                 response.getWriter().write(JSONObject.toJSONString(R.fail(e.getMessage())));
             }
