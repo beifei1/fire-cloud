@@ -70,17 +70,17 @@ public class R<T> implements Serializable {
         return new R(false,code,message);
     }
 
-    @ApiModel(description = "统一响应体头部信息")
+    @ApiModel("统一响应体头部信息")
     public class Meta {
 
         @Getter
-        @ApiModelProperty(name = "是否处理成功")
+        @ApiModelProperty("是否处理成功")
         private boolean success;
         @Getter
-        @ApiModelProperty(name = "响应消息")
+        @ApiModelProperty("响应消息")
         private String msg;
         @Getter
-        @ApiModelProperty(name = "业务异常码")
+        @ApiModelProperty("业务异常码")
         private Integer code;
 
         public Meta(boolean success) {

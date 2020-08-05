@@ -13,13 +13,13 @@ import lombok.Data;
 @ApiModel(description = "统一请求体Wrapper")
 public class Request<T> {
 
-    @ApiModelProperty(name = "数据签名")
+    @ApiModelProperty("数据签名")
     private String sign;
 
-    @ApiModelProperty(name = "时间戳")
+    @ApiModelProperty("时间戳")
     private String timestamp;
 
-    @ApiModelProperty(name = "请求数据")
+    @ApiModelProperty("请求数据")
     private T data;
 
 }

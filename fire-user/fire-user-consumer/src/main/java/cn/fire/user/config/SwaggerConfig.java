@@ -27,7 +27,7 @@ public class SwaggerConfig {
         List<Parameter> paramsList = new ArrayList<>();
         ParameterBuilder tokenParam = new ParameterBuilder()
                 .name("Authorization")
-                .description("Oauth2 AccessToken")
+                .description("access token")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
                 .hidden(false).required(false)
