@@ -20,6 +20,6 @@ public class Request<T> {
     private String timestamp;
 
     @ApiModelProperty("请求数据")
-    private T data;
+    private T param;
 
 }
