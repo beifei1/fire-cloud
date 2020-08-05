@@ -32,7 +32,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/v3/api-docs").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/**").authenticated();
     }
 
