@@ -19,7 +19,7 @@ public class UserDO extends BaseDO {
 
     private String mobile;
 
-    private Integer gender;
+    private GenderEnum gender;
 
     private String password;
 

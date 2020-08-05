@@ -1,6 +1,7 @@
 package cn.fire.common.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * @Author: wangzc
@@ -14,6 +15,7 @@ public enum PublicEnum {
 	private String desc;
 
 	@EnumValue
+    @JsonValue
 	private int value;
 
 	private PublicEnum(String desc,int value) {

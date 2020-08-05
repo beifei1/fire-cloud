@@ -1,6 +1,7 @@
 package cn.fire.common.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * @Author: wangzhichao
@@ -15,6 +16,7 @@ public enum GenderEnum {
     UNKNOW(3, "未知");
 
     @EnumValue
+    @JsonValue
     private Integer code;
 
     private String desc;
