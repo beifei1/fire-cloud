@@ -65,7 +65,6 @@ class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
     @Override
     public void serialize(final LocalDateTime value, final JsonGenerator generator, final SerializerProvider provider) throws IOException {
-        System.out.println(value);
         if (value != null) {
             final long mills = value.atZone(DEFAULT_ZONE_ID).toInstant().toEpochMilli();
             generator.writeNumber(mills);
