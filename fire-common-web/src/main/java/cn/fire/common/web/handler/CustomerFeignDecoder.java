@@ -5,8 +5,8 @@ import cn.fire.common.web.core.R;
 import com.alibaba.fastjson.JSONObject;
 import feign.FeignException;
 import feign.Response;
+import feign.Util;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -25,8 +25,6 @@ import java.util.Objects;
 @Slf4j
 public class CustomerFeignDecoder extends SpringDecoder {
 
-    private final String TIP_META_TYPE = "cn.fire.common.web.core.R";
-
     public CustomerFeignDecoder(ObjectFactory<HttpMessageConverters> messageConverters) {
         super(messageConverters);
     }
@@ -34,14 +32,13 @@ public class CustomerFeignDecoder extends SpringDecoder {
     @Override
     public Object decode(Response response, Type type) throws FeignException, IOException,BaseException {
 
-        System.out.println(type.getTypeName());
+        byte[] bytes = IOUtils.toByteArray(response.body().asReader(Util.UTF_8));
 
-        if (response.status() == HttpStatus.OK.value() && StringUtils.equals(TIP_META_TYPE,type.getTypeName())) {
-
-            R r = JSONObject.parseObject(
-                    IOUtils.toString(response.body().asReader(Charset.defaultCharset())),
-                    R.class
-            );
+        if (response.status() == HttpStatus.OK.value()) {
+            R r = null;
+            try {
+                r = JSONObject.parseObject(IOUtils.toString(bytes,"UTF-8"), R.class);
+            } catch (Exception ex) {}
 
             if (Objects.nonNull(r) && r.getMeta().getSuccess() == 0) {
                 throw BaseException.instance(r.getMeta().getCode(), r.getMeta().getMsg());
@@ -49,6 +46,13 @@ public class CustomerFeignDecoder extends SpringDecoder {
 
         }
 
-        return super.decode(response, type);
+        Response newResponse = Response.builder()
+                .body(bytes)
+                .headers(response.headers())
+                .reason(response.reason())
+                .request(response.request())
+                .status(response.status()).build();
+
+        return super.decode(newResponse, type);
     }
 }
