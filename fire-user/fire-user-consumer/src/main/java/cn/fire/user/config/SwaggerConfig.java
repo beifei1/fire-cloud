@@ -1,5 +1,6 @@
 package cn.fire.user.config;
 
+import cn.fire.user.api.exception.UserException;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,6 +24,15 @@ import java.util.List;
 @EnableKnife4j
 @Configuration
 public class SwaggerConfig {
+
+    private static List<ResponseMessage> codes = new ArrayList<>();
+
+    static {
+//        Field[] field = UserException.class.getDeclaredFields();
+//        Arrays.stream(field).forEach(f -> {
+//            codes.add(new ResponseMessageBuilder().code(field).message().build());
+//        });
+    }
 
     @Bean
     public Docket defaultApi() {
