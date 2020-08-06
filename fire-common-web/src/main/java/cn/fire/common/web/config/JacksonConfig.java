@@ -41,7 +41,7 @@ public class JacksonConfig {
  * deserializer
  */
 class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
-    private static final ZoneId DEFAULT_ZONE_ID = ZoneId.of("GMT+8");
+    private static final ZoneId DEFAULT_ZONE_ID = ZoneId.of("GMT");
     public LocalDateTimeDeserializer() {
         super(LocalDateTime.class);
     }
@@ -58,7 +58,7 @@ class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
  */
 class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
-    private static final ZoneId DEFAULT_ZONE_ID = ZoneId.of("GMT+8");
+    private static final ZoneId DEFAULT_ZONE_ID = ZoneId.of("GMT");
     public LocalDateTimeSerializer() {
         super(LocalDateTime.class);
     }
