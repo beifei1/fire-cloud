@@ -1,24 +1,17 @@
 package cn.fire.common.web.config;
 
-import cn.fire.common.exception.BaseException;
-import cn.fire.common.web.core.R;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import feign.Logger;
-import feign.Response;
-import feign.Retryer;
+import cn.fire.common.web.handler.CustomerFeignDecoder;
+import feign.*;
 import feign.auth.BasicAuthRequestInterceptor;
-import feign.codec.ErrorDecoder;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
+import feign.codec.Decoder;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
-
-import java.io.IOException;
-import java.nio.charset.Charset;
+import org.springframework.context.annotation.Scope;
 
 /**
  * @Author: wangzc
@@ -31,44 +24,28 @@ public class FeignConfig {
 
     @Value("${spring.security.user.name:}")
     private String httpBasicUserName;
+
     @Value("${spring.security.user.password:}")
     private String httpBasicPassword;
+
+    @Autowired
+    private ObjectFactory<HttpMessageConverters> httpMessageConverterObjectFactory;
+
+    @Bean
+    public Feign.Builder feignBuilder() { return Feign.builder(); }
 
     @Bean
     Retryer retryer () { return Retryer.NEVER_RETRY; }
 
+
     @Bean
-    ErrorDecoder errorDecoder() {
-        return new BusinessErrorHandler();
+    Decoder decoder() {
+        return new CustomerFeignDecoder(httpMessageConverterObjectFactory);
     }
 
     @Bean
     BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
         return new BasicAuthRequestInterceptor(httpBasicUserName, httpBasicPassword);
-    }
-
-}
-
-@Slf4j
-class BusinessErrorHandler implements ErrorDecoder {
-
-    @Override
-    public Exception decode(String s, Response response) {
-
-        if (response.status() == HttpStatus.ACCEPTED.value()) {
-
-            try {
-                R r = JSONObject.parseObject(
-                        IOUtils.toString(response.body().asReader(Charset.defaultCharset())),
-                        R.class
-                );
-                return BaseException.instance(r.getMeta().getCode(), r.getMeta().getMsg());
-            } catch (IOException e) {
-                log.error("处理异常响应体错误:{}", e.getMessage());
-            }
-
-        }
-        return BaseException.instance(response.status(),response.reason());
     }
 
 }

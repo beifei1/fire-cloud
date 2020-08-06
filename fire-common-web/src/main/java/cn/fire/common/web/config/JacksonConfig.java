@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,14 +27,12 @@ import java.time.ZoneId;
 public class JacksonConfig {
 
     @Bean
-    public ObjectMapper objectMapper() {
-        final ObjectMapper objectMapper = new ObjectMapper();
-
-        final SimpleModule module = new SimpleModule();
-        module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
-        module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
-        objectMapper.registerModule(module);
-        return objectMapper;
+    public Jackson2ObjectMapperBuilderCustomizer customizer(){
+        return builder -> {
+            builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
+            builder.serializerByType(LocalDateTime.class,new LocalDateTimeSerializer());
+            builder.deserializerByType(LocalDateTime.class,new LocalDateTimeDeserializer());
+        };
     }
 
 }

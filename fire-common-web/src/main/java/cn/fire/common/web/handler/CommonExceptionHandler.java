@@ -4,6 +4,7 @@ import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import com.google.common.collect.Lists;
 import org.apache.tomcat.util.buf.StringUtils;
+import org.omg.CORBA.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -51,7 +52,7 @@ public class CommonExceptionHandler {
      * @param e
      * @return
      */
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BaseException.class)
     public R baseExceptionHandler(BaseException e) {
         return R.fail(e.getCode(),e.getMessage());

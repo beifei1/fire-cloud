@@ -57,7 +57,9 @@ public class UserController {
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
     @ApiOperationSupport(author = "beifei")
-    public R delete(@PathVariable("userId") Long userId) {
+    public R<Boolean> delete(@PathVariable("userId") Long userId) {
+        Boolean b = userServiceFeign.deleteByUserId(userId);
+        System.out.println(b);
         return R.ok(userServiceFeign.deleteByUserId(userId));
     }
 

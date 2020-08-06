@@ -1,7 +1,6 @@
 package cn.fire.user.controller;
 
 import cn.fire.user.api.client.UserFeignClient;
-import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.UserDO;
 import cn.fire.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

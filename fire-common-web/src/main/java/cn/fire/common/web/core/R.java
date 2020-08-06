@@ -25,25 +25,25 @@ public class R<T> implements Serializable {
     private Meta meta;
     @Setter
     @Getter
-    private T data;
+    private T response;
 
 
 
-    public R(boolean success, Integer code, String msg) {
+    public R(Integer success, Integer code, String msg) {
         this.meta = new Meta(success,code,msg);
     }
 
-    public R(boolean success,String msg) {
+    public R(Integer success,String msg) {
         this.meta = new Meta(success,msg);
     }
 
     public R() {
-        this.meta = new Meta(true,OK);
+        this.meta = new Meta(1,OK);
     }
 
-    public R(T data) {
-        this.meta = new Meta(true,OK);
-        this.data = data;
+    public R(T response) {
+        this.meta = new Meta(1,OK);
+        this.response = response;
     }
 
     /**
@@ -59,15 +59,15 @@ public class R<T> implements Serializable {
     }
 
     public static R fail() {
-        return new R(false,ERROR);
+        return new R(0,ERROR);
     }
 
     public static R fail(String message) {
-        return new R(false,message);
+        return new R(0,message);
     }
 
     public static R fail(Integer code, String message) {
-        return new R(false,code,message);
+        return new R(0,code,message);
     }
 
     @ApiModel("统一响应体头部信息")
@@ -75,7 +75,7 @@ public class R<T> implements Serializable {
 
         @Getter
         @ApiModelProperty("是否处理成功")
-        private boolean success;
+        private Integer success;
         @Getter
         @ApiModelProperty("响应消息")
         private String msg;
@@ -83,16 +83,16 @@ public class R<T> implements Serializable {
         @ApiModelProperty("业务异常码")
         private Integer code;
 
-        public Meta(boolean success) {
+        public Meta(Integer success) {
             this.success = success;
         }
 
-        public Meta(boolean success,String msg) {
+        public Meta(Integer success,String msg) {
             this.success = success;
             this.msg = msg;
         }
 
-        public Meta(boolean success,Integer code,String msg) {
+        public Meta(Integer success,Integer code,String msg) {
             this.success = success;
             this.code = code;
             this.msg = msg;
