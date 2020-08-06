@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @Author: wangzc
@@ -41,16 +41,15 @@ public class JacksonConfig {
  * deserializer
  */
 class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
-
-    private static final DateTimeFormatter DEFAULT_LOCALDATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    private static final ZoneId DEFAULT_ZONE_ID = ZoneId.of("GMT+8");
     public LocalDateTimeDeserializer() {
         super(LocalDateTime.class);
     }
 
     @Override
     public LocalDateTime deserialize(final JsonParser parser,final DeserializationContext context) throws IOException {
-        final String value = parser.getValueAsString();
-        return LocalDateTime.parse(value,DEFAULT_LOCALDATETIME_FORMATTER);
+        final long value = parser.getValueAsLong();
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(value),DEFAULT_ZONE_ID);
     }
 }
 
@@ -66,6 +65,7 @@ class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
     @Override
     public void serialize(final LocalDateTime value, final JsonGenerator generator, final SerializerProvider provider) throws IOException {
+        System.out.println(value);
         if (value != null) {
             final long mills = value.atZone(DEFAULT_ZONE_ID).toInstant().toEpochMilli();
             generator.writeNumber(mills);
