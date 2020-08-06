@@ -55,7 +55,7 @@ class BusinessErrorHandler implements ErrorDecoder {
     @Override
     public Exception decode(String s, Response response) {
 
-        if (response.status() == HttpStatus.NOT_ACCEPTABLE.value()) {
+        if (response.status() == HttpStatus.ACCEPTED.value()) {
 
             try {
                 R r = JSONObject.parseObject(
