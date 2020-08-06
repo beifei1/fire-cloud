@@ -28,7 +28,7 @@ public class AccessDenyEntryPoint implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {
         response.setStatus(HttpStatus.FORBIDDEN.value());
-        response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+        response.setHeader("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
         try {
             response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.TOKEN_UNAUTHORIZAD,"权限不足")));
         } catch (IOException ex) {

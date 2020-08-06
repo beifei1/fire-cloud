@@ -1,5 +1,6 @@
 package cn.fire.user.pojo.vo;
 
+import cn.fire.common.enums.GenderEnum;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,13 +21,13 @@ import java.time.LocalDateTime;
 @ApiModel("用户详情响应体")
 public class UserDetailVO {
 
-    private Long userId;
+    private Long id;
 
     private String userName;
 
     private String mobile;
 
-    private Integer gender;
+    private GenderEnum gender;
 
     private LocalDateTime createTime;
 

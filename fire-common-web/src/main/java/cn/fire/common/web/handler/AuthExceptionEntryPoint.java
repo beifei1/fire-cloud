@@ -31,7 +31,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         Throwable cause = e.getCause();
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+        response.setHeader("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
         try {
             if(cause instanceof InvalidTokenException) {
                 response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.INVALID_TOKEN,"无效的Token")));
