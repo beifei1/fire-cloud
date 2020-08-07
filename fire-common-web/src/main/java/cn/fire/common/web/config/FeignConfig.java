@@ -36,7 +36,6 @@ public class FeignConfig {
     @Bean
     Retryer retryer () { return Retryer.NEVER_RETRY; }
 
-
     @Bean
     Decoder decoder() {
         return new ExceptionFeignDecoder(httpMessageConverterObjectFactory);
