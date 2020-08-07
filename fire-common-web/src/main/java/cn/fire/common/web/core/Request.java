@@ -22,9 +22,9 @@ public class Request<T> {
     private String sign;
 
     @Valid
-    @NotBlank(message = "时间戳不能为空")
-    @ApiModelProperty("时间戳")
-    private String timestamp;
+    @NotBlank(message = "随机字符串不能为空")
+    @ApiModelProperty("随机字符串")
+    private String nonce;
 
     @ApiModelProperty("请求数据")
     private T param;

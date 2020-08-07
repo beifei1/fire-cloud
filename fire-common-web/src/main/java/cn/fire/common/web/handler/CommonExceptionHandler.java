@@ -3,17 +3,13 @@ package cn.fire.common.web.handler;
 import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import com.google.common.collect.Lists;
-import feign.FeignException;
 import org.apache.tomcat.util.buf.StringUtils;
-import org.omg.CORBA.UserException;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
 
 /**
  * @Author: wangzc
@@ -71,12 +67,4 @@ public class CommonExceptionHandler {
     }
 
 
-    /**
-     * feign异常
-     * @param ex
-     * @return
-     */
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(FeignException.class)
-    public R feignExceptionHandler(FeignException ex) {return R.fail("basic service exception: " + ex.getMessage()); }
 }
