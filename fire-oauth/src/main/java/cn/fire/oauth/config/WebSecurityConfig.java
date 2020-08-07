@@ -35,10 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authExceptionEntryPoint)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .httpBasic();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
