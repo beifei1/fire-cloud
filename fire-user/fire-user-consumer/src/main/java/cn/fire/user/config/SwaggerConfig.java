@@ -1,11 +1,14 @@
 package cn.fire.user.config;
 
+import cn.fire.common.exception.BaseException;
 import cn.fire.user.api.exception.UserException;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.builders.*;
 import springfox.documentation.schema.ModelRef;
+import springfox.documentation.schema.ModelReference;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -28,10 +31,12 @@ public class SwaggerConfig {
     private static List<ResponseMessage> codes = new ArrayList<>();
 
     static {
-//        Field[] field = UserException.class.getDeclaredFields();
-//        Arrays.stream(field).forEach(f -> {
-//            codes.add(new ResponseMessageBuilder().code(field).message().build());
-//        });
+        Arrays.stream(BaseException.BaseErrorEnum.values()).forEach(em -> {
+            codes.add(new ResponseMessageBuilder().code(em.getCode()).message(em.getDescription()).build());
+        });
+        Arrays.stream(UserException.ErrorEnum.values()).forEach(em -> {
+            codes.add(new ResponseMessageBuilder().code(em.getCode()).message(em.getDescription()).build());
+        });
     }
 
     @Bean
@@ -53,7 +58,13 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("cn.fire.user.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(paramsList);
+                .useDefaultResponseMessages(false)
+                .globalOperationParameters(paramsList)
+                .globalResponseMessage(RequestMethod.POST,codes)
+                .globalResponseMessage(RequestMethod.PUT,codes)
+                .globalResponseMessage(RequestMethod.DELETE,codes)
+                .globalResponseMessage(RequestMethod.GET,codes)
+                .globalResponseMessage(RequestMethod.PATCH,codes);
     }
 
     private ApiInfo apiInfo() {

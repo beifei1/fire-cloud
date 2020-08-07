@@ -34,7 +34,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
         try {
             if(cause instanceof InvalidTokenException) {
-                response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.INVALID_TOKEN,"无效的Token")));
+                response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.INVALID_TOKEN.getCode(),"无效的Token")));
             }else{
                 response.getWriter().write(JSONObject.toJSONString(R.fail(e.getMessage())));
             }

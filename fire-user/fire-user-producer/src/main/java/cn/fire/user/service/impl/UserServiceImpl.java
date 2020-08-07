@@ -38,7 +38,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     public Boolean deleteByUserId(Long userId) throws UserException {
         UserDO user = userMapper.selectById(userId);
         if (Objects.isNull(user)) {
-            throw UserException.instance(UserException.DATA_NOT_EXISTS,"用户不存在");
+            throw UserException.instance(UserException.ErrorEnum.USER_NOT_EXIST);
         }
         return userMapper.deleteById(userId) > 0;
 

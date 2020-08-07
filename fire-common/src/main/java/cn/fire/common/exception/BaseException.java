@@ -10,19 +10,40 @@ import lombok.Data;
 @Data
 public class BaseException extends RuntimeException {
 
-    public static final Integer INVALID_PARAMTER_ERROR = 100; //参数验证错误
-    public static final Integer DATA_NOT_EXISTS = 101; //数据不存在
-	public static final Integer SAVE_OBJECT_ERROR = 102; //保存对象失败
-	public static final Integer UPDATE_OBJECT_ERROR = 103;//更新对象失败
-	public static final Integer DATA_VERSION_ERROR = 104;//数据版本错误(乐观锁)
-	public static final Integer SYSTEM_BIZ_ERROR = 105; //业务处理异常
-    public static final Integer INVALID_TOKEN = 106;//token无效
-    public static final Integer TOKEN_UNAUTHORIZAD = 107;//token权限不足
+    public enum BaseErrorEnum implements IEnum {
+
+        INVALID_PARAMTER_ERROR(10000, "参数验证错误"),
+        RECORD_NOT_EXISTS(10001,"数据不存在"),
+        SAVE_OBJECT_ERROR(10002,"保存数据失败"),
+        UPDATE_OBJECT_ERROR(10003,"更新数据失败"),
+        DATA_VERSION_ERROR(10004,"数据版本错误"),
+        SYSTEM_BIZ_ERROR(10005,"业务处理异常"),
+        INVALID_TOKEN(10006,"token无效"),
+        TOKEN_UNAUTHORIZAD(10007,"token权限不足");
+
+        private int code;
+        private String description;
+
+        BaseErrorEnum(int code, String description) {
+            this.code = code;
+            this.description = description;
+        }
+
+        @Override
+        public int getCode() { return code; }
+
+        @Override
+        public String getDescription() { return description; }
+    }
 
     protected String msg;
 	protected Integer code;
 	protected Object object;
 
+	public static BaseException instance(Enum<? extends IEnum> em) {
+	    IEnum e = (IEnum)em;
+	    return new BaseException(e.getCode(),e.getDescription());
+    }
 
 	public static BaseException instance(Integer code,String msg) {
 	    return new BaseException(code,msg);
@@ -63,5 +84,13 @@ public class BaseException extends RuntimeException {
 	public BaseException(String message){
 		this.msg = message;
 	}
+
+	protected interface IEnum {
+
+	    int getCode();
+
+	    String getDescription();
+
+    }
 
 }
