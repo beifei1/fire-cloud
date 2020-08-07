@@ -22,9 +22,9 @@ import java.util.Objects;
  * @Date: 2020/8/6 13:32
  */
 @Slf4j
-public class CustomerFeignDecoder extends SpringDecoder {
+public class ExceptionFeignDecoder extends SpringDecoder {
 
-    public CustomerFeignDecoder(ObjectFactory<HttpMessageConverters> messageConverters) {
+    public ExceptionFeignDecoder(ObjectFactory<HttpMessageConverters> messageConverters) {
         super(messageConverters);
     }
 

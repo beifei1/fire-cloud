@@ -1,6 +1,6 @@
 package cn.fire.common.web.config;
 
-import cn.fire.common.web.handler.CustomerFeignDecoder;
+import cn.fire.common.web.handler.ExceptionFeignDecoder;
 import feign.*;
 import feign.auth.BasicAuthRequestInterceptor;
 import feign.codec.Decoder;
@@ -39,7 +39,7 @@ public class FeignConfig {
 
     @Bean
     Decoder decoder() {
-        return new CustomerFeignDecoder(httpMessageConverterObjectFactory);
+        return new ExceptionFeignDecoder(httpMessageConverterObjectFactory);
     }
 
     @Bean
