@@ -78,5 +78,5 @@ public class CommonExceptionHandler {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(FeignException.class)
-    public R feignExceptionHandler(FeignException ex) {return R.fail("下游基础服务异常: " + ex.getMessage()); }
+    public R feignExceptionHandler(FeignException ex) {return R.fail("basic service exception: " + ex.getMessage()); }
 }
