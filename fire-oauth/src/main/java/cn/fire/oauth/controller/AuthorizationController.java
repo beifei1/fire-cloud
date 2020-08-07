@@ -40,7 +40,7 @@ public class AuthorizationController {
     })
     @ApiOperation("认证授权")
     @ApiOperationSupport(author = "beifei")
-    @GetMapping("/token")
+    @GetMapping("/login")
     public R<UserAuthVO> get(Principal principal,
                                      @RequestParam("grant_type") String grantType,
                                      @RequestParam("username") String username,
