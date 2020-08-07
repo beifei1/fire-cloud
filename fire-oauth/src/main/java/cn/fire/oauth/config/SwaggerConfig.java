@@ -42,15 +42,15 @@ public class SwaggerConfig {
 
     @Bean
     public Docket defaultApi() {
-        List<Parameter> paramsList = new ArrayList<>();
-        ParameterBuilder tokenParam = new ParameterBuilder()
-                .name("Authorization")
-                .description("access token")
-                .modelRef(new ModelRef("string"))
-                .parameterType("header")
-                .hidden(false).required(false)
-                .defaultValue("Bearer empty");
-        paramsList.add(tokenParam.build());
+//        List<Parameter> paramsList = new ArrayList<>();
+//        ParameterBuilder tokenParam = new ParameterBuilder()
+//                .name("Authorization")
+//                .description("access token")
+//                .modelRef(new ModelRef("string"))
+//                .parameterType("header")
+//                .hidden(false).required(false)
+//                .defaultValue("Bearer empty");
+//        paramsList.add(tokenParam.build());
 
 
         return new Docket(DocumentationType.SWAGGER_2)
@@ -60,7 +60,7 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false)
-                .globalOperationParameters(paramsList)
+//                .globalOperationParameters(paramsList)
                 .globalResponseMessage(RequestMethod.POST,codes)
                 .globalResponseMessage(RequestMethod.PUT,codes)
                 .globalResponseMessage(RequestMethod.DELETE,codes)

@@ -21,7 +21,6 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserDO getByUserMobile(String mobile) throws UserException {
         UserDO userDO = userFeign.getByMobile(mobile);
-
         return null;
     }
 

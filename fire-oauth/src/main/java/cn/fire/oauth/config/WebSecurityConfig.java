@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authExceptionEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**","/v2/api-docs").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .httpBasic();
