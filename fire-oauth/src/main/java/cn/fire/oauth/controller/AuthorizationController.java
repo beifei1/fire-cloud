@@ -54,28 +54,6 @@ public class AuthorizationController {
     }
 
 
-
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "grant_type",value = "授权类型",defaultValue = "password",required = true),
-            @ApiImplicitParam(name = "username",value = "用户名",required = true),
-            @ApiImplicitParam(name = "password",value = "密码",required = true)
-    })
-    @ApiOperation("认证授权")
-    @ApiOperationSupport(author = "beifei")
-    @PostMapping("/token")
-    public R<UserAuthVO> post(Principal principal,
-                                     @RequestParam("grant_type") String grantType,
-                                     @RequestParam("username") String username,
-                                     @RequestParam("password") String password) throws HttpRequestMethodNotSupportedException {
-        Map<String,String> param = Maps.newLinkedHashMapWithExpectedSize(3);
-        param.put("grant_type", grantType);
-        param.put("username", username);
-        param.put("password", password);
-
-        return R.ok(define(tokenEndpoint.getAccessToken(principal,param).getBody()));
-    }
-
-
     protected UserAuthVO define(OAuth2AccessToken accessToken) {
         DefaultOAuth2AccessToken defaultOAuth2AccessToken = (DefaultOAuth2AccessToken)accessToken;
         return UserAuthVO.builder()
