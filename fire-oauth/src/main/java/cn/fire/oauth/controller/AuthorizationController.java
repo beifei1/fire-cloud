@@ -17,7 +17,7 @@ import javax.validation.Valid;
  * @Date: 2020/8/7 10:57
  */
 
-@Api(tags = "授权控制器")
+@Api(tags = "认证授权控制器")
 @RestController
 @RequestMapping("/auth")
 public class AuthorizationController {
@@ -26,7 +26,7 @@ public class AuthorizationController {
     @GetMapping("/login")
     @ApiOperationSupport(author = "beifei")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "grant_type",value = "授权类型(password)",required = true),
+            @ApiImplicitParam(name = "grant_type",defaultValue = "password", value = "授权类型(password)",required = true),
             @ApiImplicitParam(name = "username",value = "用户名",required = true),
             @ApiImplicitParam(name = "password",value = "密码",required = true),
             @ApiImplicitParam(name = "userType",value = "用户类型",required = true)
