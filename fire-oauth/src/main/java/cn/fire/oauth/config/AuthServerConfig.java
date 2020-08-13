@@ -1,5 +1,6 @@
 package cn.fire.oauth.config;
 
+import cn.fire.oauth.config.enhancer.AuthExceptionTranslator;
 import cn.fire.oauth.config.enhancer.JwtTokenEnhancer;
 import cn.fire.oauth.granter.impl.MobilePasswordTokenGranter;
 import cn.fire.oauth.granter.impl.MobileSmsCodeTokenGranter;
@@ -44,6 +45,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    private AuthExceptionTranslator authExceptionTranslator;
+
+    @Autowired
     private IUserService userService;
 
     @Override
@@ -63,6 +67,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         endpoints.tokenStore(tokenStore())
                 .tokenGranter(new CompositeTokenGranter(tokenGranters))
                 .tokenEnhancer(tokenEnhancerChain())
+                .exceptionTranslator(authExceptionTranslator)
                 .authenticationManager(authenticationManager);
     }
 
