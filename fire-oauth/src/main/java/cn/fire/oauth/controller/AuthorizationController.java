@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
 import java.util.Map;
@@ -40,8 +41,8 @@ public class AuthorizationController {
     })
     @ApiOperation("认证授权")
     @ApiOperationSupport(author = "beifei")
-    @GetMapping("/login")
-    public R<UserAuthVO> get(Principal principal,
+    @RequestMapping(value = "/login",method = {RequestMethod.POST,RequestMethod.GET})
+    public R<UserAuthVO> get(@ApiIgnore Principal principal,
                                      @RequestParam("grant_type") String grantType,
                                      @RequestParam("username") String username,
                                      @RequestParam("password") String password) throws HttpRequestMethodNotSupportedException {
@@ -50,7 +51,7 @@ public class AuthorizationController {
         param.put("username", username);
         param.put("password", password);
 
-        return R.ok(define(tokenEndpoint.getAccessToken(principal,param).getBody()));
+        return R.ok(define(tokenEndpoint.postAccessToken(principal,param).getBody()));
     }
 
 

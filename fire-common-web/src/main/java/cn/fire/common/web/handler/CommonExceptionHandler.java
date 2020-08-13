@@ -5,11 +5,14 @@ import cn.fire.common.web.core.R;
 import com.google.common.collect.Lists;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.SocketTimeoutException;
+import java.security.InvalidParameterException;
 
 /**
  * @Author: wangzc
@@ -64,6 +67,32 @@ public class CommonExceptionHandler {
     @ExceptionHandler(SocketTimeoutException.class)
     public R readTimeOutExceptionHandler(SocketTimeoutException e) {
         return R.fail(e.getMessage());
+    }
+
+    /**
+     * method not allowed
+     * @param e
+     * @return
+     */
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public R methodNotAllowedExceptionHandler(HttpRequestMethodNotSupportedException e) {
+        return R.fail(BaseException.BaseErrorEnum.MESSAGE_NOT_ALLOWED.getCode(), e.getMessage());
+    }
+
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public R usernameNotFoundExceptionHandler(UsernameNotFoundException e) {
+        return R.fail(BaseException.BaseErrorEnum.MESSAGE_NOT_ALLOWED.getCode(), e.getMessage());
+    }
+
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(InvalidParameterException.class)
+    public R invalidParamExceptionHandler(InvalidParameterException e) {
+        return R.fail(BaseException.BaseErrorEnum.MESSAGE_NOT_ALLOWED.getCode(), e.getMessage());
     }
 
 

@@ -19,7 +19,8 @@ public class BaseException extends RuntimeException {
         DATA_VERSION_ERROR(10004,"数据版本错误"),
         SYSTEM_BIZ_ERROR(10005,"业务处理异常"),
         INVALID_TOKEN(10006,"token无效"),
-        TOKEN_UNAUTHORIZAD(10007,"token权限不足");
+        TOKEN_UNAUTHORIZAD(10007,"token权限不足"),
+        MESSAGE_NOT_ALLOWED(10008,"不允许的请求方法");
 
         private int code;
         private String description;
