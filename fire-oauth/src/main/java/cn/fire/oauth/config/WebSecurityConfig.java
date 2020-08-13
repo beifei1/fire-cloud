@@ -25,14 +25,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AuthExceptionEntryPoint authExceptionEntryPoint;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .exceptionHandling()
-                .authenticationEntryPoint(authExceptionEntryPoint)
+                .authenticationEntryPoint(new AuthExceptionEntryPoint())
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**").authenticated()

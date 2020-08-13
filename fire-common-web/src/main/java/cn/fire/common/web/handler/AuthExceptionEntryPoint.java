@@ -25,7 +25,7 @@ import java.io.IOException;
 
 @Slf4j
 @Component
-@ConditionalOnClass(EnableResourceServer.class)
+@ConditionalOnClass({EnableResourceServer.class})
 public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
@@ -33,6 +33,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
         try {
+            log.info(cause.getClass().getName());
             if(cause instanceof InvalidTokenException) {
                 response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.INVALID_TOKEN.getCode(),"无效的Token")));
             }else{
