@@ -24,7 +24,7 @@ public class MobilePasswordTokenGranter extends AbstractCustomTokenGranter {
     private final IUserService userService;
 
     private final String _PARAM_MOBILE = "mobile";
-    private final String _PARAM_PASSWORD = "smscode";
+    private final String _PARAM_PASSWORD = "password";
 
     public MobilePasswordTokenGranter(IUserService userService,AuthorizationServerTokenServices tokenServices, ClientDetailsService clientDetailsService, OAuth2RequestFactory requestFactory) {
         super(tokenServices, clientDetailsService, requestFactory, "mobile_password");
