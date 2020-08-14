@@ -27,9 +27,7 @@ public class R<T> implements Serializable {
     @Getter
     private T body;
 
-    public R(boolean success, Integer code, String msg) {
-        this.meta = new Meta(success,code,msg);
-    }
+    public R(boolean success, Integer code, String msg) { this.meta = new Meta(success,code,msg); }
 
     public R(boolean success,String msg) {
         this.meta = new Meta(success,msg);
@@ -39,15 +37,8 @@ public class R<T> implements Serializable {
         this.meta = new Meta(true, OK);
     }
 
-    public R(T body) {
-        this.meta = new Meta(true, OK);
-        this.body = body;
-    }
+    public R(T body) { this.meta = new Meta(true, OK); this.body = body; }
 
-    /**
-     * Response
-     * @return
-     */
     public static R ok() {
         return new R();
     }
@@ -64,9 +55,7 @@ public class R<T> implements Serializable {
         return new R(false,message);
     }
 
-    public static R fail(Integer code, String message) {
-        return new R(false,code,message);
-    }
+    public static R fail(Integer code, String message) { return new R(false,code,message); }
 
     @ApiModel("统一响应体头部信息")
     public class Meta {
