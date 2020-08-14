@@ -6,9 +6,11 @@ import cn.fire.oauth.service.IUserService;
 import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.RoleDO;
 import cn.fire.user.api.pojo.entity.UserDO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
  * @Date: 2020/8/7 10:50
  */
 
+@Slf4j
 @Service
 public class UserServiceImpl implements IUserService, UserDetailsService {
 
@@ -71,6 +74,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
     @Override
     public UserDTO getByMobileAndPassword(String mobile, String password) throws UserException {
+
         UserDO userDO = userFeign.getByMobileAndPassword(mobile,password);
         if (Objects.isNull(userDO)) {
             return null;
@@ -91,7 +95,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
 
     @Override
-    public UserDTO loadUserByUsername(String userName) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
         UserDO dbUser = userFeign.getByMobile(userName);
         if (Objects.isNull(dbUser)) {

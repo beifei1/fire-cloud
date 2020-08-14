@@ -1,10 +1,7 @@
 package cn.fire.oauth.pojo.dto;
 
 import cn.fire.common.enums.GenderEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.checkerframework.checker.i18n.qual.LocalizableKey;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +16,7 @@ import java.util.Collection;
 
 @Data
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO implements UserDetails, Serializable {
