@@ -39,7 +39,7 @@ public class ExceptionFeignDecoder extends SpringDecoder {
                 r = JSONObject.parseObject(IOUtils.toString(bytes,"UTF-8"), R.class);
             } catch (Exception ex) {}
 
-            if (Objects.nonNull(r) && r.getMeta().getSuccess() == 0) {
+            if (Objects.nonNull(r) && Boolean.FALSE.equals(r.getMeta().isSuccess())) {
                 throw BaseException.instance(r.getMeta().getCode(), r.getMeta().getMsg());
             }
 

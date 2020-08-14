@@ -30,11 +30,11 @@ public class AuthExceptionTranslator implements WebResponseExceptionTranslator {
 
         if (e instanceof OAuth2Exception) {
             OAuth2Exception exception = (OAuth2Exception) e;
-            return new ResponseEntity(new R(0, BaseException.BaseErrorEnum.OAUTH2_AUTH_DENY.getCode(), e.getMessage()), headers, HttpStatus.valueOf(exception.getHttpErrorCode()));
+            return new ResponseEntity(new R(false, BaseException.BaseErrorEnum.OAUTH2_AUTH_DENY.getCode(), e.getMessage()), headers, HttpStatus.valueOf(exception.getHttpErrorCode()));
         }
 
         if (e instanceof AuthenticationException) {
-            return new ResponseEntity(new R(0, BaseException.BaseErrorEnum.AUTHENCATION_DENY.getCode(), e.getMessage()), headers, HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity(new R(false, BaseException.BaseErrorEnum.AUTHENCATION_DENY.getCode(), e.getMessage()), headers, HttpStatus.UNAUTHORIZED);
         }
 
         return ResponseEntity

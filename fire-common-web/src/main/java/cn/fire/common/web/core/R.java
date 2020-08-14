@@ -27,22 +27,20 @@ public class R<T> implements Serializable {
     @Getter
     private T body;
 
-
-
-    public R(Integer success, Integer code, String msg) {
+    public R(boolean success, Integer code, String msg) {
         this.meta = new Meta(success,code,msg);
     }
 
-    public R(Integer success,String msg) {
+    public R(boolean success,String msg) {
         this.meta = new Meta(success,msg);
     }
 
     public R() {
-        this.meta = new Meta(1,OK);
+        this.meta = new Meta(true, OK);
     }
 
     public R(T body) {
-        this.meta = new Meta(1,OK);
+        this.meta = new Meta(true, OK);
         this.body = body;
     }
 
@@ -59,15 +57,15 @@ public class R<T> implements Serializable {
     }
 
     public static R fail() {
-        return new R(0,ERROR);
+        return new R(false,ERROR);
     }
 
     public static R fail(String message) {
-        return new R(0,message);
+        return new R(false,message);
     }
 
     public static R fail(Integer code, String message) {
-        return new R(0,code,message);
+        return new R(false,code,message);
     }
 
     @ApiModel("统一响应体头部信息")
@@ -75,7 +73,7 @@ public class R<T> implements Serializable {
 
         @Getter
         @ApiModelProperty("是否处理成功")
-        private Integer success;
+        private boolean success;
         @Getter
         @ApiModelProperty("响应消息")
         private String msg;
@@ -83,16 +81,16 @@ public class R<T> implements Serializable {
         @ApiModelProperty("业务异常码")
         private Integer code;
 
-        public Meta(Integer success) {
+        public Meta(boolean success) {
             this.success = success;
         }
 
-        public Meta(Integer success,String msg) {
+        public Meta(boolean success,String msg) {
             this.success = success;
             this.msg = msg;
         }
 
-        public Meta(Integer success,Integer code,String msg) {
+        public Meta(boolean success,Integer code,String msg) {
             this.success = success;
             this.code = code;
             this.msg = msg;
