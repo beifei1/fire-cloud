@@ -46,7 +46,7 @@ public class MobileSmsCodeTokenGranter extends AbstractCustomTokenGranter {
         if(Objects.isNull(user)) {
             throw new UsernameNotFoundException("手机号或验证码错误");
         }
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getName(),"N/A",user.getAuthorities());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(),"N/A",user.getAuthorities());
 
         return new OAuth2Authentication(tokenRequest.createOAuth2Request(client),authentication);
     }

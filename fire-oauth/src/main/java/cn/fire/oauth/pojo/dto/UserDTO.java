@@ -1,11 +1,13 @@
 package cn.fire.oauth.pojo.dto;
 
+import cn.fire.common.enums.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.AuthenticatedPrincipal;
+import org.checkerframework.checker.i18n.qual.LocalizableKey;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -19,21 +21,51 @@ import java.util.Collection;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO implements AuthenticatedPrincipal, Serializable {
+public class UserDTO implements UserDetails, Serializable {
 
-    private Long userId;
+    private Long id;
 
     private String userName;
 
+    private String password;
+
     private String mobile;
 
+    private GenderEnum gender;
+
     private String avatar;
+
+    private Integer locked;
 
     private Collection<? extends GrantedAuthority> authorities;
 
     @Override
-    public String getName() {
-        return mobile;
+    public String getPassword() {
+        return password;
     }
 
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return locked == 0;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return locked == 0;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return locked == 0;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return locked == 0;
+    }
 }

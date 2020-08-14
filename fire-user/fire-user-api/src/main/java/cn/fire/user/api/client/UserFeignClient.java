@@ -1,8 +1,10 @@
 package cn.fire.user.api.client;
 
+import cn.fire.user.api.pojo.entity.RoleDO;
 import cn.fire.user.api.pojo.entity.UserDO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.*;
 
 /**
  * @Author: wangzc
@@ -12,26 +14,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping
 public interface UserFeignClient {
 
-    /**
-     * 根据用户Id查询用户
-     * @param userId
-     * @return
-     */
+
     @RequestMapping("service/user/getById")
     UserDO getById(@RequestParam(value = "userId") Long userId);
 
 
-    /**
-     * 根据Mobile获取对象
-     * @param mobile
-     * @return
-     */
     @RequestMapping("service/user/getByMobile")
     UserDO getByMobile(@RequestParam(value = "mobile") String mobile);
 
 
-
     @RequestMapping("service/user/deleteByUserId")
     Boolean deleteByUserId(@RequestParam("userId") Long userId);
+
+
+    @RequestMapping("service/user/queryByMobileAndCode")
+    UserDO getByMobileAndCode(@RequestParam("mobile") String mobile,@RequestParam("smsCode") String smsCode);
+
+
+    @RequestMapping("service/user/queryByMobileAndPassword")
+    UserDO getByMobileAndPassword(@RequestParam("mobile") String mobile,@RequestParam("password") String password);
+
+
+    @RequestMapping("service/user/getUserRoleByUserId")
+    List<RoleDO> getRoleByUserId(@RequestParam("userId") Long userId);
 
 }
