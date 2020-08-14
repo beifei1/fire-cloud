@@ -37,16 +37,15 @@ public class MobileSmsCodeTokenGranter extends AbstractCustomTokenGranter {
         Map<String,String> param = tokenRequest.getRequestParameters();
 
         if (!param.containsKey(_PARAM_MOBILE)) {
-            throw new BadCredentialsException("missing param: " + _PARAM_MOBILE);
+            throw new BadCredentialsException("missing param " + _PARAM_MOBILE);
         }
         if (!param.containsKey(_PARAM_SMSCODE)) {
-            throw new BadCredentialsException("missing param: " + _PARAM_SMSCODE);
+            throw new BadCredentialsException("missing param " + _PARAM_SMSCODE);
         }
         UserDTO user = getUser(param);
         if(Objects.isNull(user)) {
             throw new UsernameNotFoundException("手机号或验证码错误");
         }
-        //构建用户授权信息
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getName(),"N/A",user.getAuthorities());
 
         return new OAuth2Authentication(tokenRequest.createOAuth2Request(client),authentication);
