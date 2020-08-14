@@ -25,7 +25,7 @@ public class R<T> implements Serializable {
     private Meta meta;
     @Setter
     @Getter
-    private T response;
+    private T body;
 
 
 
@@ -41,9 +41,9 @@ public class R<T> implements Serializable {
         this.meta = new Meta(1,OK);
     }
 
-    public R(T response) {
+    public R(T body) {
         this.meta = new Meta(1,OK);
-        this.response = response;
+        this.body = body;
     }
 
     /**
