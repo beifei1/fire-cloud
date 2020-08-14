@@ -112,6 +112,8 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
                 });
 
         user.setAuthorities(authorities);
+
+        log.info(user.toString());
         return user;
     }
 }
