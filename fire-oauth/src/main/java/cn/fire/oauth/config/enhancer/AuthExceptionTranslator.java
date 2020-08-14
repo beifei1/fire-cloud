@@ -1,5 +1,6 @@
 package cn.fire.oauth.config.enhancer;
 
+import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.R;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class AuthExceptionTranslator implements WebResponseExceptionTranslator {
 
     @Override
-    public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
+    public ResponseEntity<OAuth2Exception> translate(Exception e) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Cache-Control", "no-store");
@@ -29,11 +30,11 @@ public class AuthExceptionTranslator implements WebResponseExceptionTranslator {
 
         if (e instanceof OAuth2Exception) {
             OAuth2Exception exception = (OAuth2Exception) e;
-            return new ResponseEntity(new R(0, e.getMessage()), headers, HttpStatus.valueOf(exception.getHttpErrorCode()));
+            return new ResponseEntity(new R(0, BaseException.BaseErrorEnum.OAUTH2_AUTH_DENY.getCode(), e.getMessage()), headers, HttpStatus.valueOf(exception.getHttpErrorCode()));
         }
 
         if (e instanceof AuthenticationException) {
-            return new ResponseEntity(new R(0, e.getMessage()), headers, HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity(new R(0, BaseException.BaseErrorEnum.AUTHENCATION_DENY.getCode(), e.getMessage()), headers, HttpStatus.UNAUTHORIZED);
         }
 
         return ResponseEntity

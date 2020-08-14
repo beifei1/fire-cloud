@@ -20,7 +20,9 @@ public class BaseException extends RuntimeException {
         SYSTEM_BIZ_ERROR(10005,"业务处理异常"),
         INVALID_TOKEN(10006,"token无效"),
         TOKEN_UNAUTHORIZAD(10007,"token权限不足"),
-        MESSAGE_NOT_ALLOWED(10008,"不允许的请求方法");
+        MESSAGE_NOT_ALLOWED(10008,"不允许的请求方法"),
+        OAUTH2_AUTH_DENY(10009, "Oauth2认证未通过"),
+        AUTHENCATION_DENY(10010, "客户端认证资源不足");
 
         private int code;
         private String description;
