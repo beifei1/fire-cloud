@@ -1,6 +1,7 @@
 package cn.fire.oauth.config;
 
 import cn.fire.oauth.config.enhancer.AuthExceptionEntryPoint;
+import cn.fire.oauth.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +26,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserServiceImpl userService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -41,12 +45,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("wangzhichao").password(passwordEncoder().encode("123456")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("123456")).roles("ADMIN")
-                .and()
-                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+//        auth.inMemoryAuthentication()
+//                .withUser("wangzhichao").password(passwordEncoder().encode("123456")).roles("USER")
+//                .and()
+//                .withUser("admin").password(passwordEncoder().encode("123456")).roles("ADMIN")
+//                .and()
+//                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
