@@ -19,7 +19,7 @@ pipeline {
     parameters {
         string(defaultValue: "fire-gateway/pom.xml", name:'pomPath', description: 'pom文件相对路径')
         string(defaultValue: 'git@github.com:beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
-        string(defaultValue: 'master', name: 'repoBranch', description: '代码分支')
+        string(defaultValue: '*/master', name: 'repoBranch', description: '代码分支')
     }
 
     stages {
