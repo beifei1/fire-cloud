@@ -31,24 +31,6 @@ pipeline {
             }
         }
 
-        stage('静态编译') {
-            steps {
-                echo '编译...'
-            }
-        }
-
-        stage("单元测试") {
-            steps {
-                echo  'start junit testing....'
-            }
-        }
-
-        stage('代码覆盖率检测') {
-            steps {
-                echo 'sdfsdfsdfsddfsdf'
-            }
-        }
-
         stage('应用部署') {
             steps {
                 sh "mvn -f ${params.pomPath} clean package deploy -D maven.skip.test=true"
