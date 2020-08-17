@@ -23,7 +23,7 @@ pipeline {
     }
 
     stages {
-        stage ("代码获取") {
+        stage('代码获取') {
             steps {
                 echo "staring fetch code from ${params.repoUrl}..."
                 git credentialsId: "${_GITHUB_READABLE_CREDENTIALS}", url: "${params.repoUrl}", branch: "${params.repoBranch}"
@@ -31,9 +31,9 @@ pipeline {
             }
         }
 
-        state ("静态编译") {
+        state('静态编译') {
             steps {
-                echo "编译..."
+                echo '编译...'
             }
         }
 
@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-        stage ('应用部署') {
+        stage('应用部署') {
             steps {
                 sh "mvn -f ${params.pomPath} clean package deploy -D maven.skip.test=true"
                 //这里加入groovy脚本，到ssh
