@@ -12,6 +12,10 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
 
+    environment {
+        _GITHUB_READABLE_CREDENTIALS = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
+    }
+
     parameters {
         string(defaultValue: "fire-gateway/pom.xml", name:'pomPath', description: 'pom文件相对路径')
         string(defaultValue: 'git@github.com:beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
@@ -21,8 +25,9 @@ pipeline {
     stages {
         stage("代码获取") {
             steps {
-                echo "starting fetch code from ${params.repoUrl}"
-                git credentialsId: wangzhichao03,url: ${params.repoUrl}, branch: ${params.repoBranch}
+                echo "starting fetch code from ${params.repoUrl}..."
+                git credentialsId: ${_GITHUB_READABLE_CREDENTIALS}, url: ${params.repoUrl}, branch: ${params.repoBranch}
+                echo "fetch code complete !"
             }
         }
     }
