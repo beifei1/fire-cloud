@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    triggers {
+        cron('0 0 0 * *')
+    }
+
+    stages {
+        stage("pull") {
+            steps {
+                echo 'current'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                sh 'mvn deploy -Dskip.test=true'
+            }
+        }
+
+    }
+}
