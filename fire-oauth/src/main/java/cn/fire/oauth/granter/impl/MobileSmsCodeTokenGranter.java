@@ -1,9 +1,9 @@
 package cn.fire.oauth.granter.impl;
 
+import cn.fire.oauth.consts.GrantTypesEnum;
 import cn.fire.oauth.granter.AbstractCustomTokenGranter;
 import cn.fire.oauth.pojo.dto.UserDTO;
 import cn.fire.oauth.service.IUserService;
-import lombok.Data;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,7 +28,7 @@ public class MobileSmsCodeTokenGranter extends AbstractCustomTokenGranter {
     private final String _PARAM_SMSCODE = "smscode";
 
     public MobileSmsCodeTokenGranter(IUserService userService, AuthorizationServerTokenServices tokenServices, ClientDetailsService clientDetailsService, OAuth2RequestFactory requestFactory) {
-        super(tokenServices, clientDetailsService, requestFactory, "mobile_smscode");
+        super(tokenServices, clientDetailsService, requestFactory, GrantTypesEnum.SMS.name());
         this.userService = userService;
     }
 

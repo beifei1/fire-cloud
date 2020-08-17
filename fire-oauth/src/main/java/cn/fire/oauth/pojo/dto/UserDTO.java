@@ -2,7 +2,6 @@ package cn.fire.oauth.pojo.dto;
 
 import cn.fire.common.enums.GenderEnum;
 import lombok.*;
-import org.checkerframework.checker.i18n.qual.LocalizableKey;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

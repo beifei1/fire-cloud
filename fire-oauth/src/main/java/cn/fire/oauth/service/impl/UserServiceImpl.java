@@ -9,10 +9,12 @@ import cn.fire.user.api.pojo.entity.UserDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.switchuser.SwitchUserGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -105,7 +107,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
         UserDTO user = UserDTO.builder().build();
         BeanUtils.copyProperties(dbUser, user);
 
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
         userFeign.getRoleByUserId(user.getId()).stream().map(RoleDO::getRoleName).collect(Collectors.toList())
                 .stream().forEach(name -> {
                     authorities.add(new SimpleGrantedAuthority(name));
@@ -113,7 +115,6 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
         user.setAuthorities(authorities);
 
-        log.info(user.toString());
         return user;
     }
 }

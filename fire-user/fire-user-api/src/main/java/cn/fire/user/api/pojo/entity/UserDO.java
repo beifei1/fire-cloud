@@ -32,6 +32,6 @@ public class UserDO extends BaseDO {
 
     private LocalDateTime createTime;
 
-    private Boolean locked;
+    private Integer locked;
 
 }
