@@ -26,7 +26,7 @@ pipeline {
         stage("代码获取") {
             steps {
                 echo "starting fetch code from ${params.repoUrl}..."
-                git credentialsId: ${_GITHUB_READABLE_CREDENTIALS}, url: "${params.repoUrl}", branch: "${params.repoBranch}"
+                git credentialsId: '${_GITHUB_READABLE_CREDENTIALS}', url: '${params.repoUrl}', branch: '${params.repoBranch}'
                 echo "fetch code complete !"
             }
         }
