@@ -4,24 +4,24 @@ pipeline {
     triggers {
         pollSCM('H/1 0 * * *')
     }
+    tools {
+        maven "maven-3.10.0"
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+    }
+    paramters {
+        string(defaultValue:'fire-gateway/pom.xml',name:'pomPath',description: 'pom文件相对路径')
+        string(defaultValue: 'git@github.com:beifei1/fire-cloud.git' name: 'repoUrl', description: '代码仓库路径')
+        string(defaultValue: 'master', name: 'repoBranch', description: '代码分支')
+    }
 
     stages {
-        stage("pull") {
+        stage("代码获取") {
             steps {
-                echo 'current'
+                echo "starting fetch code from ${params.repoUrl}"
+                git credentialsId: wangzhichao03,url: params.repoUrl, branch: params.repoBranch
             }
         }
-        stage('build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-
-        stage('deploy') {
-            steps {
-                sh 'mvn deploy -Dskip.test=true'
-            }
-        }
-
     }
 }
