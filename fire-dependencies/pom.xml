@@ -26,6 +26,19 @@
         <jackson-databind.version>2.10.2</jackson-databind.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>release</id>
+            <name>Release Repository</name>
+            <url>http://119.45.213.212/nexus/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>TJ-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://119.45.213.212/nexus/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencyManagement>
         <dependencies>
             <!-- spring cloud-->
