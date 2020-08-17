@@ -12,22 +12,17 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
 
-    environment {
-        _repo_branch = 'master'
-        _repo_url = 'git@github.com:beifei1/fire-cloud.git'
-        _pom_path = 'fire-gateway/pom.xml'
+    parameters {
+        string(defaultValue: "fire-gateway/pom.xml", name:'pomPath', description: 'pom文件相对路径')
+        string(defaultValue: 'git@github.com:beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
+        string(defaultValue: 'master', name: 'repoBranch', description: '代码分支')
     }
-//    parameters {
-//        string(defaultValue: "fire-gateway/pom.xml",name:'pomPath',description: 'pom文件相对路径')
-//        string(defaultValue: 'git@github.com:beifei1/fire-cloud.git' name: 'repoUrl', description: '代码仓库路径')
-//        string(defaultValue: 'master', name: 'repoBranch', description: '代码分支')
-//    }
 
     stages {
         stage("代码获取") {
             steps {
-                echo "starting fetch code from ${_repo_url}"
-                git credentialsId: wangzhichao03,url: ${_repo_url}, branch: ${_repo_branch}
+                echo "starting fetch code from ${params.repoUrl}"
+                git credentialsId: wangzhichao03,url: ${params.repoUrl}, branch: ${params.repoBranch}
             }
         }
     }
