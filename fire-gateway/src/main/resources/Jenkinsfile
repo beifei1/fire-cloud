@@ -31,7 +31,7 @@ pipeline {
             }
         }
 
-        state('静态编译') {
+        stage('静态编译') {
             steps {
                 echo '编译...'
             }
