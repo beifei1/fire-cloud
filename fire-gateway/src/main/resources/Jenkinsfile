@@ -5,7 +5,8 @@ pipeline {
         pollSCM('H/1 0 * * *')
     }
     tools {
-        maven "maven-3.10.0"
+        maven 'maven-3.10.0'
+        jdk 'JDK8'
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
