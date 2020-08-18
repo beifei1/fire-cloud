@@ -10,14 +10,14 @@ pipeline {
 
     environment {
         _GITHUB_READABLE_CREDENTIALS = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
-        _need_deploy_to_nexus = "${params.NeedDeploy}"
+        _need_deploy_to_nexus = "${params.deploy}"
     }
 
     parameters {
         string(defaultValue: "fire-gateway/pom.xml", name:'pomPath', description: 'pom文件相对路径')
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
         string(defaultValue: 'master', name: 'repoBranch', description: '拉取的代码分支')
-        choice(name:'NeedDeploy',choices:'False\nTrue',description:'是否发布到私服')
+        choice(name:'deploy',choices:'False\nTrue',description:'是否发布到私服')
     }
 
     stages {
