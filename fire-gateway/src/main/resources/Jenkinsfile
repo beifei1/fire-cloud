@@ -62,7 +62,7 @@ pipeline {
     post {
         always {
             echo 'staring clean workspace'
-            cleanWS()
+            cleanWs()
             echo 'complete clean workspace'
         }
     }
