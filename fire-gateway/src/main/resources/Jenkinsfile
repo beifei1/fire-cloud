@@ -63,7 +63,6 @@ pipeline {
         always {
             echo 'staring clean workspace'
             cleanWs()
-            echo 'complete clean workspace'
         }
     }
 }
