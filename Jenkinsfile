@@ -47,7 +47,7 @@ pipeline {
                     packages: [
                         [
                             $class: 'MavenPackage',
-                            mavenAssetList: [[classifier: '',extension: '',filePath: "target/${params.appName}-${params.version}.jar"]],
+                            mavenAssetList: [[classifier: '',extension: '',filePath: "${params.appName}/target/${params.appName}-${params.version}.jar"]],
                             mavenCoordinate: [artifactId: "${params.appName}", groupId: "${params.groupId}",packaging: 'jar', version: "${params.version}"]
                         ]
                     ]
