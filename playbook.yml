@@ -2,8 +2,6 @@
 - hosts: gateway
   remote_user: root
   tasks:
-    - name: "备份已发布制品"
-      shell: "java -version"
 
     - name: "拷贝Jenkins制品"
       copy: src=/var/lib/jenkins/workspace/fire-gateway/fire-gateway/target/fire-gateway-0.0.1-SNAPSHOT.jar dest=/usr/local/fire-cloud/
