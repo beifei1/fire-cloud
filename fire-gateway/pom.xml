@@ -6,7 +6,7 @@
         <groupId>cn.fire</groupId>
         <artifactId>fire-dependencies</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath></relativePath>
     </parent>
 
     <groupId>cn.fire</groupId>
