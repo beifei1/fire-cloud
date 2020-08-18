@@ -9,7 +9,7 @@ pipeline {
     options { buildDiscarder(logRotator(numToKeepStr: '5'))}
 
     environment {
-        _GITHUB_READABLE_CREDENTIALS = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
+        _github_readable_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
         _need_deploy_to_nexus = "${params.deploy}"
     }
 
@@ -24,7 +24,7 @@ pipeline {
         stage('代码获取') {
             steps {
                 echo "staring fetch code from ${params.repoUrl}..."
-                git credentialsId: "${_GITHUB_READABLE_CREDENTIALS}", url: "${params.repoUrl}", branch: "${params.repoBranch}"
+                git credentialsId: "${_github_readable_credentialsId}", url: "${params.repoUrl}", branch: "${params.repoBranch}"
                 echo "fetch code complete !"
             }
         }
