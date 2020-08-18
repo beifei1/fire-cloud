@@ -9,7 +9,7 @@ pipeline {
         jdk 'JDK8'
     }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '10'))
+        buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
     environment {
@@ -44,14 +44,12 @@ pipeline {
                nexusPublisher (
                     nexusInstanceId: 'nexus3',
                     nexusRepositoryId: 'maven-snapshots',
-                    packages: [
-                        [
-                            $class: 'MavenPackage',
-                            mavenAssetList: [[classifier: '',extension: '',filePath: "${params.appName}/target/${params.appName}-${params.version}.jar"]],
-                            mavenCoordinate: [artifactId: "${params.appName}", groupId: "${params.groupId}",packaging: 'jar', version: "${params.version}"]
-                        ]
-                    ]
-               )
+                    packages: [[
+                        $class: 'MavenPackage',
+                        mavenAssetList: [[classifier: '',extension: '',filePath: "${params.appName}/target/${params.appName}-${params.version}.jar"]],
+                        mavenCoordinate: [artifactId: "${params.appName}", groupId: "${params.groupId}",packaging: 'jar', version: "${params.version}"]
+                    ]]
+                )
             }
         }
 
