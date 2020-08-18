@@ -37,7 +37,8 @@ pipeline {
         stage ("构建发布") {
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
-                   sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING clean install -Dmaven.skip.test=true"
+                   sh "pwd"
+                   sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING clean install -Dmaven.skip.test=true -e"
                }
                nexusPublisher (
                     nexusInstanceId: 'nexus3',
