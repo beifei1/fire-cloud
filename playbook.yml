@@ -1,4 +1,4 @@
 ---
-- hosts: example
+- hosts: gateway
   tasks:
     - debug: msg="{{ lookup('env', 'BUILD_TAG')}}"
