@@ -38,18 +38,21 @@ pipeline {
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "pwd"
-                   // -e
-                   sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING clean install -Dmaven.skip.test=true"
+                   script {
+                        def a = "a";
+                        println a
+                   }
+                   sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
                }
-               nexusPublisher (
-                    nexusInstanceId: 'nexus3',
-                    nexusRepositoryId: 'maven-snapshots',
-                    packages: [[
-                        $class: 'MavenPackage',
-                        mavenAssetList: [[classifier: '',extension: '',filePath: "${params.appName}/target/${params.appName}-${params.version}.jar"]],
-                        mavenCoordinate: [artifactId: "${params.appName}", groupId: "${params.groupId}",packaging: 'jar', version: "${params.version}"]
-                    ]]
-                )
+//               nexusPublisher (
+//                    nexusInstanceId: 'nexus3',
+//                    nexusRepositoryId: 'maven-snapshots',
+//                    packages: [[
+//                        $class: 'MavenPackage',
+//                        mavenAssetList: [[classifier: '',extension: '',filePath: "${params.appName}/target/${params.appName}-${params.version}.jar"]],
+//                        mavenCoordinate: [artifactId: "${params.appName}", groupId: "${params.groupId}",packaging: 'jar', version: "${params.version}"]
+//                    ]]
+//                )
             }
         }
 
