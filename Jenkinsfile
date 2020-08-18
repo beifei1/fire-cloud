@@ -21,7 +21,7 @@ pipeline {
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
         string(defaultValue: 'master', name: 'repoBranch', description: '拉取的代码分支')
         string(defaultValue: 'fire-gateway',name: 'appName', description: '应用名称')
-        string(defaultValue: 'cn.fire.gateway', name: 'groupId', description: 'Maven组')
+        string(defaultValue: 'cn.fire', name: 'groupId', description: 'Maven组')
         string(defaultValue: '0.0.1-SNAPSHOT', name: 'version', description: '制品版本')
     }
 
