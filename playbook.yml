@@ -2,4 +2,4 @@
 - hosts: gateway
   tasks:
     - name: "拷贝Jenkins制品"
-      copy: src=/var/lib/jenkins/workspace/fire-gateway/fire-gateway/target/fire-gateway-0.0.1-SNAPSHOT.jar dest=/usr/local/fire-cloud
+      copy: src=/var/lib/jenkins/workspace/fire-gateway/fire-gateway/target/fire-gateway-0.0.1-SNAPSHOT.jar dest=/usr/local/fire-cloud/fire-gateway-0.0.1-SNAPSHOT.jar
