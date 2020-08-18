@@ -1,16 +1,12 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('H/1 0 * * *')
-    }
+    triggers { pollSCM('H/1 0 * * *')}
     tools {
         maven 'maven-3.10.0'
         jdk 'JDK8'
     }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-    }
+    options { buildDiscarder(logRotator(numToKeepStr: '5'))}
 
     environment {
         _GITHUB_READABLE_CREDENTIALS = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
@@ -59,7 +55,7 @@ pipeline {
     post {
         always {
             echo 'staring clean workspace'
-//            cleanWs()
+            cleanWs()
         }
     }
 }
