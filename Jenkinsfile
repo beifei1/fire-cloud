@@ -14,6 +14,7 @@ pipeline {
 
     environment {
         _GITHUB_READABLE_CREDENTIALS = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
+        _need_deploy_to_nexus = "${params.needDeploy}"
     }
 
     parameters {
@@ -23,6 +24,7 @@ pipeline {
         string(defaultValue: 'fire-gateway',name: 'appName', description: '应用名称')
         string(defaultValue: 'cn.fire', name: 'groupId', description: 'Maven组')
         string(defaultValue: '0.0.1-SNAPSHOT', name: 'version', description: '制品版本')
+        choice(name:'needDeploy',choices:'False\nTrue',description:'是否发布到私服')
     }
 
     stages {
@@ -39,8 +41,7 @@ pipeline {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "pwd"
                    script {
-                        def a = "a";
-                        println a
+                        println "${_need_deploy_to_nexus}"
                    }
                    sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
                }
