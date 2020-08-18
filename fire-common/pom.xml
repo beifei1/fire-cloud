@@ -6,14 +6,14 @@
         <groupId>cn.fire</groupId>
         <artifactId>fire-dependencies</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>cn.fire</groupId>
     <artifactId>fire-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fire-oauth</name>
-    <description>oauth server for fire project</description>
+    <name>fire-common</name>
+    <description>fire common for project</description>
 
     <properties>
         <java.version>1.8</java.version>
