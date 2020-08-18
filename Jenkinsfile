@@ -28,7 +28,11 @@ pipeline {
                 echo "fetch code complete !"
             }
         }
-        stage ("构建安装") {
+        stage('单元测试') {steps {echo 'ttt'} }
+        stage('覆盖率检测') {steps {echo '。。。'} }
+        stage('代码质量检测') {steps {echo 'sn...'} }
+
+        stage ("构建及安装") {
             when {equals expected: 'False', actual: _need_deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
@@ -37,7 +41,7 @@ pipeline {
             }
         }
 
-        stage ("构建发布") {
+        stage ("构建及发布") {
             when {equals expected: 'True', actual: _need_deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
