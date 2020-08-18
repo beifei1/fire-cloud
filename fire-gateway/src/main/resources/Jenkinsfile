@@ -59,4 +59,11 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo 'staring clean workspace'
+            cleanWS()
+            echo 'complete clean workspace'
+        }
+    }
 }
