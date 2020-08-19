@@ -35,7 +35,7 @@
         timeout: 60
       tags:
         - test
-      with_itmes: "{{running_processes.stdout_lines}}"
+      with_items: "{{running_processes.stdout_lines}}"
       ignore_errors: yes
       register: killed_processes
 
@@ -43,6 +43,6 @@
       shell: "kill -9 {{ item }}"
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-    - name: staring new process
-      shell: "nohup java -jar /home/{{ file_name.stdout }} &"
-      tags: start
+#    - name: staring new process
+#      shell: "nohup java -jar /home/{{ file_name.stdout }} &"
+#      tags: start
