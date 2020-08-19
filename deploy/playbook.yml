@@ -12,7 +12,7 @@
       tags: get_filename
 
     - name : Upload archives
-      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ PROJECT_NAME }}/{{ PROJECT_NAME }}-{{ SERVER_PORT }}.jar mode=0755
+      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ PROJECT_NAME }}/{{ PROJECT_NAME }}-{{ SERVER_PORT }}.jar mode=0644
       when: file_name.stdout != ''
 
     - name: Acquire process pid
