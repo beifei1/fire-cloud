@@ -62,11 +62,9 @@
     - name: show result
       debug: var=start_result
 
-    #测试机器内网不互通,略过监听启动端口
-#    - name: Wait for {{ server_port }} available
-#      wait_for:
-#        host: "{{ ansible_facts.eth0.ipv4.address }}"
-#        port: "{{ server_port }}"
-#        delay: 5
-#        timeout: 30
-#      when: server_port is defined
+    - name: Wait for {{ server_port }} available
+      wait_for:
+        port: "{{ server_port }}"
+        delay: 5
+        timeout: 30
+      when: server_port is defined
