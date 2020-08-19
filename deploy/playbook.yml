@@ -1,6 +1,5 @@
 ---
 - hosts: fire-gateway
-  user: root
   remote_user: root
   vars:
     PROJECT_NAME: fire-gateway
