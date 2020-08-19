@@ -20,5 +20,6 @@
 | 消息队列           | Kafka                         |
 | 服务调用           | OpenFeign                     |
 | API文档           | Knife4j                     |
+| 持续集成           | Jenkins,Ansible              |
 
 对于在项目中用到的关键技术点及设计实现方式，后期我会在会wiki中标注。如果有好的建议或者意见欢迎提issues或直接邮件联系我
