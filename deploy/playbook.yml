@@ -52,8 +52,8 @@
       tags: start app
       register: start_result
 
-    -name: show result
-     debug: var=start_result.stdout
+    - name: show result
+      debug: var=start_result.stdout
 
     #测试机器内网不互通,略过监听启动端口
 #    - name: Wait for {{ server_port }} available
