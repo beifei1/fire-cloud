@@ -42,6 +42,6 @@
       shell: "kill -9 {{ item }}"
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-#    - name: staring new process
-#      shell: "nohup java -jar /home/{{ file_name.stdout }} &"
-#      tags: start
+    - name: staring new process
+      shell: "nohup java -jar /usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{PROJECT_PORT}}.jar &"
+      tags: start app
