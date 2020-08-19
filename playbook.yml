@@ -2,6 +2,9 @@
 - hosts: gateway
   remote_user: root
   tasks:
-
-    - name: "拷贝Jenkins制品"
+    - name : 复制制品到远程机器
       copy: src=/var/lib/jenkins/workspace/fire-gateway/fire-gateway/target/fire-gateway-0.0.1-SNAPSHOT.jar dest=/usr/local/fire-cloud/
+
+    - name: 执行shell
+      shell: /usr/bing/command
+      ignore_errors: True
