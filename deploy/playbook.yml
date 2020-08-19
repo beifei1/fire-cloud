@@ -5,24 +5,24 @@
     project_name: fire-gateway
     server_port: 6020
   tasks:
-    - name: 获取文件名
+    - name: Get file name
       local_action: shell ls /var/lib/jenkins/workspace/{{ project_name }}/{{ project_name }}/target/*.jar
       register: file_name
       tags: get_filename
 
-    - name: 获取运行PID
+    - name: Acquisition process PID
       tags:
         - test
       shell: ps -ef | grep -v grep | grep {{ project_name }}-{{ server_port }} | awk '{print $2}'
       register: running_processes
 
-    - name: Stop current process
+    - name: Stop present process
       shell: kill {{item}}
       tags:
         - test1
       with_items: "{{running_processes.stdout_lines}}"
 
-    - name: 等待进程结束
+    - name: Wait for the process to finish
       wait_for:
         path: /proc/{{ item }}/status
         state: absent
@@ -33,36 +33,36 @@
       ignore_errors: yes
       register: killed_processes
 
-    - name: 强制结束进程
+    - name: Force kill process
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-    - name: 删除原Jar包
+    - name: drop prev archives
       file:
         state: absent
         path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
       become: yes
 
-    - name: 如果目录不存在,则创建目录
+    - name: Create directory if not exists
       file:
         state: directory
         path: /usr/local/fire-cloud/{{ project_name }}
       become: yes
 
-    - name : 上传Jenkins制品
+    - name : Upload Jenkins archives
       copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
       when: file_name.stdout != ''
 
-    - name: 启动进程
+    - name: Startup process
       shell: nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &
       tags: start app
       register: start_result
       ignore_errors: yes
 
-    - name: 打印结果
+    - name: Print result
       debug: var=start_result
 
-    - name: 等待端口 {{ server_port }} 可访问
+    - name: Wait {{ server_port }} attachable
       wait_for:
         port: "{{ server_port }}"
         delay: 5
