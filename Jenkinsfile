@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('代码质量检测') {steps {echo 'sn...'} }
+        stage('代码质量检测') {steps {echo '配合sonar'} }
 
         stage ("构建及安装") {
             when {equals expected: 'False', actual: _need_deploy_to_nexus}
@@ -48,8 +48,8 @@ pipeline {
                }
             }
         }
-        stage('单元测试') {steps {echo 'ttt'} }
-        stage('覆盖率检测') {steps {echo '。。。'} }
+        stage('单元测试') {steps {echo '配合junit'} }
+        stage('覆盖率检测') {steps {echo '配合jacoco'} }
 
 
         stage('应用部署') {
