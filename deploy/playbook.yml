@@ -57,6 +57,7 @@
       shell: nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &
       tags: start app
       register: start_result
+      ignore_errors: yes
 
     - name: show result
       debug: var=start_result
