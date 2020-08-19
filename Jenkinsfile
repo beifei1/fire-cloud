@@ -60,8 +60,10 @@ pipeline {
     }
     post {
         always {
-            echo 'staring clean workspace'
             cleanWs()
+        }
+        failure {
+            echo "send email"
         }
     }
 }
