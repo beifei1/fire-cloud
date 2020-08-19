@@ -1,30 +1,30 @@
 ---
 - hosts: fire-gateway
   remote_user: root
-  vars:
-    PROJECT_NAME: fire-gateway
-    SERVER_PORT: 6020
   gather_facts: no
+  vars:
+    project_name: fire-gateway
+    server_port: 6020
   tasks:
     - name: Acquire file name
-      local_action: shell ls /var/lib/jenkins/workspace/{{ PROJECT_NAME }}/{{ PROJECT_NAME }}/target/*.jar
+      local_action: shell ls /var/lib/jenkins/workspace/{{ project_name }}/{{ project_name }}/target/*.jar
       register: file_name
       tags: get_filename
 
     - name: Create directory
       file:
         state: directory
-        path: /usr/local/fire-cloud/{{ PROJECT_NAME }}
+        path: /usr/local/fire-cloud/{{ project_name }}
       become: yes
 
     - name : Upload archives
-      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ PROJECT_NAME }}/{{ PROJECT_NAME }}-{{ SERVER_PORT }}.jar mode=0644
+      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
       when: file_name.stdout != ''
 
     - name: Acquire process pid
       tags:
         - test
-      shell: "ps -ef | grep -v grep | grep {{ PROJECT_NAME }}-{{SERVER_PORT}} | awk '{print $2}'"
+      shell: "ps -ef | grep -v grep | grep {{ project_name }}-{{server_port}} | awk '{print $2}'"
       register: running_processes
 
     - name: Stop current process
@@ -49,12 +49,12 @@
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
     - name: Start new process
-      shell: "nohup java -jar /usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{SERVER_PORT}}.jar &"
+      shell: "nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &"
       tags: start app
 
-    - name: Wait for {{ SERVER_PORT }} available
+    - name: Wait for {{ server_port }} available
       wait_for:
-        port: "{{ SERVER_PORT }}"
+        port: "{{ server_port }}"
         delay: 5
         timeout: 30
-      when: SERVER_PORT is defined
+      when: server_port is defined
