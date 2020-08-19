@@ -6,7 +6,7 @@ pipeline {
         maven 'maven-3.10.0'
         jdk 'JDK8'
     }
-    options { buildDiscarder(logRotator(numToKeepStr: '5'))}
+    options { buildDiscarder(logRotator(numToKeepStr: '3'))}
 
     environment {
         _github_readable_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
