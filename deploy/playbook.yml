@@ -3,54 +3,61 @@
   remote_user: root
   vars:
     PROJECT_NAME: fire-gateway
-    PROJECT_PORT: 6020
+    SERVER_PORT: 6020
   gather_facts: no
   tasks:
-    - name: acquire file name
+      #获取制品文件
+    - name: Acquire file name
       local_action: shell ls /var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar
       register: file_name
       tags: get_filename
 
-    - name : upload archives
-      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{PROJECT_PORT}}.jar
+      #上传制品
+    - name : Upload archives
+      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{SERVER_PORT}}.jar
       when: file_name.stdout != ''
 
-    - name: acquire process pid
+      #获取运行Pid
+    - name: Acquire process pid
       tags:
         - test
       shell: "ps -ef | grep -v grep | grep {{PROJECT_NAME}} | awk '{print $2}'"
       register: running_processes
 
-    - name: stop current process
+      #停止运行中的Pid
+    - name: Stop current process
       shell: "kill {{item}}"
       tags:
         - test1
       with_items: "{{running_processes.stdout_lines}}"
 
-    - name: wait for process status
+      #等待Pid状态
+    - name: Wait for process status
       wait_for:
         path: "/proc/{{item}}/status"
         state: absent
-        timeout: 60
+        timeout: 30
       tags:
         - test
       with_items: "{{running_processes.stdout_lines}}"
       ignore_errors: yes
       register: killed_processes
 
-    - name: kill process
+      #强制杀进程
+    - name: Kill process
       shell: "kill -9 {{ item }}"
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-    - name: start new process
-      shell: "nohup java -jar /usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{PROJECT_PORT}}.jar &"
+      #启动应用
+    - name: Start new process
+      shell: "nohup java -jar /usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{SERVER_PORT}}.jar &"
       tags: start app
 
-
-    - name: Wait for {{ PROJECT_PORT }} available
+      #等待应用启动完成
+    - name: Wait for {{ SERVER_PORT }} available
       wait_for:
         host: "{{ ansible_default_ipv4.address }}"
-        port: "{{ PROJECT_PORT }}"
+        port: "{{ SERVER_PORT }}"
         delay: 5
         timeout: 30
-      when: PROJECT_PORT is defined
+      when: SERVER_PORT is defined
