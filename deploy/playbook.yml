@@ -7,7 +7,7 @@
   gather_facts: no
   tasks:
     - name: get filename
-      local_action: shell ls "/var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/{{PROJECT_NAME}}-{{PROJECT_VERSION}}.jar"
+      local_action: shell ls "/var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar"
       register: file_name
       tags: get_filename
 
