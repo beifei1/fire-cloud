@@ -1,7 +1,6 @@
 ---
 - hosts: fire-gateway
   remote_user: root
-  gather_facts: no
   vars:
     project_name: fire-gateway
     server_port: 6020
@@ -54,7 +53,7 @@
 
     - name: Wait for {{ server_port }} available
       wait_for:
-        host: {{ansible_default_ipv4['address']}}
+        host: {{ansible_facts["eth0"]["ipv4"]["address"]}}
         port: {{ server_port }}
         delay: 5
         timeout: 30
