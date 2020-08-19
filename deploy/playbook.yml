@@ -27,7 +27,7 @@
       register: running_processes
 
     - name: Stop current process
-      shell: kill "{{item}}"
+      shell: kill {{item}}
       tags:
         - test1
       with_items: "{{running_processes.stdout_lines}}"
