@@ -7,7 +7,7 @@
     - name : 上传Jenkins制品到远程机器
       copy:
         src: "/var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar"
-        dest: "/usr/local/fire-cloud/{{project_name}}/"
+        dest: "/usr/local/fire-cloud/{{PROJECT_NAME}}/"
 
     - name: 获取上次jar运行的pid
       tags:
