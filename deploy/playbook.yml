@@ -1,6 +1,5 @@
 ---
 - hosts: fire-gateway
-  sudo_user: root
   remote_user: root
   vars:
     PROJECT_NAME: fire-gateway
