@@ -50,6 +50,10 @@
     - name: Start new process
       shell: "nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &"
       tags: start app
+      register: start_result
+
+    -name: show result
+     debug: var=start_result.stdout
 
     - name: Wait for {{ server_port }} available
       wait_for:
