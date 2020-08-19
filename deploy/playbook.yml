@@ -1,10 +1,22 @@
 ---
-- hosts: gateway
+- hosts: fire-gateway
   remote_user: root
+  vars:
+    groject_name: fire-gateway
   tasks:
-    - name : 复制制品到远程机器
-      copy: src=/var/lib/jenkins/workspace/fire-gateway/fire-gateway/target/fire-gateway-0.0.1-SNAPSHOT.jar dest=/usr/local/fire-cloud/
+    - name : 上传Jenkins制品到远程机器
+      copy:
+        src: "/var/lib/jenkins/workspace/{{project_name}}/{{project_name}}/target/*.jar"
+        dest: "/usr/local/fire-cloud/{{project_name}}/"
 
-    - name: 执行shell
-      shell: /usr/bing/command
-      ignore_errors: True
+    - name: 获取上次jar运行的pid
+      tags:
+        - test
+      shell: "ps -ef | grep -v grep | grep {{project_name}} | awk '{print $2}'"
+      register: running_processes
+
+    - name: 停止运行进程
+      shell: "kill {{item}}"
+      tags:
+        - test1
+      with_items: "{{running_processes.stdout_lines}}"
