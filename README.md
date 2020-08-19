@@ -17,7 +17,7 @@
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    |
 | 熔断及限流         | Spring Cloud Alibaba Sentinel |
 | 持久层框架         | MyBatis和MyBatis-Plus         |
-| 消息队列           | Kafka                         |
+| 消息队列           | Kafka                         |__
 | 服务调用           | OpenFeign                     |
 | API文档           | Knife4j                     |
 | 持续集成           | Jenkins,Ansible              |
