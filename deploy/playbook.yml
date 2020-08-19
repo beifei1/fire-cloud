@@ -48,7 +48,6 @@
 
     - name: Wait for {{ SERVER_PORT }} available
       wait_for:
-        host: "{{ ansible_default_ipv4.address }}"
         port: "{{ SERVER_PORT }}"
         delay: 5
         timeout: 30
