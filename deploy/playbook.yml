@@ -6,32 +6,27 @@
     SERVER_PORT: 6020
   gather_facts: no
   tasks:
-      #获取制品文件
     - name: Acquire file name
-      local_action: shell ls /var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar
+      local_action: shell ls /var/lib/jenkins/workspace/{{ PROJECT_NAME }}/{{ PROJECT_NAME }}/target/*.jar
       register: file_name
       tags: get_filename
 
-      #上传制品
     - name : Upload archives
-      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{SERVER_PORT}}.jar
+      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ PROJECT_NAME }}/{{ PROJECT_NAME }}-{{ SERVER_PORT }}.jar
       when: file_name.stdout != ''
 
-      #获取运行Pid
     - name: Acquire process pid
       tags:
         - test
-      shell: "ps -ef | grep -v grep | grep {{PROJECT_NAME}} | awk '{print $2}'"
+      shell: "ps -ef | grep -v grep | grep {{ PROJECT_NAME }} | awk '{print $2}'"
       register: running_processes
 
-      #停止运行中的Pid
     - name: Stop current process
       shell: "kill {{item}}"
       tags:
         - test1
       with_items: "{{running_processes.stdout_lines}}"
 
-      #等待Pid状态
     - name: Wait for process status
       wait_for:
         path: "/proc/{{item}}/status"
@@ -43,17 +38,14 @@
       ignore_errors: yes
       register: killed_processes
 
-      #强制杀进程
     - name: Kill process
       shell: "kill -9 {{ item }}"
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-      #启动应用
     - name: Start new process
       shell: "nohup java -jar /usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{SERVER_PORT}}.jar &"
       tags: start app
 
-      #等待应用启动完成
     - name: Wait for {{ SERVER_PORT }} available
       wait_for:
         host: "{{ ansible_default_ipv4.address }}"
