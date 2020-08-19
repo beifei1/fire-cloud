@@ -3,9 +3,8 @@
   remote_user: root
   vars:
     PROJECT_NAME: fire-gateway
-    PROJECT_VERSION: 0.0.1-SNAPSHOT.jar
+    PROJECT_VERSION: 0.0.1-SNAPSHOT
   gather_facts: no
-
   tasks:
     - name: get filename
       local_action: shell ls "/var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/{{PROJECT_NAME}}-{{PROJECT_VERSION}}.jar"
