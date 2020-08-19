@@ -5,12 +5,12 @@
     project_name: fire-gateway
     server_port: 6020
   tasks:
-    - name: Acquire file name
+    - name: 获取文件名
       local_action: shell ls /var/lib/jenkins/workspace/{{ project_name }}/{{ project_name }}/target/*.jar
       register: file_name
       tags: get_filename
 
-    - name: Acquire process pid
+    - name: 获取运行PID
       tags:
         - test
       shell: ps -ef | grep -v grep | grep {{ project_name }}-{{ server_port }} | awk '{print $2}'
@@ -22,7 +22,7 @@
         - test1
       with_items: "{{running_processes.stdout_lines}}"
 
-    - name: Wait for process status
+    - name: 等待进程结束
       wait_for:
         path: /proc/{{ item }}/status
         state: absent
@@ -33,36 +33,36 @@
       ignore_errors: yes
       register: killed_processes
 
-    - name: Kill process
+    - name: 强制结束进程
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-    - name: delete archive
+    - name: 删除原Jar包
       file:
         state: absent
         path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
       become: yes
 
-    - name: Create directory
+    - name: 如果目录不存在,则创建目录
       file:
         state: directory
         path: /usr/local/fire-cloud/{{ project_name }}
       become: yes
 
-    - name : Upload archives
+    - name : 上传Jenkins制品
       copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
       when: file_name.stdout != ''
 
-    - name: Start new process
+    - name: 启动进程
       shell: nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &
       tags: start app
       register: start_result
       ignore_errors: yes
 
-    - name: show result
+    - name: 打印结果
       debug: var=start_result
 
-    - name: Wait for {{ server_port }} available
+    - name: 等待端口 {{ server_port }} 可访问
       wait_for:
         port: "{{ server_port }}"
         delay: 5
