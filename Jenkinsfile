@@ -28,8 +28,7 @@ pipeline {
                 echo "fetch code complete !"
             }
         }
-        stage('单元测试') {steps {echo 'ttt'} }
-        stage('覆盖率检测') {steps {echo '。。。'} }
+
         stage('代码质量检测') {steps {echo 'sn...'} }
 
         stage ("构建及安装") {
@@ -49,6 +48,9 @@ pipeline {
                }
             }
         }
+        stage('单元测试') {steps {echo 'ttt'} }
+        stage('覆盖率检测') {steps {echo '。。。'} }
+
 
         stage('应用部署') {
             steps {
