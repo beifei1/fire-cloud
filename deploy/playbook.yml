@@ -4,6 +4,7 @@
   vars:
     PROJECT_NAME: fire-gateway
     PROJECT_VERSION: 0.0.1-SNAPSHOT
+    PROJECT_PORT: 6020
   gather_facts: no
   tasks:
     - name: get filename
@@ -12,7 +13,7 @@
       tags: get_filename
 
     - name : upload archives to server
-      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{PROJECT_NAME}}/
+      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{PROJECT_NAME}}/{{PROJECT_NAME}}-{{PROJECT_PORT}}.jar
       when: file_name.stdout != ''
 
     - name: acquire process pid
