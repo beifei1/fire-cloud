@@ -3,20 +3,46 @@
   remote_user: root
   vars:
     PROJECT_NAME: fire-gateway
-  tasks:
-    - name : 上传Jenkins制品到远程机器
-      copy:
-        src: "/var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar"
-        dest: "/usr/local/fire-cloud/{{PROJECT_NAME}}/"
+  gather_facts: no
 
-    - name: 获取上次jar运行的pid
+  tasks:
+    - name: get filename
+      local_action: shell ls "/var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar"
+      register: file_name
+      tags: get_filename
+
+    - name : upload archives to server
+      copy:
+        src: "{{file_name.stdout}}"
+        dest: "/usr/local/fire-cloud/{{PROJECT_NAME}}/"
+        when: file_name.stdout != ''
+
+    - name: acquire process pid
       tags:
         - test
       shell: "ps -ef | grep -v grep | grep {{PROJECT_NAME}} | awk '{print $2}'"
       register: running_processes
 
-    - name: 停止运行进程
+    - name: stoping current process
       shell: "kill {{item}}"
       tags:
         - test1
       with_items: "{{running_processes.stdout_lines}}"
+
+    - wait_for:
+        path: "/proc/{{item}}/status"
+        state: absent
+        timeout: 60
+      tags:
+        - test
+      with_itmes: "{{running_processes.stdout_lines}}"
+      ignore_errors: yes
+      register: killed_processes
+
+    - name: kill process
+      shell: "kill -9 {{ item }}"
+      with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
+
+    - name: staring new process
+      shell: "nohup java -jar /home/{{ file_name.stdout }} &"
+      tags: start
