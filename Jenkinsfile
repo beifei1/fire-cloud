@@ -50,7 +50,7 @@ pipeline {
         }
         stage('单元测试') {steps {echo '配合junit'} }
         stage('覆盖率检测') {steps {echo '配合jacoco'} }
-
+        stage('性能测试') {steps {echo '配合jmeter'}}
 
         stage('应用部署') {
             steps {
