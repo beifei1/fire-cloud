@@ -23,18 +23,18 @@
     - name: Acquire process pid
       tags:
         - test
-      shell: ps -ef | grep -v grep | grep {{ project_name }}-{{ server_port }} | awk '{print $2}'
+      shell: "ps -ef | grep -v grep | grep {{ project_name }}-{{ server_port }} | awk '{print $2}'"
       register: running_processes
 
     - name: Stop current process
-      shell: kill {{item}}
+      shell: "kill {{item}}"
       tags:
         - test1
       with_items: "{{running_processes.stdout_lines}}"
 
     - name: Wait for process status
       wait_for:
-        path: /proc/{{ item }}/status
+        path: "/proc/{{ item }}/status"
         state: absent
         timeout: 30
       tags:
@@ -44,11 +44,11 @@
       register: killed_processes
 
     - name: Kill process
-      shell: kill -9 {{ item }}
+      shell: "kill -9 {{ item }}"
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
     - name: Start new process
-      shell: nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &
+      shell: "nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &"
       tags: start app
 
     - name: Wait for {{ server_port }} available
