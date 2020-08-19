@@ -49,9 +49,9 @@
         path: /usr/local/fire-cloud/{{ project_name }}
       become: yes
 
-#    - name : Upload archives
-#      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
-#      when: file_name.stdout != ''
+    - name : Upload archives
+      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
+      when: file_name.stdout != ''
 
     - name: Start new process
       shell: nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &
