@@ -18,7 +18,7 @@
     - name: Acquire process pid
       tags:
         - test
-      shell: "ps -ef | grep -v grep | grep {{ PROJECT_NAME }} | awk '{print $2}'"
+      shell: "ps -ef | grep -v grep | grep {{ PROJECT_NAME }}-{{SERVER_PORT}} | awk '{print $2}'"
       register: running_processes
 
     - name: Stop current process
