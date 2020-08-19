@@ -10,16 +10,6 @@
       register: file_name
       tags: get_filename
 
-    - name: Create directory
-      file:
-        state: directory
-        path: /usr/local/fire-cloud/{{ project_name }}
-      become: yes
-
-#    - name : Upload archives
-#      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
-#      when: file_name.stdout != ''
-
     - name: Acquire process pid
       tags:
         - test
@@ -46,6 +36,22 @@
     - name: Kill process
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
+
+    - name: delete archive
+      file:
+        state: absent
+        path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
+      become: yes
+
+    - name: Create directory
+      file:
+        state: directory
+        path: /usr/local/fire-cloud/{{ project_name }}
+      become: yes
+
+#    - name : Upload archives
+#      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
+#      when: file_name.stdout != ''
 
     - name: Start new process
       shell: nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &
