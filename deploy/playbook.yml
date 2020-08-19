@@ -12,7 +12,8 @@
       tags: get_filename
 
     - name : upload archives to server
-      copy: src = "{{file_name.stdout}}", dest = "/usr/local/fire-cloud/{{PROJECT_NAME}}/"
+      copy: src="{{file_name.stdout}}", dest="/usr/local/fire-cloud/{{PROJECT_NAME}}/"
+      when: file_name.stdout != ''
 
     - name: acquire process pid
       tags:
