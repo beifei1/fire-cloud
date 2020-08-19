@@ -54,7 +54,7 @@
 
     - name: Wait for {{ server_port }} available
       wait_for:
-        host: hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+        host: {{ansible_default_ipv4['address']}}
         port: {{ server_port }}
         delay: 5
         timeout: 30
