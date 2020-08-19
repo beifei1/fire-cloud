@@ -11,6 +11,12 @@
       register: file_name
       tags: get_filename
 
+    - name: Create directory
+      file:
+        state: directory
+        path: /usr/local/fire-cloud/{{ PROJECT_NAME }}
+      become: yes
+
     - name : Upload archives
       copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ PROJECT_NAME }}/{{ PROJECT_NAME }}-{{ SERVER_PORT }}.jar mode=0644
       when: file_name.stdout != ''
