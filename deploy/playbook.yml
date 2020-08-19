@@ -3,7 +3,6 @@
   remote_user: root
   vars:
     PROJECT_NAME: fire-gateway
-    PROJECT_VERSION: 0.0.1-SNAPSHOT
     PROJECT_PORT: 6020
   gather_facts: no
   tasks:
