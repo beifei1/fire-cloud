@@ -7,12 +7,12 @@
   gather_facts: no
   tasks:
     - name: get filename
-      local_action: shell ls "/var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar"
+      local_action: shell ls /var/lib/jenkins/workspace/{{PROJECT_NAME}}/{{PROJECT_NAME}}/target/*.jar
       register: file_name
       tags: get_filename
 
     - name : upload archives to server
-      copy: src="{{file_name.stdout}}", dest="/usr/local/fire-cloud/{{PROJECT_NAME}}/"
+      copy: src={{file_name.stdout}}, dest=/usr/local/fire-cloud/{{PROJECT_NAME}}/
       when: file_name.stdout != ''
 
     - name: acquire process pid
