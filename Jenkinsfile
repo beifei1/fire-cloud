@@ -52,7 +52,7 @@ pipeline {
 
         stage('应用部署') {
             steps {
-                ansiblePlaybook(playbook: "${env.WORKSPACE}/playbook.yml", inventory: "${env.WORKSPACE}/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
+                ansiblePlaybook(playbook: "${env.WORKSPACE}/zeploy/playbook.yml", inventory: "${env.WORKSPACE}/zeploy/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
             }
         }
     }
