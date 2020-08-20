@@ -11,7 +11,8 @@ pipeline {
     environment {
         _github_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
         _deploy_to_nexus = "${params.deploy}"
-        _build_state_notify_email = "wangzhichao03@tojoy.com"
+        _build_state_notify_from = "wangzhichaomin@163.com"
+        _build_state_notify_to = "wangzhichao03@tojoy.com"
         _build_state_notify_template = "/var/lib/jenkins/notify.html"
     }
 
@@ -68,18 +69,18 @@ pipeline {
             cleanWs()
         }
         failure {
-            emailext body: '''${FILE, path="${_build_state_notify_template}"}''',
+            emailext body: "${FILE, path=${_build_state_notify_template}}",
             mimeType: 'text/html',
             subject: "[Jenkins]构建失败: ${JOB_NAME} - Build # ${BUILD_NUMBER} Failure!",
-            to: "${_build_state_notify_email}",
-            from: "wangzhichaomin@163.com"
+            to: "${_build_state_notify_to}",
+            from: "${_build_state_notify_from}"
         }
         success {
-            emailext  body: '''${FILE, path="${_build_state_notify_template}"}''',
+            emailext  body: "${FILE, path=${_build_state_notify_template}}",
             mimeType: 'text/html',
             subject: "[Jenkins]构建成功: ${JOB_NAME} - Build # ${BUILD_NUMBER} Success!",
-            to: "${_build_state_notify_email}",
-            from: "wangzhichaomin@163.com"
+            to: "${_build_state_notify_to}",
+            from: "${_build_state_notify_from}"
         }
     }
 }

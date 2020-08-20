@@ -57,7 +57,7 @@
     - name: Print result
       debug: var=start_result
 
-    - name: Wait {{ server_port }} attachable
+    - name: Wait {{ server_port }} visiable
       wait_for:
         port: "{{ server_port }}"
         delay: 5
