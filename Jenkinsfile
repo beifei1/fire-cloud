@@ -60,10 +60,14 @@ pipeline {
     }
     post {
         always {
+            echo "Start cleaning workspace"
             cleanWs()
         }
         failure {
-            echo "send email"
+            emailext (to: 'wangzhichao03@tojoy.com')
+        }
+        success {
+            emailext(to: 'wangzhichao03@tojoy.com')
         }
     }
 }
