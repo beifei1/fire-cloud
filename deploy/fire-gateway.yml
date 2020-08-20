@@ -3,7 +3,6 @@
   remote_user: root
   vars:
     project_name: fire-gateway
-    version: 0.0.1-SNAPSHOT
     server_port: 6020
   tasks:
     - include: tasks/deploy.yml

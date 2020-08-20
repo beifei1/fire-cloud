@@ -1,7 +1,7 @@
 ---
  - block:
     - name: Get file name
-      local_action: shell ls /var/lib/jenkins/workspace/{{ project_name }}/{{ project_name }}-{{project_version}}.jar
+      local_action: shell find /var/lib/jenkins/workspace/{{ project_name }}/ -name {{ project_name }}-*.jar
       register: file_name
       tags: get_filename
 
