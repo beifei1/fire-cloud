@@ -32,21 +32,21 @@
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-    - name: Drop prev archives
-      file:
-        state: absent
-        path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
-      become: yes
-
-    - name: Create directory if not exists
-      file:
-        state: directory
-        path: /usr/local/fire-cloud/{{ project_name }}
-      become: yes
-
-    - name: Upload Jenkins archives
-      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
-      when: file_name.stdout != ''
+#    - name: Drop prev archives
+#      file:
+#        state: absent
+#        path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
+#      become: yes
+#
+#    - name: Create directory if not exists
+#      file:
+#        state: directory
+#        path: /usr/local/fire-cloud/{{ project_name }}
+#      become: yes
+#
+#    - name: Upload Jenkins archives
+#      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
+#      when: file_name.stdout != ''
 
     - name: Startup process
       shell: nohup java -jar /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar &
