@@ -16,7 +16,7 @@ pipeline {
     }
 
     parameters {
-        string(defaultValue: "fire-gateway/pom.xml", name:'pomPath', description: 'pom文件相对路径')
+        string(defaultValue: "fire-gateway", name: "projectName", description: "项目名称")
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
         string(defaultValue: 'master', name: 'repoBranch', description: '拉取的代码分支')
         choice(name:'deploy',choices:'False\nTrue',description:'是否发布到私服')
@@ -37,7 +37,7 @@ pipeline {
             when {equals expected: 'False', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
-                   sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING install -Dmaven.skip.test=true"
+                   sh "mvn -f ${params.projectName}/pom.xml -s $MAVEN_GLOBALE_SETTING install -Dmaven.skip.test=true"
                }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
 
         stage('应用部署') {
             steps {
-                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/playbook.yml", inventory: "${env.WORKSPACE}/deploy/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
+                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.projectName}.yml", inventory: "${env.WORKSPACE}/deploy/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
             }
         }
     }
