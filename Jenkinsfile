@@ -9,8 +9,9 @@ pipeline {
     options { buildDiscarder(logRotator(numToKeepStr: '3'))}
 
     environment {
-        _github_readable_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
-        _need_deploy_to_nexus = "${params.deploy}"
+        _github_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
+        _deploy_to_nexus = "${params.deploy}"
+        _build_state_notify_email = "wangzhichao03@tojoy.com"
     }
 
     parameters {
@@ -24,7 +25,7 @@ pipeline {
         stage('代码获取') {
             steps {
                 echo "staring fetch code from ${params.repoUrl}..."
-                git credentialsId: "${_github_readable_credentialsId}", url: "${params.repoUrl}", branch: "${params.repoBranch}"
+                git credentialsId: "${_github_credentialsId}", url: "${params.repoUrl}", branch: "${params.repoBranch}"
                 echo "fetch code complete !"
             }
         }
@@ -32,7 +33,7 @@ pipeline {
         stage('代码质量检测') {steps {echo '配合sonar'} }
 
         stage ("构建及安装") {
-            when {equals expected: 'False', actual: _need_deploy_to_nexus}
+            when {equals expected: 'False', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING install -Dmaven.skip.test=true"
@@ -41,7 +42,7 @@ pipeline {
         }
 
         stage ("构建及发布") {
-            when {equals expected: 'True', actual: _need_deploy_to_nexus}
+            when {equals expected: 'True', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
@@ -65,14 +66,16 @@ pipeline {
         }
         failure {
             emailext (
-                subject: "构建失败通知: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
-                to: "wangzhichao03@tojoy.com"
+                mimeType: 'text/html',
+                subject: "[Jenkins]构建失败: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!",
+                to: "${_build_state_notify_email}"
             )
         }
         success {
             emailext(
-                subject: "构建成功通知: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
-                to: "wangzhichao03@tojoy.com"
+                mimeType: 'text/html',
+                subject: "[Jenkins]构建成功: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!",
+                to: "${_build_state_notify_email}"
             )
         }
     }
