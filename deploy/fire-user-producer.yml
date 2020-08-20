@@ -1,0 +1,8 @@
+---
+- hosts: fire-user-producer
+  remote_user: root
+  vars:
+    project_name: fire-user-producer
+    server_port: 9101
+  tasks:
+    - include: impl/deploy.yml
