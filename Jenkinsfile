@@ -68,10 +68,18 @@ pipeline {
             cleanWs()
         }
         failure {
-            emailext body: '''${FILE, path="${_build_state_notify_template}"}''', mimeType: 'text/html', subject: "[Jenkins]构建失败: ${JOB_NAME} - Build # ${BUILD_NUMBER} Failure!", to: "${_build_state_notify_email}"
+            emailext body: '''${FILE, path="${_build_state_notify_template}"}''',
+            mimeType: 'text/html',
+            subject: "[Jenkins]构建失败: ${JOB_NAME} - Build # ${BUILD_NUMBER} Failure!",
+            to: "${_build_state_notify_email}",
+            from: "wangzhichaomin@163.com"
         }
         success {
-            emailext  body: '''${FILE, path="${_build_state_notify_template}"}''', mimeType: 'text/html', subject: "[Jenkins]构建成功: ${JOB_NAME} - Build # ${BUILD_NUMBER} Success!", to: "${_build_state_notify_email}"
+            emailext  body: '''${FILE, path="${_build_state_notify_template}"}''',
+            mimeType: 'text/html',
+            subject: "[Jenkins]构建成功: ${JOB_NAME} - Build # ${BUILD_NUMBER} Success!",
+            to: "${_build_state_notify_email}",
+            from: "wangzhichaomin@163.com"
         }
     }
 }
