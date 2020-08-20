@@ -21,6 +21,7 @@ pipeline {
         string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pomPath", description: "pom文件相对路径")
         string(defaultValue: 'master', name: 'repoBranch', description: '拉取的代码分支')
         choice(name:'deploy',choices:'False\nTrue',description:'是否发布到私服')
+        choice(name:'environment',choices:'dev\ntest\nprod',description:'机器环境')
     }
 
     stages {
@@ -57,7 +58,7 @@ pipeline {
 
         stage('应用部署') {
             steps {
-                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.projectName}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/dev/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
+                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.projectName}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/${params.environment}/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
             }
         }
     }
