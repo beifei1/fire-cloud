@@ -16,10 +16,10 @@ pipeline {
     }
 
     parameters {
-        string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
-        string(defaultValue: "${env.JOB_NAME}", name: "projectName", description: "项目名称")
-        string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pomPath", description: "pom文件相对路径")
-        string(defaultValue: 'master', name: 'repoBranch', description: '拉取的代码分支')
+        string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: '代码仓库路径')
+        string(defaultValue: "${env.JOB_NAME}", name: "project_name", description: "项目名称")
+        string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pom_path", description: "POM相对路径")
+        string(defaultValue: 'master', name: 'repo_branch', description: '代码分支')
         choice(name:'deploy',choices:'False\nTrue',description:'是否发布到私服')
         choice(name:'environment',choices:'dev\ntest\nprod',description:'机器环境')
     }
@@ -27,8 +27,8 @@ pipeline {
     stages {
         stage('代码获取') {
             steps {
-                echo "staring fetch code from ${params.repoUrl}..."
-                git credentialsId: "${_github_credentialsId}", url: "${params.repoUrl}", branch: "${params.repoBranch}"
+                echo "staring fetch code from ${params.repo_addr}..."
+                git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branch: "${params.repo_branch}"
                 echo "fetch code complete !"
             }
         }
@@ -39,7 +39,7 @@ pipeline {
             when {equals expected: 'False', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
-                   sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING install -Dmaven.skip.test=true"
+                   sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING install -Dmaven.skip.test=true"
                }
             }
         }
@@ -48,7 +48,7 @@ pipeline {
             when {equals expected: 'True', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
-                   sh "mvn -f ${params.projectName}/pom.xml -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
+                   sh "mvn -f ${params.project_name}/pom.xml -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
                }
             }
         }
@@ -58,7 +58,7 @@ pipeline {
 
         stage('应用部署') {
             steps {
-                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.projectName}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/${params.environment}/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
+                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.project_name}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/${params.environment}/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
             }
         }
     }
