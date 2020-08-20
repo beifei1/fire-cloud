@@ -16,12 +16,12 @@ pipeline {
     }
 
     parameters {
+        choice(name:'deploy',choices:'False\nTrue',description:'发布到Nexus')
+        choice(name:'environment',choices:'dev\ntest\nprod',description:'机器环境')
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: '代码仓库路径')
         string(defaultValue: "${env.JOB_NAME}", name: "project_name", description: "项目名称")
         string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pom_path", description: "POM相对路径")
         string(defaultValue: 'master', name: 'repo_branch', description: '代码分支')
-        choice(name:'deploy',choices:'False\nTrue',description:'是否发布到私服')
-        choice(name:'environment',choices:'dev\ntest\nprod',description:'机器环境')
     }
 
     stages {
