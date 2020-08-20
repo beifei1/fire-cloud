@@ -3,6 +3,7 @@
   remote_user: root
   vars:
     project_name: fire-user-producer
+    version: 0.0.1-SNAPSHOT
     server_port: 9101
   tasks:
     - include: tasks/deploy.yml
