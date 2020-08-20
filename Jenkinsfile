@@ -17,8 +17,8 @@ pipeline {
 
     parameters {
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repoUrl', description: '代码仓库路径')
-        string(defaultValue: "${JOB_NAME}", name: "projectName", description: "项目名称")
-        string(defaultValue: "${JOB_NAME}/pom.xml", name: "pomPath", description: "pom文件相对路径")
+        string(defaultValue: "${env.JOB_NAME}", name: "projectName", description: "项目名称")
+        string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pomPath", description: "pom文件相对路径")
         string(defaultValue: 'master', name: 'repoBranch', description: '拉取的代码分支')
         choice(name:'deploy',choices:'False\nTrue',description:'是否发布到私服')
     }
