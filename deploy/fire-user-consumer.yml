@@ -2,7 +2,7 @@
 - hosts: fire-user-consumer
   remote_user: root
   vars:
-    project_name: fire-gateway
+    project_name: fire-user-consumer
     server_port: 9100
   tasks:
     - include: impl/deploy.yml
