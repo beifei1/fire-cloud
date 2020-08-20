@@ -16,7 +16,7 @@ pipeline {
     }
 
     parameters {
-        choice(name:'deploy',choices:'no\nyes',description:'发布到Nexus')
+        choice(name:'deploy',choices:'No\nYes',description:'发布到Nexus')
         choice(name:'environment',choices:'dev\ntest\nprod',description:'机器环境')
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: '代码仓库路径')
         string(defaultValue: "${env.JOB_NAME}", name: "project_name", description: "项目名称")
@@ -36,7 +36,7 @@ pipeline {
         stage('代码质量检查') {steps {echo '配合sonar'} }
 
         stage ("构建安装") {
-            when {equals expected: 'no', actual: _deploy_to_nexus}
+            when {equals expected: 'No', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING install -Dmaven.skip.test=true"
@@ -45,7 +45,7 @@ pipeline {
         }
 
         stage ("构建发布") {
-            when {equals expected: 'yes', actual: _deploy_to_nexus}
+            when {equals expected: 'Yes', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.project_name}/pom.xml -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
