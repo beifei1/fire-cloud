@@ -1,6 +1,7 @@
 ---
 - hosts: fire-user-producer
   remote_user: root
+  gather_facts: no
   vars:
     project_name: fire-user-producer
     server_port: 9101

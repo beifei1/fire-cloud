@@ -1,6 +1,7 @@
 ---
 - hosts: fire-user-consumer
   remote_user: root
+  gather_facts: no
   vars:
     project_name: fire-user-consumer
     server_port: 9100

@@ -1,6 +1,7 @@
 ---
 - hosts: fire-oauth
   remote_user: root
+  gather_facts: no
   vars:
     project_name: fire-oauth
     server_port: 6010
