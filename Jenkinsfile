@@ -64,7 +64,7 @@ pipeline {
     }
     post {
         always {
-            echo "Start cleaning workspace"
+            echo "clean jenkins workspace"
             cleanWs()
         }
         failure {
