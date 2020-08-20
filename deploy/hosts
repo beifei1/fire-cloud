@@ -1,2 +1,6 @@
 [fire-gateway]
 119.45.213.212
+[fire-user-consumer]
+119.45.213.212
+[fire-user-producer]
+119.45.213.212
