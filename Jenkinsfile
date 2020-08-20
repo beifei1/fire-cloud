@@ -71,7 +71,7 @@ pipeline {
         }
         success {
             emailext(
-                subject: "构建失败通知: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+                subject: "构建成功通知: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
                 to: "wangzhichao03@tojoy.com"
             )
         }
