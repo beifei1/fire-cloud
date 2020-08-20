@@ -62,7 +62,7 @@ pipeline {
             }
         }
     }
-    post {
+    post ("收尾") {
         always {
             echo "Start cleaning workspace"
             cleanWs()
