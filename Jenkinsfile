@@ -57,7 +57,7 @@ pipeline {
 
         stage('应用部署') {
             steps {
-                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.projectName}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
+                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.projectName}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/dev/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
             }
         }
     }
