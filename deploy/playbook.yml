@@ -37,7 +37,7 @@
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-    - name: drop prev archives
+    - name: Drop prev archives
       file:
         state: absent
         path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
