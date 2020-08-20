@@ -25,7 +25,7 @@ pipeline {
     }
 
     stages {
-        stage('代码获取') {
+        stage('Fetch代码') {
             steps {
                 echo "staring fetch code from ${params.repo_addr}..."
                 git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branch: "${params.repo_branch}"
@@ -33,9 +33,9 @@ pipeline {
             }
         }
 
-        stage('代码质量检测') {steps {echo '配合sonar'} }
+        stage('代码质量检查') {steps {echo '配合sonar'} }
 
-        stage ("构建及安装") {
+        stage ("构建安装") {
             when {equals expected: 'False', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
@@ -44,7 +44,7 @@ pipeline {
             }
         }
 
-        stage ("构建及发布") {
+        stage ("构建发布") {
             when {equals expected: 'True', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
@@ -68,10 +68,10 @@ pipeline {
             cleanWs()
         }
         failure {
-            emailext body: '${FILE, path="${_build_state_notify_template}"}', mimeType: 'text/html', subject: "[Jenkins]构建失败: ${JOB_NAME} - Build # ${BUILD_NUMBER} Failure!", from: "${_build_state_notify_email}"
+            emailext body: '${FILE, path="${_build_state_notify_template}"}', mimeType: 'text/html', subject: "[Jenkins]构建失败: ${JOB_NAME} - Build # ${BUILD_NUMBER} Failure!", recipientProviders: "${_build_state_notify_email}"
         }
         success {
-            emailext  body: '${FILE, path="${_build_state_notify_template}"}', mimeType: 'text/html', subject: "[Jenkins]构建成功: ${JOB_NAME} - Build # ${BUILD_NUMBER} Success!", from: "${_build_state_notify_email}"
+            emailext  body: '${FILE, path="${_build_state_notify_template}"}', mimeType: 'text/html', subject: "[Jenkins]构建成功: ${JOB_NAME} - Build # ${BUILD_NUMBER} Success!", recipientProviders: "${_build_state_notify_email}"
         }
     }
 }
