@@ -46,7 +46,7 @@ pipeline {
             when {equals expected: 'True', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
-                   sh "mvn -f ${params.pomPath} -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
+                   sh "mvn -f ${params.projectName}/pom.xml -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
                }
             }
         }
