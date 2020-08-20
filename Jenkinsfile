@@ -64,10 +64,16 @@ pipeline {
             cleanWs()
         }
         failure {
-            emailext (to: 'wangzhichao03@tojoy.com')
+            emailext (
+                subject: "构建失败通知: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+                to: 'wangzhichao03@tojoy.com'
+            )
         }
         success {
-            emailext(to: 'wangzhichao03@tojoy.com')
+            emailext(
+                subject: "构建失败通知: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+                to: 'wangzhichao03@tojoy.com'
+            )
         }
     }
 }
