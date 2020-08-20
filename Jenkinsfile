@@ -64,7 +64,7 @@ pipeline {
     post {
         always {
             echo "Start cleaning workspace"
-//            cleanWs()
+            cleanWs()
         }
         failure {
             emailext (
