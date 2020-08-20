@@ -5,4 +5,4 @@
     project_name: fire-gateway
     server_port: 6020
   tasks:
-    - include: impl/deploy.yml
+    - include: tasks/deploy.yml
