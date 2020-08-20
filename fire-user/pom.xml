@@ -20,12 +20,6 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <modules>
-        <module>fire-user-api</module>
-        <module>fire-user-consumer</module>
-        <module>fire-user-producer</module>
-    </modules>
-
     <build>
         <pluginManagement>
             <plugins>
