@@ -68,6 +68,7 @@ pipeline {
             cleanWs()
         }
         failure {
+            echo "fail"
 /**            emailext (
                 body: '${FILE, path="${_build_state_notify_template}"}',
                 mimeType: 'text/html',
@@ -76,6 +77,7 @@ pipeline {
             )**/
         }
         success {
+            echo "success"
         /**
             emailext(
                 body: '${FILE, path="${_build_state_notify_template}"}',
