@@ -15,7 +15,7 @@
       shell: kill {{item}}
       tags:
         - test1
-      with_items: "{{running_processes.stdout_lines}}"
+      with_items: "{{ running_processes.stdout_lines }}"
 
     - name: Wait for the process to finish
       wait_for:
@@ -24,7 +24,7 @@
         timeout: 30
       tags:
         - test
-      with_items: "{{running_processes.stdout_lines}}"
+      with_items: "{{ running_processes.stdout_lines }}"
       ignore_errors: yes
       register: killed_processes
 
@@ -49,7 +49,7 @@
       when: file_name.stdout != ''
 
     - name: Startup process
-      shell: nohup java -jar /usr/local/fire-cloud/{{project_name}}/{{project_name}}-{{server_port}}.jar &
+      shell: nohup java -jar /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar &
       tags: start app
       register: start_result
       ignore_errors: yes
