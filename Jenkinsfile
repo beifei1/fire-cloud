@@ -82,8 +82,4 @@ pipeline {
             from: "${_build_state_notify_from}"
         }
     }
-
-    def completeNotity() {
-
-    }
 }
