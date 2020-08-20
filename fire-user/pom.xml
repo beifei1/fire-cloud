@@ -25,6 +25,7 @@
         <module>fire-user-consumer</module>
         <module>fire-user-producer</module>
     </modules>
+
     <build>
         <pluginManagement>
             <plugins>
