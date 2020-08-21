@@ -25,7 +25,7 @@ pipeline {
     }
 
     stages {
-        stage('Fetch代码') {
+        stage('fetch code') {
             steps {
                 echo "staring fetch code from ${params.repo_addr}..."
                 git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branch: "${params.repo_branch}"
