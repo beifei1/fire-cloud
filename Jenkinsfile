@@ -65,7 +65,7 @@ pipeline {
     post {
         always {
             echo "clean jenkins workspace"
-            cleanWs()
+//            cleanWs()
         }
 /**        failure {
             emailext body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
