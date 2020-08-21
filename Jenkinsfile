@@ -10,7 +10,7 @@ pipeline {
 
     environment {
         _github_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
-        _deploy_to_nexus = "${params.deploy}"
+        _deploy_to_nexus = "${params.deploy_nexus}"
         _build_state_notify_from = "wangzhichaomin@163.com"
         _build_state_notify_to = "wangzhichao03@tojoy.com"
     }
@@ -36,7 +36,7 @@ pipeline {
         stage('代码质量检查') {steps {echo '配合sonar'} }
 
         stage ("构建安装") {
-            when {equals expected: 'no', actual: deploy_nexus}
+            when {equals expected: 'no', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING package -Dmaven.test.skip=true"
@@ -45,7 +45,7 @@ pipeline {
         }
 
         stage ("构建发布") {
-            when {equals expected: 'yes', actual: deploy_nexus}
+            when {equals expected: 'yes', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING  deploy -Dmaven.test.skip=true"
