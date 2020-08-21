@@ -40,7 +40,6 @@ public class UserController {
         return R.ok();
     }
 
-
     @GetMapping("/{userId}")
     @ApiOperation("用户详情")
     @ApiOperationSupport(author = "beifei")
@@ -53,7 +52,6 @@ public class UserController {
         return R.ok(userDetail);
     }
 
-
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
     @ApiOperationSupport(author = "beifei")
@@ -62,7 +60,6 @@ public class UserController {
         System.out.println(b);
         return R.ok(userServiceFeign.deleteByUserId(userId));
     }
-
 
     @PostMapping("/login")
     @ApiOperation("用户登录")
