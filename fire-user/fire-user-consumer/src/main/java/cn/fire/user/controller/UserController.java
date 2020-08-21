@@ -9,6 +9,7 @@ import cn.fire.user.pojo.ao.UserRegisterAO;
 import cn.fire.user.pojo.vo.UserDetailVO;
 import cn.fire.user.pojo.vo.UserLoginVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -26,6 +27,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户控制器")
+@ApiSupport(author = "beifei")
 public class UserController {
 
 
@@ -35,14 +37,13 @@ public class UserController {
 
     @PutMapping("/register")
     @ApiOperation("用户注册")
-    @ApiOperationSupport(author = "beifei")
     public R register(@Valid @RequestBody Request<UserRegisterAO> param) {
         return R.ok();
     }
 
+
     @GetMapping("/{userId}")
     @ApiOperation("用户详情")
-    @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@PathVariable("userId") Long userId) {
         UserDO user = userServiceFeign.getById(userId);
 
@@ -52,9 +53,9 @@ public class UserController {
         return R.ok(userDetail);
     }
 
+
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
-    @ApiOperationSupport(author = "beifei")
     public R<Boolean> delete(@PathVariable("userId") Long userId) {
         Boolean b = userServiceFeign.deleteByUserId(userId);
         System.out.println(b);
@@ -63,7 +64,6 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation("用户登录")
-    @ApiOperationSupport(author = "beifei")
     public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
         return R.ok();
