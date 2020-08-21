@@ -17,6 +17,6 @@ public class Request<T> {
     private RequestMeta meta;
 
     @ApiModelProperty("请求数据")
-    private T body;
+    private T param;
 
 }
