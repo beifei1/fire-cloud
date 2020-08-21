@@ -58,10 +58,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                     .withClient("app").secret(passwordEncoder.encode("123456")).scopes("app")
-                    .authorizedGrantTypes(GrantTypesEnum.PASSWORD.name(), GrantTypesEnum.REFRESH_TOKEN.name(), GrantTypesEnum.SMS.name())
+                    .authorizedGrantTypes(GrantTypesEnum.PASSWORD.getName(), GrantTypesEnum.REFRESH_TOKEN.getName(), GrantTypesEnum.SMS.getName())
                 .and()
                     .withClient("system").secret(passwordEncoder.encode("123456")).scopes("system")
-                    .authorizedGrantTypes(GrantTypesEnum.PASSWORD.name(), GrantTypesEnum.REFRESH_TOKEN.name(), GrantTypesEnum.SMS.name())
+                    .authorizedGrantTypes(GrantTypesEnum.PASSWORD.getName(), GrantTypesEnum.REFRESH_TOKEN.getName(), GrantTypesEnum.SMS.getName())
                 .accessTokenValiditySeconds(3600);
     }
 

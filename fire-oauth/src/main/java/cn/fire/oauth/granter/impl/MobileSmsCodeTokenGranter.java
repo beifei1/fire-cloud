@@ -28,7 +28,7 @@ public class MobileSmsCodeTokenGranter extends AbstractCustomTokenGranter {
     private final String _PARAM_SMSCODE = "smscode";
 
     public MobileSmsCodeTokenGranter(IUserService userService, AuthorizationServerTokenServices tokenServices, ClientDetailsService clientDetailsService, OAuth2RequestFactory requestFactory) {
-        super(tokenServices, clientDetailsService, requestFactory, GrantTypesEnum.SMS.name());
+        super(tokenServices, clientDetailsService, requestFactory, GrantTypesEnum.SMS.getName());
         this.userService = userService;
     }
 

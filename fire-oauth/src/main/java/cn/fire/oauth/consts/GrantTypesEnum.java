@@ -11,6 +11,10 @@ public enum GrantTypesEnum {
 
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
     GrantTypesEnum(String name) {
         this.name = name;
     }
