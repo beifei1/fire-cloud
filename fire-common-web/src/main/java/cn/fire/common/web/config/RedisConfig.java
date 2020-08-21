@@ -1,6 +1,7 @@
 package cn.fire.common.web.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
@@ -26,7 +27,7 @@ import java.time.Duration;
 
 @Slf4j
 @Configuration
-@ConditionalOnProperty(name = "spring.redis.host")
+@ConditionalOnBean(RedisConnectionFactory.class)
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Resource
