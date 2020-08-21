@@ -14,6 +14,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +30,7 @@ import java.util.stream.Collectors;
  */
 
 @Service
+@CacheConfig(cacheNames = "UserCache")
 public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements IUserService {
 
     @Autowired
@@ -39,6 +43,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     private UserRoleMapper userRoleMapper;
 
     @Override
+    @Cacheable(key = "#userId")
     public UserDO getById(Long userId) throws UserException {
         return super.getById(userId);
     }
@@ -49,6 +54,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     }
 
     @Override
+    @CacheEvict(key = "#userId")
     public Boolean deleteByUserId(Long userId) throws UserException {
         UserDO user = userMapper.selectById(userId);
         if (Objects.isNull(user)) {
