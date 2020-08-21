@@ -16,12 +16,12 @@ pipeline {
     }
 
     parameters {
-        choice(name:'deploy',choices:'no\nyes',description:'发布到Nexus')
-        choice(name:'environment',choices:'dev\ntest\nprod',description:'机器环境')
+        choice(name:'deploy_nexus',choices:'no\nyes',description:'发布到Nexus')
+        choice(name:'node_env',choices:'dev\ntest\nprod',description:'机器环境')
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: '代码仓库路径')
         string(defaultValue: "${env.JOB_NAME}", name: "project_name", description: "项目名称")
-        string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pom_path", description: "POM相对路径")
-        string(defaultValue: 'master', name: 'repo_branch', description: '代码分支')
+        string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pom_path", description: "Pom文件在Jenkins workspace中的相对路径")
+        string(defaultValue: 'master', name: 'repo_branch', description: 'git 分支')
     }
 
     stages {
@@ -36,7 +36,7 @@ pipeline {
         stage('代码质量检查') {steps {echo '配合sonar'} }
 
         stage ("构建安装") {
-            when {equals expected: 'no', actual: _deploy_to_nexus}
+            when {equals expected: 'no', actual: deploy_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING install -Dmaven.skip.test=true"
@@ -45,7 +45,7 @@ pipeline {
         }
 
         stage ("构建发布") {
-            when {equals expected: 'yes', actual: _deploy_to_nexus}
+            when {equals expected: 'yes', actual: deploy_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.project_name}/pom.xml -s $MAVEN_GLOBALE_SETTING deploy -Dmaven.skip.test=true"
@@ -58,7 +58,7 @@ pipeline {
 
         stage('应用部署') {
             steps {
-                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.project_name}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/${params.environment}/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
+                ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/${params.project_name}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/${params.node_env}/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
             }
         }
     }
