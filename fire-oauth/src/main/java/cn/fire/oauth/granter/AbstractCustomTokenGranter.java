@@ -6,8 +6,10 @@ import org.springframework.security.oauth2.provider.*;
 import org.springframework.security.oauth2.provider.token.AbstractTokenGranter;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @Author: wangzc
@@ -27,7 +29,7 @@ public abstract class AbstractCustomTokenGranter extends AbstractTokenGranter {
     protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
         Map<String, String> parameters = tokenRequest.getRequestParameters();
         UserDTO customUser = getUser(parameters);
-        if (customUser == null) {
+        if (Objects.isNull(customUser)) {
             throw new InvalidGrantException("无法获取用户信息");
         }
         OAuth2Request storedOAuth2Request = this.requestFactory.createOAuth2Request(client, tokenRequest);
