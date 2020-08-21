@@ -27,7 +27,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户控制器")
-@ApiSupport(author = "beifei")
 public class UserController {
 
 
@@ -35,8 +34,9 @@ public class UserController {
     private UserServiceFeign userServiceFeign;
 
 
-    @PutMapping("/register")
+    @PostMapping("/reg")
     @ApiOperation("用户注册")
+    @ApiOperationSupport(author = "beifei")
     public R register(@Valid @RequestBody Request<UserRegisterAO> param) {
         return R.ok();
     }
@@ -44,6 +44,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     @ApiOperation("用户详情")
+    @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@PathVariable("userId") Long userId) {
         UserDO user = userServiceFeign.getById(userId);
 
@@ -56,16 +57,26 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
+    @ApiOperationSupport(author = "beifei")
     public R<Boolean> delete(@PathVariable("userId") Long userId) {
         Boolean b = userServiceFeign.deleteByUserId(userId);
         System.out.println(b);
         return R.ok(userServiceFeign.deleteByUserId(userId));
     }
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     @ApiOperation("用户登录")
+    @ApiOperationSupport(author = "beifei")
     public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
 
+        return R.ok();
+    }
+
+    @PatchMapping("/{userId}")
+    @ApiOperation(("更新用户资料"))
+    @ApiOperationSupport(author = "beifei")
+    public R<Boolean> update(@PathVariable("userId") Long userId,
+                             @Valid @RequestBody Request<UserLoginAO> param) {
         return R.ok();
     }
 }
