@@ -13,7 +13,7 @@ import lombok.Data;
 @ApiModel(description = "统一请求体Wrapper")
 public class Request<T> {
 
-    @ApiModelProperty("请求头信息")
+    @ApiModelProperty("请求头信息,body参数 + nonce,timestamp,secret字典序排序计算MD5得到sign")
     private RequestMeta meta;
 
     @ApiModelProperty("请求数据")
