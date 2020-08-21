@@ -65,9 +65,9 @@ pipeline {
     post {
         always {
             echo "clean jenkins workspace"
-//            cleanWs()
+            cleanWs()
         }
-/**        failure {
+        failure {
             emailext body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
             mimeType: 'text/html',
             subject: "[Jenkins Pipeline][${JOB_NAME}]失败: - #${BUILD_NUMBER} Failure!",
@@ -81,6 +81,5 @@ pipeline {
             to: "${_build_state_notify_to}",
             from: "${_build_state_notify_from}"
         }
-        **/
     }
 }
