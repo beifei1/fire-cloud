@@ -1,7 +1,6 @@
 ---
 - hosts: fire-gateway
   remote_user: root
-  gather_facts: no
   vars:
     project_name: fire-gateway
     server_port: 6020
