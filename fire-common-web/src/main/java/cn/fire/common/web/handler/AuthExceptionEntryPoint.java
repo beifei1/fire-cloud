@@ -1,7 +1,7 @@
 package cn.fire.common.web.handler;
 
 import cn.fire.common.exception.BaseException;
-import cn.fire.common.web.core.R;
+import cn.fire.common.web.core.response.R;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

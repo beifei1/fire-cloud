@@ -1,7 +1,7 @@
 package cn.fire.oauth.config;
 
 import cn.fire.common.exception.BaseException;
-import cn.fire.common.web.core.R;
+import cn.fire.common.web.core.response.R;
 import cn.fire.oauth.config.enhancer.JwtTokenEnhancer;
 import cn.fire.oauth.consts.GrantTypesEnum;
 import cn.fire.oauth.granter.impl.MobileSmsCodeTokenGranter;

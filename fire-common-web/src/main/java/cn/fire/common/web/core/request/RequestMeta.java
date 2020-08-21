@@ -1,4 +1,4 @@
-package cn.fire.common.web.core;
+package cn.fire.common.web.core.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,12 +9,12 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @Author: wangzc
- * @Date: 2020/8/4 11:04
+ * @Date: 2020/8/21 10:56
  */
 
 @Data
-@ApiModel(description = "统一请求体Wrapper")
-public class Request<T> {
+@ApiModel(description = "请求头信息")
+public class RequestMeta {
 
     @Valid
     @NotBlank(message = "数据签名不能为空")
@@ -30,9 +30,5 @@ public class Request<T> {
     @NotBlank(message = "随机字符串不能为空")
     @ApiModelProperty("随机字符串")
     private String nonce;
-
-
-    @ApiModelProperty("请求数据")
-    private T param;
 
 }

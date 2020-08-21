@@ -1,6 +1,6 @@
 package cn.fire.oauth.controller;
 
-import cn.fire.common.web.core.R;
+import cn.fire.common.web.core.response.R;
 import cn.fire.oauth.pojo.UserAuthVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.google.common.collect.Maps;

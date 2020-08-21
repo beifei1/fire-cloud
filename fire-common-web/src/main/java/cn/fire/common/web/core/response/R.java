@@ -1,4 +1,4 @@
-package cn.fire.common.web.core;
+package cn.fire.common.web.core.response;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

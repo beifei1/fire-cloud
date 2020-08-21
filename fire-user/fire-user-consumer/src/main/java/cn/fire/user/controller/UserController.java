@@ -1,7 +1,7 @@
 package cn.fire.user.controller;
 
-import cn.fire.common.web.core.R;
-import cn.fire.common.web.core.Request;
+import cn.fire.common.web.core.response.R;
+import cn.fire.common.web.core.request.Request;
 import cn.fire.user.api.pojo.entity.UserDO;
 import cn.fire.user.feign.UserServiceFeign;
 import cn.fire.user.pojo.ao.UserLoginAO;
@@ -9,7 +9,6 @@ import cn.fire.user.pojo.ao.UserRegisterAO;
 import cn.fire.user.pojo.vo.UserDetailVO;
 import cn.fire.user.pojo.vo.UserLoginVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
