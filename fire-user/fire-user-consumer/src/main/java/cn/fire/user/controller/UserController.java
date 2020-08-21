@@ -33,7 +33,7 @@ public class UserController {
     private UserServiceFeign userServiceFeign;
 
 
-    @PostMapping("/register")
+    @PutMapping("/register")
     @ApiOperation("用户注册")
     @ApiOperationSupport(author = "beifei")
     public R register(@Valid @RequestBody Request<UserRegisterAO> param) {
