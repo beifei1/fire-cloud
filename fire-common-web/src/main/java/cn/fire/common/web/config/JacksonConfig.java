@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -28,8 +29,14 @@ public class JacksonConfig {
             builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
             builder.serializerByType(LocalDateTime.class,new LocalDateTimeSerializer());
             builder.deserializerByType(LocalDateTime.class,new LocalDateTimeDeserializer());
-            builder.serializers(new NullSerializer());
         };
+    }
+
+    @Bean
+    ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
+        ObjectMapper objectMapper = builder.createXmlMapper(false).build();
+        objectMapper.getSerializerProvider().setNullValueSerializer(new NullSerializer());
+        return objectMapper;
     }
 
 }
@@ -38,7 +45,6 @@ public class JacksonConfig {
  * 保留字段, null转""
  */
 class NullSerializer extends JsonSerializer<Object> {
-
     @Override
     public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeString("");
