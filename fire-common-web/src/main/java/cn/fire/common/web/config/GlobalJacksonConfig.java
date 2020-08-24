@@ -21,7 +21,7 @@ import java.time.ZoneId;
  */
 
 @Configuration
-public class JacksonConfig {
+public class GlobalJacksonConfig {
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer customizer(){

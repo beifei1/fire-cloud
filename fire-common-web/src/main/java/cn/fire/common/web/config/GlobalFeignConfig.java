@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnClass(feign.Retryer.class)
-public class FeignConfig {
+public class GlobalFeignConfig {
 
     @Value("${spring.security.user.name:}")
     private String httpBasicUserName;

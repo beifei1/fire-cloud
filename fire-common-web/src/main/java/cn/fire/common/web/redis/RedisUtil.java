@@ -1,6 +1,6 @@
 package cn.fire.common.web.redis;
 
-import cn.fire.common.web.config.RedisConfig;
+import cn.fire.common.web.config.GlobalRedisConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2020/8/21 9:39
  */
 @Component
-@ConditionalOnBean(RedisConfig.class)
+@ConditionalOnBean(GlobalRedisConfig.class)
 public class RedisUtil {
 
     @Autowired

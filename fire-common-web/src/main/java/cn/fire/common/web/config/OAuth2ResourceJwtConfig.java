@@ -24,7 +24,7 @@ import java.io.IOException;
 @Slf4j
 @Configuration
 @ConditionalOnClass(EnableResourceServer.class)
-public class JwtConfig {
+public class OAuth2ResourceJwtConfig {
 
     @Bean
     @Qualifier("tokenStore")
