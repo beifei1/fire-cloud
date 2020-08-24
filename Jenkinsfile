@@ -68,15 +68,15 @@ pipeline {
             cleanWs()
         }
         failure {
-            sendNotifyMail(subjectKeyword: "失败", template: null);
+            sendNotifyMail(subjectKeyword: "失败");
         }
         success {
-            sendNotifyMail(subjectKeyword: "成功", template: null)
+            sendNotifyMail(subjectKeyword: "成功")
         }
     }
 }
 
-def sendNotifyMail(subjectKeyword, template) {
+def sendNotifyMail(subjectKeyword) {
     emailext (
          body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
          mimeType: 'text/html',
