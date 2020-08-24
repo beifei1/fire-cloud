@@ -28,15 +28,21 @@ public class JacksonConfig {
             builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
             builder.serializerByType(LocalDateTime.class,new LocalDateTimeSerializer());
             builder.deserializerByType(LocalDateTime.class,new LocalDateTimeDeserializer());
-            builder.serializerByType(null, new JsonSerializer<Object>() {
-                @Override
-                public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-                    jsonGenerator.writeString("");
-                }
-            });
+            builder.serializers(new NullSerializer());
         };
     }
 
+}
+
+/**
+ * 保留字段, null转""
+ */
+class NullSerializer extends JsonSerializer<Object> {
+
+    @Override
+    public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        jsonGenerator.writeString("");
+    }
 }
 
 /**
