@@ -74,7 +74,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
 
     @Override
     public UserDO getByMobileAndPassword(String mobile, String password) throws UserException {
-        return userMapper.selectOne(new QueryWrapper<UserDO>().eq("mobile",mobile).eq("password",password));
+        return userMapper.selectOne(new QueryWrapper<UserDO>().eq("mobile",mobile) .eq("password",password));
     }
 
     @Override
