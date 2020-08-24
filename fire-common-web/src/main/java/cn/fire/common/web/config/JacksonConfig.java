@@ -2,12 +2,8 @@ package cn.fire.common.web.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +28,12 @@ public class JacksonConfig {
             builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
             builder.serializerByType(LocalDateTime.class,new LocalDateTimeSerializer());
             builder.deserializerByType(LocalDateTime.class,new LocalDateTimeDeserializer());
+            builder.serializerByType(null, new JsonSerializer<Object>() {
+                @Override
+                public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+                    jsonGenerator.writeString("");
+                }
+            });
         };
     }
 
