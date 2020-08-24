@@ -42,11 +42,11 @@ public class UserController {
     }
 
 
-    @PostMapping("/{userId}")
+    @GetMapping("/{userId}")
     @ApiOperation("用户详情")
     @PreAuthorize("hasAuthority('admin')")
     @ApiOperationSupport(author = "beifei")
-    public R<UserDetailVO> detail(@PathVariable("userId") Long userId,@Valid @RequestBody Request request) {
+    public R<UserDetailVO> detail(@PathVariable("userId") Long userId) {
         UserDO user = userServiceFeign.getById(userId);
 
         UserDetailVO userDetail = UserDetailVO.builder().build();
