@@ -28,7 +28,7 @@ public class GlobalFeignConfig {
     private String httpBasicPassword;
 
     @Autowired
-    private ObjectFactory<HttpMessageConverters> httpMessageConverterObjectFactory;
+    private ObjectFactory<HttpMessageConverters> objectFactory;
 
     @Bean
     public Feign.Builder feignBuilder() { return Feign.builder(); }
@@ -38,7 +38,7 @@ public class GlobalFeignConfig {
 
     @Bean
     Decoder decoder() {
-        return new ExceptionFeignDecoder(httpMessageConverterObjectFactory);
+        return new ExceptionFeignDecoder(objectFactory);
     }
 
     @Bean
