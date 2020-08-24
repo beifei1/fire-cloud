@@ -33,6 +33,7 @@ public class GlobalJacksonConfig {
             builder.serializerByType(Integer.TYPE, new DefaultToStringSerializer());
             builder.serializerByType(Double.TYPE, new DefaultToStringSerializer());
             builder.serializerByType(Float.TYPE, new DefaultToStringSerializer());
+            builder.serializerByType(Short.TYPE, new DefaultToStringSerializer());
             builder.serializerByType(Boolean.TYPE, new DefaultToStringSerializer());
         };
     }
