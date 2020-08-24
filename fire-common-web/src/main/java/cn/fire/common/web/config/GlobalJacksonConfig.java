@@ -40,7 +40,7 @@ public class GlobalJacksonConfig {
     @Bean
     ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
-        objectMapper.getSerializerProvider().setNullValueSerializer(new NullSerializer());
+        objectMapper.getSerializerProvider().setNullValueSerializer(new NullableSerializer());
         return objectMapper;
     }
 
@@ -58,7 +58,7 @@ class DefaultToStringSerializer extends JsonSerializer<Object> {
 /**
  * 保留字段, null转""
  */
-class NullSerializer extends JsonSerializer<Object> {
+class NullableSerializer extends JsonSerializer<Object> {
     @Override
     public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeString("");
