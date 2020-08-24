@@ -16,12 +16,12 @@ pipeline {
     }
 
     parameters {
-        choice(name:'deploy_nexus',choices:'no\nyes',description:'发布到Nexus')
+        choice(name:'deploy_nexus',choices:'no\nyes',description:'是否发布制品到Nexus')
         choice(name:'node_env',choices:'dev\ntest\nprod',description:'机器环境')
-        string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: '代码仓库路径')
+        string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: 'Git仓库路径')
         string(defaultValue: "${env.JOB_NAME}", name: "project_name", description: "项目名称")
         string(defaultValue: "${env.JOB_NAME}/pom.xml", name: "pom_path", description: "Pom文件在Jenkins workspace中的相对路径")
-        string(defaultValue: 'master', name: 'repo_branch', description: 'git 分支')
+        string(defaultValue: 'master', name: 'repo_branch', description: 'Git 分支')
     }
 
     stages {
