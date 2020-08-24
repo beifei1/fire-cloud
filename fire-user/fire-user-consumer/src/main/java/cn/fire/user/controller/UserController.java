@@ -44,7 +44,7 @@ public class UserController {
 
     @PostMapping("/{userId}")
     @ApiOperation("用户详情")
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@PathVariable("userId") Long userId,@Valid @RequestBody Request request) {
         UserDO user = userServiceFeign.getById(userId);
@@ -58,7 +58,7 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
-    @PreAuthorize("hasRole('SUPER_ADMIN')")
+    @PreAuthorize("hasAuthority('super')")
     @ApiOperationSupport(author = "beifei")
     public R<Boolean> delete(@PathVariable("userId") Long userId) {
         Boolean b = userServiceFeign.deleteByUserId(userId);
