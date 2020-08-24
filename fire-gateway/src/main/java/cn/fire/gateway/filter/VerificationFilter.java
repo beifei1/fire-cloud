@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
  */
 @Slf4j
 @Component
-@ConditionalOnProperty(name = "gateway.verification.enable",value = "true")
+//@ConditionalOnProperty(name = "gateway.verification.enable",value = "true")
 public class VerificationFilter implements GlobalFilter, Ordered {
 
 
