@@ -18,7 +18,7 @@ import java.net.SocketTimeoutException;
  * @Date: 2020/7/30 16:19
  */
 @RestControllerAdvice
-public class CommonExceptionHandler {
+public class GlobalExceptionHandler {
 
     /**
      * 400

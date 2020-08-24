@@ -26,7 +26,7 @@ import java.io.IOException;
 @Slf4j
 @Component
 @ConditionalOnClass({EnableResourceServer.class})
-public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
+public class OAuth2AuthExceptionEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         Throwable cause = e.getCause();

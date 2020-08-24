@@ -24,7 +24,7 @@ import java.io.IOException;
 @Slf4j
 @Component("accessDenyEntryPoint")
 @ConditionalOnClass(EnableResourceServer.class)
-public class AccessDenyEntryPoint implements AccessDeniedHandler {
+public class Oauth2AccessDenyEntryPoint implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {
         response.setStatus(HttpStatus.FORBIDDEN.value());
