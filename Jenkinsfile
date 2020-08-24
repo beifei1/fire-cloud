@@ -68,18 +68,30 @@ pipeline {
             cleanWs()
         }
         failure {
-            emailext body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
+/**            emailext body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
             mimeType: 'text/html',
             subject: "[Pipeline][${JOB_NAME}]失败: - #${BUILD_NUMBER}!",
             to: "${_build_state_notify_to}",
             from: "${_build_state_notify_from}"
+            **/
+            sendNotifyMail(subjectKeyword: "失败");
         }
         success {
-            emailext  body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
+/**            emailext  body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
             mimeType: 'text/html',
             subject: "[Pipeline][${JOB_NAME}]成功: - #${BUILD_NUMBER}!",
             to: "${_build_state_notify_to}",
             from: "${_build_state_notify_from}"
+            **/
+            sendNotifyMail(subjectKeyword: "成功")
         }
     }
+}
+
+def sendNotifyMail(subjectKeyword) {
+    emailext  body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
+         mimeType: 'text/html',
+         subject: "[Pipeline][${JOB_NAME}]" + subjectKeyword + ": - #${BUILD_NUMBER}!",
+         to: "${_build_state_notify_to}",
+         from: "${_build_state_notify_from}"
 }
