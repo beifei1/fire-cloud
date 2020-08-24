@@ -30,7 +30,7 @@ public class Oauth2AccessDenyEntryPoint implements AccessDeniedHandler {
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setHeader("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
         try {
-            response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.TOKEN_UNAUTHORIZAD.getCode(),"权限不足")));
+            response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.TOKEN_UNAUTHORIZAD.getCode(),"permission denied")));
         } catch (IOException ex) {
             log.error("接口权限不足");
         }

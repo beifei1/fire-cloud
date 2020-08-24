@@ -35,7 +35,7 @@ public class OAuth2AuthExceptionEntryPoint implements AuthenticationEntryPoint {
         try {
             log.info(cause.getClass().getName());
             if(cause instanceof InvalidTokenException) {
-                response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.INVALID_TOKEN.getCode(),"无效的Token")));
+                response.getWriter().write(JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.INVALID_TOKEN.getCode(),"invalid token")));
             }else{
                 response.getWriter().write(JSONObject.toJSONString(R.fail(e.getMessage())));
             }
