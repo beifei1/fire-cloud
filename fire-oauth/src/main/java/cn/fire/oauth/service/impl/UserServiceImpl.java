@@ -103,15 +103,13 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
         if (Objects.isNull(dbUser)) {
             throw new UsernameNotFoundException("mobile not found");
         }
-
         UserDTO user = UserDTO.builder().build();
         BeanUtils.copyProperties(dbUser, user);
 
-        log.info(dbUser.toString());
+
         List<GrantedAuthority> authorities = new ArrayList<>();
         userFeign.getRoleByUserId(user.getId()).stream().map(RoleDO::getRoleName).collect(Collectors.toList())
                 .stream().forEach(name -> {
-                    log.info("========:{}",name);
                     authorities.add(new SimpleGrantedAuthority(name));
                 });
 
