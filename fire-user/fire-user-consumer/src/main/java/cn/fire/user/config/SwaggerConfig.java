@@ -48,7 +48,7 @@ public class SwaggerConfig {
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
                 .hidden(false).required(false)
-                .defaultValue("Bearer empty");
+                .defaultValue("Bearer TokenValue");
         paramsList.add(tokenParam.build());
 
 

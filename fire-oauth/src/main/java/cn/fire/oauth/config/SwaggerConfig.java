@@ -1,16 +1,13 @@
 package cn.fire.oauth.config;
 
 import cn.fire.common.exception.BaseException;
-import cn.fire.user.api.exception.UserException;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.builders.*;
-import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
-import springfox.documentation.service.Parameter;
 import springfox.documentation.service.ResponseMessage;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -33,9 +30,6 @@ public class SwaggerConfig {
 
     static {
         Arrays.stream(BaseException.BaseErrorEnum.values()).forEach(em -> {
-            codes.add(new ResponseMessageBuilder().code(em.getCode()).message(em.getDescription()).build());
-        });
-        Arrays.stream(UserException.ErrorEnum.values()).forEach(em -> {
             codes.add(new ResponseMessageBuilder().code(em.getCode()).message(em.getDescription()).build());
         });
     }
