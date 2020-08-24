@@ -66,7 +66,7 @@ class NullableSerializer extends JsonSerializer<Object> {
 }
 
 /**
- * deserializer
+ * localdatetime deserializer
  */
 class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
     private static final ZoneId DEFAULT_ZONE_ID = ZoneId.of("GMT");
@@ -82,7 +82,7 @@ class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
 }
 
 /**
- * serializer
+ * localdatetime serializer
  */
 class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> {
 
