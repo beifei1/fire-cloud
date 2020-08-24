@@ -46,7 +46,7 @@ pipeline {
 
         stage ("构建发布") {
             when {equals expected: 'yes', actual: _deploy_to_nexus}
-            steps {
+            steps {;
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING  deploy -Dmaven.test.skip=true"
                }

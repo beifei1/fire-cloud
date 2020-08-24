@@ -41,7 +41,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/{userId}")
+    @PostMapping("/{userId}")
     @ApiOperation("用户详情")
     @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@PathVariable("userId") Long userId,@Valid @RequestBody Request request) {

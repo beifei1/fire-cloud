@@ -2,7 +2,9 @@ package cn.fire.common.web.core.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Author: wangzc
@@ -10,6 +12,8 @@ import lombok.Data;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @ApiModel(description = "统一请求体Wrapper")
 public class Request<T> {
 

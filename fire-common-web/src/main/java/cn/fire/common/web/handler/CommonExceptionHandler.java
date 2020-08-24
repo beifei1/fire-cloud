@@ -5,6 +5,7 @@ import cn.fire.common.web.core.response.R;
 import com.google.common.collect.Lists;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -20,18 +21,18 @@ import java.net.SocketTimeoutException;
 public class CommonExceptionHandler {
 
     /**
-     * 缺少参数
+     * 400
      * @param e
      * @return
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ExceptionHandler({MissingServletRequestParameterException.class, HttpMessageNotReadableException.class})
     public R missingParameterException(MissingServletRequestParameterException e) {
         return R.fail(e.getMessage());
     }
 
     /**
-     * 参数验证异常
+     * 400
      * @param e
      * @return
      */
@@ -46,7 +47,7 @@ public class CommonExceptionHandler {
     }
 
     /**
-     * 业务异常
+     * 200
      * @param e
      * @return
      */
@@ -57,7 +58,7 @@ public class CommonExceptionHandler {
     }
 
     /**
-     * 连接错误
+     * 500
      * @param e
      * @return
      */
@@ -68,7 +69,7 @@ public class CommonExceptionHandler {
     }
 
     /**
-     * method not allowed
+     * 405
      * @param e
      * @return
      */
