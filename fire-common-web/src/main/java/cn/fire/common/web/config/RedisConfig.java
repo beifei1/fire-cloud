@@ -27,7 +27,7 @@ import java.time.Duration;
 
 @Slf4j
 @Configuration
-@ConditionalOnBean(RedisConnectionFactory.class)
+@ConditionalOnProperty("spring.redis.host")
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Resource
