@@ -27,8 +27,12 @@ public class JacksonConfig {
     public Jackson2ObjectMapperBuilderCustomizer customizer(){
         return builder -> {
             builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
-            builder.serializerByType(LocalDateTime.class,new LocalDateTimeSerializer());
-            builder.deserializerByType(LocalDateTime.class,new LocalDateTimeDeserializer());
+            builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer());
+            builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer());
+            builder.serializerByType(Long.TYPE, new DefaultToStringSerializer());
+            builder.serializerByType(Integer.TYPE, new DefaultToStringSerializer());
+            builder.serializerByType(Double.TYPE, new DefaultToStringSerializer());
+            builder.serializerByType(Float.TYPE, new DefaultToStringSerializer());
         };
     }
 
@@ -39,6 +43,15 @@ public class JacksonConfig {
         return objectMapper;
     }
 
+}
+
+class DefaultToStringSerializer extends JsonSerializer<Object> {
+
+    @Override
+    public void serialize(Object t, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        //安全转换
+        jsonGenerator.writeString(String.valueOf(t));
+    }
 }
 
 /**
