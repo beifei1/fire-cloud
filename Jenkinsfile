@@ -1,7 +1,12 @@
 pipeline {
     agent any
 
-//    triggers { pollSCM('H/1 0 * * *')}
+//    triggers {
+//       cron('0 0 * * *')
+//       pollSCM('H/1 0 * * *')
+//       upstream(upstreamProjects: 'fire-user-provider,fire-user-consumer', threshold: hudson.model.Result.SUCCESS)
+//       gitlab(triggerOnPush: true, triggerOnMergeRequest: false, branchFilterType: 'All')
+//    }
     tools {
         maven 'maven-3.10.0'
         jdk 'JDK8'
@@ -16,7 +21,7 @@ pipeline {
     }
 
     parameters {
-        choice(name:'deploy_nexus',choices:'no\nyes',description:'是否发布制品到Nexus')
+        booleanParam(name:'deploy_nexus',defaultValue: false,description:'是否发布制品到Nexus')
         choice(name:'node_env',choices:'dev\ntest\nprod',description:'机器环境')
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: 'Git仓库路径')
         string(defaultValue: "${env.JOB_NAME}", name: "project_name", description: "项目名称")
@@ -36,7 +41,7 @@ pipeline {
         stage('代码质量检查') {steps {echo '配合sonar'} }
 
         stage ("构建安装") {
-            when {equals expected: 'no', actual: _deploy_to_nexus}
+            when {equals expected: false, actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING package -Dmaven.test.skip=true"
@@ -45,7 +50,7 @@ pipeline {
         }
 
         stage ("构建发布") {
-            when {equals expected: 'yes', actual: _deploy_to_nexus}
+            when {equals expected: true, actual: _deploy_to_nexus}
             steps {;
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
                    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING  deploy -Dmaven.test.skip=true"
