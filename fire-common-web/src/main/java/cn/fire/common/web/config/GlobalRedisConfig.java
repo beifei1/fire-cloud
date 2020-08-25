@@ -1,7 +1,11 @@
 package cn.fire.common.web.config;
 
+import cn.fire.common.web.redis.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
@@ -16,7 +20,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import javax.annotation.Resource;
 import java.io.Serializable;
 import java.time.Duration;
 
@@ -27,10 +30,10 @@ import java.time.Duration;
 
 @Slf4j
 @Configuration
-@ConditionalOnProperty("spring.redis.redisson")
+@ConditionalOnClass(name = "org.springframework.data.redis.connection.RedisConnectionFactory")
 public class GlobalRedisConfig extends CachingConfigurerSupport {
 
-    @Resource
+    @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
     @Bean
