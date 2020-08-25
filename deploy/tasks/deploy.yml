@@ -37,24 +37,24 @@
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-#      #删除上次的jar
-#    - name: Drop prev archives
-#      file:
-#        state: absent
-#        path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
-#      become: yes
-#
-#      #路径不存在则创建路径
-#    - name: Create directory if not exists
-#      file:
-#        state: directory
-#        path: /usr/local/fire-cloud/{{ project_name }}
-#      become: yes
-#
-#      #从本地上传jenkins制品
-#    - name: Upload Jenkins archives
-#      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
-#      when: file_name.stdout != ''
+      #删除上次的jar
+    - name: Drop prev archives
+      file:
+        state: absent
+        path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
+      become: yes
+
+      #路径不存在则创建路径
+    - name: Create directory if not exists
+      file:
+        state: directory
+        path: /usr/local/fire-cloud/{{ project_name }}
+      become: yes
+
+      #从本地上传jenkins制品
+    - name: Upload Jenkins archives
+      copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
+      when: file_name.stdout != ''
 
       #启动程序
     - name: Startup process
