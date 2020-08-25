@@ -14,6 +14,7 @@
 | 任务调度           | xxl-Job                       | - |
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    | ✔ |
 | 熔断及限流         | Spring Cloud Alibaba Sentinel | - |
+| 分布式事务         | Seata                         | - |
 | 持久层框架         | MyBatis和MyBatis-Plus         | ✔ |
 | 消息队列           | RocketMQ                         | - |
 | 服务调用           | OpenFeign                     | ✔ |
