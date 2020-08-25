@@ -41,7 +41,7 @@ pipeline {
 
         stage('代码质量检查') {steps {echo '配合sonar'} }
 
-        stage ("构建安装") {
+        stage ("构建并打包") {
             when {equals expected: 'False', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-        stage ("构建发布") {
+        stage ("构建并发布") {
             when {equals expected: 'True', actual: _deploy_to_nexus}
             steps {;
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
