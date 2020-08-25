@@ -22,7 +22,6 @@ pipeline {
 
     parameters {
         choice(name:'deploy_nexus',choices:'False\nTrue',description:'是否发布制品到Nexus')
-//        booleanParam(name:'deploy_nexus',defaultValue: false,description:'是否发布制品到Nexus')
         choice(name:'node_env',choices:'dev\ntest\nprod',description:'机器环境')
         string(defaultValue: 'https://github.com/beifei1/fire-cloud.git', name: 'repo_addr', description: 'Git仓库路径')
         string(defaultValue: "${env.JOB_NAME}", name: "project_name", description: "项目名称")
