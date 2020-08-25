@@ -25,11 +25,11 @@ pipeline {
     }
 
     stages {
-        stage('fetch code') {
+        stage('同步代码') {
             steps {
-                echo "staring fetch code from ${params.repo_addr}..."
+                echo "start fetching code from ${params.repo_addr}..."
                 git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branch: "${params.repo_branch}"
-                echo "fetch code complete !"
+                echo "fetching code completed !"
             }
         }
 
