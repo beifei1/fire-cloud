@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-        stage('代码质量检查') {steps {echo '配合sonar'} }
+//        stage('代码质量检查') {steps {echo '配合sonar'} }
 
         stage ("构建打包") {
             when {equals expected: 'False', actual: _deploy_to_nexus}
@@ -57,9 +57,9 @@ pipeline {
                }
             }
         }
-        stage('单元测试') {steps {echo '配合junit'} }
-        stage('覆盖率检测') {steps {echo '配合jacoco'} }
-        stage('性能测试') {steps {echo '配合jmeter'}}
+//        stage('单元测试') {steps {echo '配合junit'} }
+//        stage('覆盖率检测') {steps {echo '配合jacoco'} }
+//        stage('性能测试') {steps {echo '配合jmeter'}}
 
         stage('应用部署') {
             steps {
