@@ -24,6 +24,7 @@
         <springdoc.version>1.4.3</springdoc.version>
         <knife4j.starter.version>2.0.4</knife4j.starter.version>
         <jackson-databind.version>2.10.2</jackson-databind.version>
+        <redisson.boot.starter.version>3.13.3</redisson.boot.starter.version>
     </properties>
 
     <distributionManagement>
@@ -168,6 +169,12 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson-databind.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.boot.starter.version}</version>
             </dependency>
 
         </dependencies>
