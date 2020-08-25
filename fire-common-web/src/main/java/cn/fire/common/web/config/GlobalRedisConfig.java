@@ -56,19 +56,19 @@ public class GlobalRedisConfig extends CachingConfigurerSupport {
         CacheErrorHandler cacheErrorHandler = new CacheErrorHandler() {
             @Override
             public void handleCacheGetError(RuntimeException e, Cache cache, Object key) {
-                log.error("Redis occur handleCacheGetError：key -> [{}]", key, e);
+                log.error("Redis occur cacheGetError：key -> [{}]", key, e);
             }
             @Override
             public void handleCachePutError(RuntimeException e, Cache cache, Object key, Object value) {
-                log.error("Redis occur handleCachePutError：key -> [{}]；value -> [{}]", key, value, e);
+                log.error("Redis occur cachePutError：key -> [{}]；value -> [{}]", key, value, e);
             }
             @Override
             public void handleCacheEvictError(RuntimeException e, Cache cache, Object key)    {
-                log.error("Redis occur handleCacheEvictError：key -> [{}]", key, e);
+                log.error("Redis occur cacheEvictError：key -> [{}]", key, e);
             }
             @Override
             public void handleCacheClearError(RuntimeException e, Cache cache) {
-                log.error("Redis occur handleCacheClearError：", e);
+                log.error("Redis occur cacheClearError：", e);
             }
         };
         return cacheErrorHandler;
