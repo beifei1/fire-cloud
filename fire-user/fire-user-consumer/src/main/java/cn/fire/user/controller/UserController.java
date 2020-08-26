@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping("/detail")
-    @ApiOperation("用户详情")
+    @ApiOperation("用户资料")
     @PreAuthorize("hasAuthority('admin')")
     @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@ApiIgnore @UserProfile JUser jUser) {
