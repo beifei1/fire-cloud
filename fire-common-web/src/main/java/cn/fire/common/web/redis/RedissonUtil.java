@@ -4,7 +4,6 @@ import cn.fire.common.web.config.GlobalRedisConfig;
 import org.redisson.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
@@ -15,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Component
-@ConditionalOnClass(name = "org.redisson.api.RedissonClient")
+@ConditionalOnBean(GlobalRedisConfig.class)
 public class RedissonUtil {
 
     @Autowired
