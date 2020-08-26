@@ -97,7 +97,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+    public UserDTO loadUserByUsername(String userName) throws UsernameNotFoundException {
 
         UserDO dbUser = userFeign.getByMobile(userName);
         if (Objects.isNull(dbUser)) {
