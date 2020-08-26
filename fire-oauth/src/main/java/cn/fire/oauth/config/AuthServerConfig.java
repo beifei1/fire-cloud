@@ -2,11 +2,12 @@ package cn.fire.oauth.config;
 
 import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.response.R;
-import cn.fire.oauth.config.enhancer.JwtTokenEnhancer;
 import cn.fire.oauth.consts.GrantTypesEnum;
 import cn.fire.oauth.granter.impl.MobileSmsCodeTokenGranter;
+import cn.fire.oauth.pojo.dto.UserDTO;
 import cn.fire.oauth.service.IUserService;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -41,9 +43,6 @@ import java.util.*;
 @Configuration
 @EnableAuthorizationServer
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
-
-    @Autowired
-    private JwtTokenEnhancer jwtTokenEnhancer;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -90,9 +89,19 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
 
         List<TokenEnhancer> enhancers = Lists.newArrayList();
-        enhancers.add(jwtTokenEnhancer);
-        enhancers.add(jwtAccessTokenConverter());
 
+        //jwt自定义增强，加入用户相关信息，供其他服务使用
+        enhancers.add((token,authentication) -> {
+            UserDTO user = (UserDTO) authentication.getUserAuthentication().getPrincipal();
+            Map<String, Object> echance = Maps.newHashMap();
+            echance.put("user_id", user.getId());
+            echance.put("mobile", user.getMobile());
+            echance.put("gender", user.getGender());
+            ((DefaultOAuth2AccessToken) token).setAdditionalInformation(echance);
+            return token;
+        });
+
+        enhancers.add(jwtAccessTokenConverter());
         tokenEnhancerChain.setTokenEnhancers(enhancers);
         return tokenEnhancerChain;
     }

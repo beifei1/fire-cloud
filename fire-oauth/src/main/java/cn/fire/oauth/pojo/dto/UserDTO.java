@@ -28,7 +28,7 @@ public class UserDTO implements UserDetails, Serializable {
 
     private String mobile;
 
-    private GenderEnum gender;
+    private Integer gender;
 
     private String avatar;
 
