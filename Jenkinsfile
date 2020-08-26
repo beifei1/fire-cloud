@@ -72,10 +72,10 @@ pipeline {
             cleanWs()
         }
         failure {
-            sendNotifyEmail(subjectKeyword: "失败");
+            sendNotifyEmail("失败");
         }
         success {
-            sendNotifyEmail(subjectKeyword: "成功")
+            sendNotifyEmail("成功")
         }
     }
 }
