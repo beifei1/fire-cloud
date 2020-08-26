@@ -27,12 +27,11 @@ public class GlobalUserResolver implements HandlerMethodArgumentResolver {
     }
 
     @Override
-    public Object resolveArgument(MethodParameter parameter,
-                                  ModelAndViewContainer container,
-                                  NativeWebRequest request,
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container, NativeWebRequest request,
                                   WebDataBinderFactory binderFactory) throws Exception {
 
-        String authorization = StringUtils.isBlank(request.getHeader("Authorization")) ? null : request.getHeader("Authorization").replace("Bearer", "").trim();
+        String authorization = StringUtils.isBlank(request.getHeader("Authorization")) ? null :
+                request.getHeader("Authorization").replace("Bearer", "").trim();
 
         if (StringUtils.isNotBlank(authorization)) {
             Jwt jwt = JwtHelper.decode(authorization);
