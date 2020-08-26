@@ -11,14 +11,15 @@
 | ------------------ | ----------------------------- |---|
 | 网关               | Spring Cloud Gateway 2.0      | ✔ |
 | 权限控制           | Spring Cloud Security Oauth2  | ✔ |
-| 任务调度           | xxl-Job                       | - |
+| 任务调度           | Xxl-Job                       | - |
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    | ✔ |
 | 熔断及限流         | Spring Cloud Alibaba Sentinel | - |
+| 分布式事务         | Seata                         | - |
 | 持久层框架         | MyBatis和MyBatis-Plus         | ✔ |
 | 消息队列           | RocketMQ                         | - |
 | 服务调用           | OpenFeign                     | ✔ |
 | API文档           | Knife4j                     | ✔ |
 | 持续集成           | Jenkins,Ansible              | ✔ |
-| 缓存           | redis,redisson              | ✔|
+| 缓存           | Redis,redisson              | ✔|
 
 对于在项目中用到的关键技术点及设计实现方式，后期我会在会wiki中标注。如果有好的建议或者意见欢迎提issues或直接邮件联系我
