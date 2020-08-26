@@ -1,5 +1,7 @@
 package cn.fire.user.controller;
 
+import cn.fire.common.web.anno.UserProfile;
+import cn.fire.common.web.core.request.JUser;
 import cn.fire.common.web.core.response.R;
 import cn.fire.common.web.core.request.Request;
 import cn.fire.user.api.pojo.entity.UserDO;
@@ -11,6 +13,7 @@ import cn.fire.user.pojo.vo.UserLoginVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,15 +27,14 @@ import javax.validation.Valid;
  * @Date: 2020/7/29 16:35
  */
 
+@Slf4j
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户控制器")
 public class UserController {
 
-
     @Autowired
     private UserServiceFeign userServiceFeign;
-
 
     @PostMapping("/reg")
     @ApiOperation("用户注册")
@@ -41,12 +43,15 @@ public class UserController {
         return R.ok();
     }
 
-
     @GetMapping("/{userId}")
     @ApiOperation("用户详情")
     @PreAuthorize("hasAuthority('admin')")
     @ApiOperationSupport(author = "beifei")
-    public R<UserDetailVO> detail(@PathVariable("userId") Long userId) {
+    public R<UserDetailVO> detail(@PathVariable("userId") Long userId,
+                                        @UserProfile JUser jUser) {
+
+        log.info("=======================: {}",jUser.toString());
+
         UserDO user = userServiceFeign.getById(userId);
 
         UserDetailVO userDetail = UserDetailVO.builder().build();
@@ -54,7 +59,6 @@ public class UserController {
 
         return R.ok(userDetail);
     }
-
 
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
