@@ -18,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 
@@ -43,16 +44,15 @@ public class UserController {
         return R.ok();
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/detail")
     @ApiOperation("用户详情")
     @PreAuthorize("hasAuthority('admin')")
     @ApiOperationSupport(author = "beifei")
-    public R<UserDetailVO> detail(@PathVariable("userId") Long userId,
-                                        @UserProfile JUser jUser) {
+    public R<UserDetailVO> detail(@ApiIgnore @UserProfile JUser jUser) {
 
-        log.info("=======================: {}",jUser.toString());
+        log.info("=======================jwt user: {}",jUser.toString());
 
-        UserDO user = userServiceFeign.getById(userId);
+        UserDO user = userServiceFeign.getById(jUser.getUserId());
 
         UserDetailVO userDetail = UserDetailVO.builder().build();
         BeanUtils.copyProperties(user,userDetail);
