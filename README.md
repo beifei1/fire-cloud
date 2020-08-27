@@ -7,11 +7,12 @@
 
 **组件版本**
 
-| ------------------ | ----------------------------- |
-| spring boot        |      2.2.5.RELEASE      |
-| spring cloud       | Hoxton.SR3  |
-| spring cloud alibaba  | 2.2.1.RELEASE  |
-| mybatis-plus | 3.3.2    |
+|                       |                               |
+| --------------------- | ----------------------------- |
+| spring boot           |      2.2.5.RELEASE            |
+| spring cloud          | Hoxton.SR3                    |
+| spring cloud alibaba  | 2.2.1.RELEASE                 |
+| mybatis-plus          | 3.3.2                         |
 
 **技术选型**
 
