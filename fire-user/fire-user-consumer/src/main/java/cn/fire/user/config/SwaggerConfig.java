@@ -28,7 +28,7 @@ import java.util.List;
 @Configuration
 public class SwaggerConfig {
 
-    private static List<ResponseMessage> codes = new ArrayList<>();
+    protected static List<ResponseMessage> codes = new ArrayList<>();
 
     static {
         Arrays.stream(BaseException.BaseErrorEnum.values()).forEach(em -> {
@@ -48,7 +48,7 @@ public class SwaggerConfig {
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
                 .hidden(false).required(false)
-                .defaultValue("Bearer TokenValue");
+                .defaultValue("Bearer token");
         paramsList.add(tokenParam.build());
 
 

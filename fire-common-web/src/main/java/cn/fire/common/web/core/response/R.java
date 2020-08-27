@@ -27,17 +27,17 @@ public class R<T> implements Serializable {
     @Getter
     private T body;
 
-    public R(boolean success, Integer code, String msg) { this.meta = new Meta(success,code,msg); }
+    public R(boolean success, Integer code, String msg) { this.meta = new Meta(String.valueOf(success),String.valueOf(code),msg); }
 
     public R(boolean success,String msg) {
-        this.meta = new Meta(success,msg);
+        this.meta = new Meta(String.valueOf(success),msg);
     }
 
     public R() {
-        this.meta = new Meta(true, OK);
+        this.meta = new Meta(String.valueOf(true), OK);
     }
 
-    public R(T body) { this.meta = new Meta(true, OK); this.body = body; }
+    public R(T body) { this.meta = new Meta(String.valueOf(true), OK); this.body = body; }
 
     public static R ok() {
         return new R();
@@ -62,24 +62,24 @@ public class R<T> implements Serializable {
 
         @Getter
         @ApiModelProperty("是否处理成功")
-        private boolean success;
+        private String success;
         @Getter
         @ApiModelProperty("响应消息")
         private String msg;
         @Getter
         @ApiModelProperty("业务异常码")
-        private Integer code;
+        private String code;
 
-        public Meta(boolean success) {
+        public Meta(String success) {
             this.success = success;
         }
 
-        public Meta(boolean success,String msg) {
+        public Meta(String success,String msg) {
             this.success = success;
             this.msg = msg;
         }
 
-        public Meta(boolean success,Integer code,String msg) {
+        public Meta(String success,String code,String msg) {
             this.success = success;
             this.code = code;
             this.msg = msg;
