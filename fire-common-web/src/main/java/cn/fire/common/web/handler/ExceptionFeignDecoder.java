@@ -7,6 +7,7 @@ import feign.FeignException;
 import feign.Response;
 import feign.Util;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -39,8 +40,8 @@ public class ExceptionFeignDecoder extends SpringDecoder {
                 r = JSONObject.parseObject(IOUtils.toString(bytes,"UTF-8"), R.class);
             } catch (Exception ex) {}
 
-            if (Objects.nonNull(r) && Boolean.FALSE.equals(r.getMeta().isSuccess())) {
-                throw BaseException.instance(r.getMeta().getCode(), r.getMeta().getMsg());
+            if (Objects.nonNull(r) && StringUtils.equals(r.getMeta().getSuccess(),String.valueOf(false))) {
+                throw BaseException.instance(Integer.parseInt(r.getMeta().getCode()), r.getMeta().getMsg());
             }
 
         }
