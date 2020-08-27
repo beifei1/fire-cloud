@@ -30,7 +30,6 @@ import java.io.IOException;
  */
 @Slf4j
 @Component
-@RefreshScope
 @ConditionalOnProperty(name = "gateway.request.security.enable",havingValue = "true")
 public class VerificationFilter implements GlobalFilter, Ordered {
 
