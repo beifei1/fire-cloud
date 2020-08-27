@@ -37,6 +37,11 @@ public class UserController {
     @Autowired
     private UserServiceFeign userServiceFeign;
 
+    /**
+     * 注册
+     * @param param
+     * @return
+     */
     @PostMapping("/reg")
     @ApiOperation("用户注册")
     @ApiOperationSupport(author = "beifei")
@@ -44,6 +49,11 @@ public class UserController {
         return R.ok();
     }
 
+    /**
+     * 用户详情
+     * @param jUser
+     * @return
+     */
     @GetMapping("/detail")
     @ApiOperation("用户资料")
     @PreAuthorize("hasAuthority('admin')")
@@ -53,13 +63,17 @@ public class UserController {
         log.info("=======================jwt user: {}",jUser.toString());
 
         UserDO user = userServiceFeign.getById(jUser.getUserId());
-
         UserDetailVO userDetail = UserDetailVO.builder().build();
         BeanUtils.copyProperties(user,userDetail);
 
         return R.ok(userDetail);
     }
 
+    /**
+     * 删除用户
+     * @param userId
+     * @return
+     */
     @DeleteMapping("/{userId}")
     @ApiOperation("删除用户")
     @PreAuthorize("hasAuthority('super')")
@@ -70,7 +84,12 @@ public class UserController {
         return R.ok(userServiceFeign.deleteByUserId(userId));
     }
 
-    @GetMapping("/login")
+    /**
+     * 用户登录
+     * @param param
+     * @return
+     */
+    @PostMapping("/login")
     @ApiOperation("用户登录")
     @ApiOperationSupport(author = "beifei")
     public R<UserLoginVO> login(@Valid @RequestBody UserLoginAO param) {
@@ -78,11 +97,17 @@ public class UserController {
         return R.ok();
     }
 
-    @PatchMapping("/{userId}")
+
+    /**
+     * 更新用户资料
+     * @param userId
+     * @param param
+     * @return
+     */
+    @PostMapping("/update")
     @ApiOperation(("更新用户资料"))
     @ApiOperationSupport(author = "beifei")
-    public R<Boolean> update(@PathVariable("userId") Long userId,
-                             @Valid @RequestBody UserLoginAO param) {
+    public R<Boolean> update(@Valid @RequestBody UserLoginAO param) {
         return R.ok();
     }
 }
