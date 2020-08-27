@@ -1,9 +1,9 @@
 package cn.fire.user.controller;
 
 import cn.fire.common.web.anno.UserProfile;
+import cn.fire.common.web.core.request.ID;
 import cn.fire.common.web.core.request.JUser;
 import cn.fire.common.web.core.response.R;
-import cn.fire.common.web.core.request.Request;
 import cn.fire.user.api.pojo.entity.UserDO;
 import cn.fire.user.feign.UserServiceFeign;
 import cn.fire.user.pojo.ao.UserLoginAO;
@@ -54,7 +54,7 @@ public class UserController {
      * @param jUser
      * @return
      */
-    @GetMapping("/detail")
+    @GetMapping("/profile")
     @ApiOperation("用户资料")
     @PreAuthorize("hasAuthority('admin')")
     @ApiOperationSupport(author = "beifei")
@@ -69,17 +69,18 @@ public class UserController {
         return R.ok(userDetail);
     }
 
+
     /**
      * 删除用户
-     * @param userId
+     * @param id
      * @return
      */
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete")
     @ApiOperation("删除用户")
     @PreAuthorize("hasAuthority('super')")
     @ApiOperationSupport(author = "beifei")
-    public R<Boolean> delete(@PathVariable("userId") Long userId) {
-        Boolean bool = userServiceFeign.deleteByUserId(userId);
+    public R<Boolean> delete(@RequestBody ID id) {
+        Boolean bool = userServiceFeign.deleteByUserId(id.getObjectId());
         System.out.println(bool);
         return R.ok(bool);
     }
@@ -97,10 +98,8 @@ public class UserController {
         return R.ok();
     }
 
-
     /**
-     * 更新用户资料
-     * @param userId
+     * 更新用户
      * @param param
      * @return
      */

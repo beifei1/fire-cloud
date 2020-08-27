@@ -43,14 +43,15 @@ public class VerificationFilter implements GlobalFilter, Ordered {
         String nonce = exchange.getRequest().getHeaders().getFirst(H_NONCE);
         String sign = exchange.getRequest().getHeaders().getFirst(H_SIGN);
 
+        ServerHttpResponse response = exchange.getResponse();
+        response.getHeaders().set("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
+        response.getHeaders().set("Cache-Control", "no-cache");
+
         if (StringUtils.isAnyBlank(timestamp,nonce,sign)) {
-            ServerHttpResponse response = exchange.getResponse();
-            response.getHeaders().set("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
-            response.getHeaders().set("Cache-Control", "no-cache");
             response.setStatusCode(HttpStatus.FORBIDDEN);
             try {
                 DataBuffer dataBuffer = response.bufferFactory().wrap(IOUtils.toByteArray(
-                        JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.REQUEST_SECURITY_VALID_ERROR.getCode(),BaseException.BaseErrorEnum.REQUEST_SECURITY_VALID_ERROR.getDescription()))
+                        JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.REQUEST_SECURITY_VALID_ERROR.getCode(), BaseException.BaseErrorEnum.REQUEST_SECURITY_VALID_ERROR.getDescription()))
                 ));
                 return response.writeWith(Mono.just(dataBuffer));
             } catch (IOException e) {
