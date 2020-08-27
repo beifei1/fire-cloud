@@ -5,6 +5,14 @@
 
 基于spring cloud的微服务脚手架，目前处于开发阶段，随时可能进行结构及组件调整。
 
+**组件版本**
+
+| ------------------ | ----------------------------- |
+| spring boot        |      2.2.5.RELEASE      |
+| spring cloud       | Hoxton.SR3  |
+| spring cloud alibaba  | 2.2.1.RELEASE  |
+| mybatis-plus | 3.3.2    |
+
 **技术选型**
 
 |                    |                               |   |
