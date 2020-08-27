@@ -40,7 +40,7 @@ public class UserController {
     @PostMapping("/reg")
     @ApiOperation("用户注册")
     @ApiOperationSupport(author = "beifei")
-    public R register(@Valid @RequestBody Request<UserRegisterAO> param) {
+    public R register(@Valid @RequestBody UserRegisterAO param) {
         return R.ok();
     }
 
@@ -73,7 +73,7 @@ public class UserController {
     @GetMapping("/login")
     @ApiOperation("用户登录")
     @ApiOperationSupport(author = "beifei")
-    public R<UserLoginVO> login(@Valid @RequestBody Request<UserLoginAO> param) {
+    public R<UserLoginVO> login(@Valid @RequestBody UserLoginAO param) {
 
         return R.ok();
     }
@@ -82,7 +82,7 @@ public class UserController {
     @ApiOperation(("更新用户资料"))
     @ApiOperationSupport(author = "beifei")
     public R<Boolean> update(@PathVariable("userId") Long userId,
-                             @Valid @RequestBody Request<UserLoginAO> param) {
+                             @Valid @RequestBody UserLoginAO param) {
         return R.ok();
     }
 }
