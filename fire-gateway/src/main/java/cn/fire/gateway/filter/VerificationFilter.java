@@ -32,9 +32,9 @@ import java.io.IOException;
 @ConditionalOnProperty(name = "gateway.request.security.enable",havingValue = "true")
 public class VerificationFilter implements GlobalFilter, Ordered {
 
-    private static final String H_TIMESTAMP = "X-FIRE-TIMESTAMP";
-    private static final String H_NONCE = "X-FIRE-NONCE";
-    private static final String H_SIGN = "X-FIRE-SIGN";
+    private static final String H_TIMESTAMP = "x-fire-timestamp";
+    private static final String H_NONCE = "x-fire-nonce";
+    private static final String H_SIGN = "x-fire-sign";
 
     private RedisUtil redisUtil;
 
