@@ -1,6 +1,6 @@
 package cn.fire.user.controller;
 
-import cn.fire.common.web.anno.UserProfile;
+import cn.fire.common.web.anno.Profile;
 import cn.fire.common.web.core.request.ID;
 import cn.fire.common.web.core.request.JUser;
 import cn.fire.common.web.core.response.R;
@@ -58,7 +58,7 @@ public class UserController {
     @ApiOperation("用户资料")
     @PreAuthorize("hasAuthority('admin')")
     @ApiOperationSupport(author = "beifei")
-    public R<UserDetailVO> detail(@ApiIgnore @UserProfile JUser jUser) {
+    public R<UserDetailVO> detail(@ApiIgnore @Profile JUser jUser) {
 
         log.info("=======================jwt user: {}",jUser.toString());
 

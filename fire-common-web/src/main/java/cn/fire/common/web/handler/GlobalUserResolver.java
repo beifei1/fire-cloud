@@ -1,5 +1,6 @@
 package cn.fire.common.web.handler;
 
+import cn.fire.common.web.anno.Profile;
 import cn.fire.common.web.core.request.JUser;
 import com.alibaba.fastjson.JSONObject;
 import io.micrometer.core.instrument.util.StringUtils;
@@ -20,7 +21,7 @@ public class GlobalUserResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter param) {
 
-        if (param.getParameterType().isAssignableFrom(JUser.class) && param.hasParameterAnnotation(cn.fire.common.web.anno.UserProfile.class)) {
+        if (param.getParameterType().isAssignableFrom(JUser.class) && param.hasParameterAnnotation(Profile.class)) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
