@@ -14,9 +14,11 @@ import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
@@ -27,7 +29,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Component
-@ConditionalOnProperty(name = "gateway.verification.enable",havingValue = "true")
+@ConditionalOnProperty(name = "gateway.request.security.enable",havingValue = "true")
 public class VerificationFilter implements GlobalFilter, Ordered {
 
     private static final String H_TIMESTAMP = "X-FIRE-TIMESTAMP";
@@ -39,9 +41,11 @@ public class VerificationFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-        String timestamp = exchange.getRequest().getHeaders().getFirst(H_TIMESTAMP);
-        String nonce = exchange.getRequest().getHeaders().getFirst(H_NONCE);
-        String sign = exchange.getRequest().getHeaders().getFirst(H_SIGN);
+        ServerHttpRequest request = exchange.getRequest();
+
+        String timestamp = request.getHeaders().getFirst(H_TIMESTAMP);
+        String nonce = request.getHeaders().getFirst(H_NONCE);
+        String sign = request.getHeaders().getFirst(H_SIGN);
 
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().set("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
@@ -58,6 +62,17 @@ public class VerificationFilter implements GlobalFilter, Ordered {
                 log.error("valid sign param error: {}", e);
             }
         }
+
+        Flux<DataBuffer> dataBuffer = request.getBody();
+        dataBuffer.subscribe(buffer -> {
+            try {
+                String body = IOUtils.toString(buffer.asInputStream());
+                log.info(body);
+            } catch (IOException e) {
+                log.error("解析RequestBody异常:{}", e);
+            }
+        });
+
         return chain.filter(exchange);
     }
 
