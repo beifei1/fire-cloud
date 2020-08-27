@@ -25,6 +25,7 @@
         <knife4j.starter.version>2.0.4</knife4j.starter.version>
         <jackson-databind.version>2.10.2</jackson-databind.version>
         <redisson.boot.starter.version>3.13.3</redisson.boot.starter.version>
+        <common-pool.version>2.8.1</common-pool.version>
     </properties>
 
     <distributionManagement>
@@ -176,7 +177,11 @@
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.boot.starter.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${common-pool.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
