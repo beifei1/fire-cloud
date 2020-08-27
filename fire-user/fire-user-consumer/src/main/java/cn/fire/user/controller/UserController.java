@@ -79,9 +79,9 @@ public class UserController {
     @PreAuthorize("hasAuthority('super')")
     @ApiOperationSupport(author = "beifei")
     public R<Boolean> delete(@PathVariable("userId") Long userId) {
-        Boolean b = userServiceFeign.deleteByUserId(userId);
-        System.out.println(b);
-        return R.ok(userServiceFeign.deleteByUserId(userId));
+        Boolean bool = userServiceFeign.deleteByUserId(userId);
+        System.out.println(bool);
+        return R.ok(bool);
     }
 
     /**
