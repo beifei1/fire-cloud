@@ -82,7 +82,7 @@ public class UserController {
     public R<Boolean> delete(@RequestBody ID id) {
         Boolean bool = userServiceFeign.deleteByUserId(id.getObjectId());
         System.out.println(bool);
-        return R.ok(bool);
+        return R.ok();
     }
 
     /**
