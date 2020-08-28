@@ -30,7 +30,7 @@
 | 持续交付       | Jenkins(jenkinsfile脚本),Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 持续集成 | Github, Nexus | - | ✔ |
 | 缓存           | Redisson，J2cache(计划)  | - | ✔|
-| 数据库连接池 | Hikari | - | ✔ | 
+| 数据库连接池 | Hikari | [GitHub](https://github.com/brettwooldridge/HikariCP) | ✔ | 
 
 ## 调用关系：
 
