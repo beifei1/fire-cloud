@@ -18,7 +18,7 @@
 |                    |                               |                               |   |
 | ------------------ | ----------------------------- |---|---|
 | 网关               | Spring Cloud Gateway 2.0      | [官网](https://spring.io/projects/spring-cloud-gateway) | ✔ |
-| 权限控制           | Spring Cloud Security Oauth2  | - | ✔ |
+| 权限控制           | Spring Cloud Security Oauth2  | [官网](https://spring.io/projects/spring-cloud-security) | ✔ |
 | 任务调度           | Xxl-Job                       | [官网](https://www.xuxueli.com/xxl-job/) | - |
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    | [官网](https://nacos.io/en-us/) | ✔ |
 | 熔断及限流         | Spring Cloud Alibaba Sentinel | [GitHub](https://github.com/alibaba/Sentinel) | - |
@@ -30,7 +30,7 @@
 | 持续交付       | Jenkins(jenkinsfile脚本),Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 持续集成 | Github, Nexus | - | ✔ |
 | 缓存           | Redisson，J2cache(计划)  | - | ✔|
-| 数据库连接池 | Hikari | - | ✔ |
+| 数据库连接池 | Hikari | - | ✔ | 
 
 ## 调用关系：
 
