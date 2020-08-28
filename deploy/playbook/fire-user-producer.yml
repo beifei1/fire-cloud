@@ -5,4 +5,4 @@
     project_name: fire-user-producer
     server_port: 9101
   tasks:
-    - include: tasks/deploy.yml
+    - include: ../tasks/deploy.yml

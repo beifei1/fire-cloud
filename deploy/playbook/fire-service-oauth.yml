@@ -5,4 +5,4 @@
     project_name: fire-service-oauth
     server_port: 6010
   tasks:
-    - include: tasks/deploy.yml
+    - include: ../tasks/deploy.yml
