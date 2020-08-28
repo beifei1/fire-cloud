@@ -4,16 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.fire</groupId>
-        <artifactId>fire-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>fire-service-user</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>cn.fire</groupId>
-    <artifactId>fire-jobs</artifactId>
+    <artifactId>fire-user-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fire-jobs</name>
-    <description>fire-jobs</description>
+    <name>fire-user-api</name>
+    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -29,22 +29,41 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>cn.fire</groupId>
+            <artifactId>fire-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
 
 </project>

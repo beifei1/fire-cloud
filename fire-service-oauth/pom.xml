@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.fire</groupId>
-        <artifactId>fire-parent</artifactId>
+        <artifactId>fire-common-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>cn.fire</groupId>
-    <artifactId>fire-oauth</artifactId>
+    <artifactId>fire-service-oauth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fire-oauth</name>
     <description>oauth server for fire project</description>
