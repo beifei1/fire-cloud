@@ -27,7 +27,7 @@
 | 消息队列           | RocketMQ                         | -                        | - |
 | 服务调用           | OpenFeign                     | -                    | ✔ |
 | API文档           | Knife4j                     | [官网](https://doc.xiaominfo.com/guide/useful.html) | ✔ |
-| 持续交付       | Jenkins(jenkinsfile方式),Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
+| 持续交付       | Jenkins(jenkinsfile脚本),Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 持续集成 | Github, Nexus | - | ✔ |
 | 缓存           | Redisson，J2cache(计划)  | - | ✔|
 | 数据库连接池 | Hikari | - | ✔ |
