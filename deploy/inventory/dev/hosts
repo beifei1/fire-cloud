@@ -1,4 +1,4 @@
-[fire-gateway]
+[fire-service-gateway]
 119.45.213.212
 
 [fire-user-consumer]
@@ -7,6 +7,6 @@
 [fire-user-producer]
 119.45.213.212
 
-[fire-oauth]
+[fire-service-oauth]
 119.45.213.212
 192.144.176.31
