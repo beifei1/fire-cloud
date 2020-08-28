@@ -1,8 +1,8 @@
 ---
-- hosts: fire-gateway
+- hosts: fire-service-gateway
   remote_user: root
   vars:
-    project_name: fire-gateway
+    project_name: fire-service-gateway
     server_port: 6020
   tasks:
     - include: tasks/deploy.yml
