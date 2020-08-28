@@ -16,14 +16,23 @@ import java.time.LocalDateTime;
 @Data
 public class BaseDO implements Serializable {
 
+    /**
+     * 主键
+     */
     @TableId
     private Long id;
 
+    /**
+     * 乐观所插件
+     */
     @Version
     private LocalDateTime updateTime;
 
     private LocalDateTime createTime;
 
+    /**
+     * 逻辑删除标识位
+     */
     @TableLogic
     private Integer deleted;
 

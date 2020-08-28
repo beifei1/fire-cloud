@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.SocketTimeoutException;
 
 /**
+ * 通用异常处理
  * @Author: wangzc
  * @Date: 2020/7/30 16:19
  */

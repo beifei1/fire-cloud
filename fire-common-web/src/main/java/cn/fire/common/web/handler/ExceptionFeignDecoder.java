@@ -19,6 +19,7 @@ import java.lang.reflect.Type;
 import java.util.Objects;
 
 /**
+ * 自定义Feign解码器
  * @Author: wangzc
  * @Date: 2020/8/6 13:32
  */

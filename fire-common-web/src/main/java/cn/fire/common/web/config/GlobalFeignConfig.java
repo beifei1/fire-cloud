@@ -36,11 +36,19 @@ public class GlobalFeignConfig {
     @Bean
     Retryer retryer () { return Retryer.NEVER_RETRY; }
 
+    /**
+     * 自定义Feign解码器
+     * @return
+     */
     @Bean
     Decoder decoder() {
         return new ExceptionFeignDecoder(objectFactory);
     }
 
+    /**
+     * Consumer和Producer间增加基础的Basic认证
+     * @return
+     */
     @Bean
     BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
         return new BasicAuthRequestInterceptor(httpBasicUserName, httpBasicPassword);

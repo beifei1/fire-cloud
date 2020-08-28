@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * 拒绝访问自定义响应
  * @Author: wangzc
  * @Date: 2020/7/30 17:17
  */

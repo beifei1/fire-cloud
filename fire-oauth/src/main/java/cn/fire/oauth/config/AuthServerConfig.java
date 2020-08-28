@@ -53,6 +53,11 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private IUserService userService;
 
+    /**
+     * 配置Client令牌
+     * @param clients
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -64,6 +69,11 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .accessTokenValiditySeconds(3600);
     }
 
+    /**
+     * 配置验证端点相关信息
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
@@ -76,6 +86,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .authenticationManager(authenticationManager);
     }
 
+    /**
+     * JwtToken转换器
+     * @return
+     */
     private JwtAccessTokenConverter jwtAccessTokenConverter() {
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/cnsesan-jwt.jks"),"cnsesan123".toCharArray());
 
@@ -85,12 +99,15 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         return converter;
     }
 
+    /**
+     * jwt 自定义增强，加入用户相关信息
+     * @return
+     */
     public TokenEnhancerChain tokenEnhancerChain() {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
 
         List<TokenEnhancer> enhancers = Lists.newArrayList();
 
-        //jwt自定义增强，加入用户相关信息，供其他服务使用
         enhancers.add((token,authentication) -> {
             UserDTO user = (UserDTO) authentication.getUserAuthentication().getPrincipal();
             Map<String, Object> echance = Maps.newHashMap();
@@ -106,6 +123,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         return tokenEnhancerChain;
     }
 
+    /**
+     * 加入自定义授权方式
+     * @param userService
+     * @param endpoints
+     * @return
+     * @throws Exception
+     */
     private  List<TokenGranter> getTokenGranter(IUserService userService,AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         List<TokenGranter> tokenGranters = new ArrayList<>(Collections.singletonList(endpoints.getTokenGranter()));
 
@@ -126,6 +150,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         return tokenGranters;
     }
 
+    /**
+     * OAuth2 Exception自定义处理
+     * @return
+     */
     @Bean
     public WebResponseExceptionTranslator loggingExceptionTranslator() {
         return new DefaultWebResponseExceptionTranslator() {

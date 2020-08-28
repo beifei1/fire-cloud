@@ -18,6 +18,10 @@ import javax.sql.DataSource;
 @ConditionalOnBean(DataSource.class)
 public class GlobalMyBatisPlusConfig {
 
+    /**
+     * mybatis plus分页插件
+     * @return
+     */
     @Bean
     PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor interceptor = new PaginationInterceptor();
