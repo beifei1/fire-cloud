@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.fire</groupId>
-    <artifactId>fire-message</artifactId>
+    <artifactId>fire-message-group</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fire-message</name>
+    <name>fire message</name>
     <description>fire message group</description>
 
     <properties>
