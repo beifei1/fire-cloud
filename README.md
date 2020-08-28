@@ -28,7 +28,7 @@
 | API文档           | Knife4j                     | [官网](https://doc.xiaominfo.com/guide/useful.html) | ✔ |
 | 持续交付       | Jenkins(jenkinsfile脚本),Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) / [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 缓存           | Redisson  | [GitHub](https://github.com/redisson/redisson) | ✔|
-| 数据库连接池 | Hikari | [GitHub](https://github.com/brettwooldridge/HikariCP) | ✔ | 
+| 数据库连接池 | Hikari | [GitHub](https://github.com/brettwooldridge/HikariCP) | ✔ |
 
 ## 调用关系：
 
@@ -36,11 +36,13 @@
 
 ## 服务说明：
 
-|                    |              |      |
-| ------------------ | ------------ | ---- |
-| fire-gateway       | 网关服务     | ✔    |
-| fire-oauth         | 授权服务     | ✔    |
-| fire-user-consumer | 用户对外服务 | ✔    |
-| fire-user-producer | 用户基础服务 | ✔    |
-| fire-job           | 任务调度     | -    | 
+|                       |              |      |
+| --------------------- | ------------ | ---- |
+| fire-gateway          | 网关服务     | ✔    |
+| fire-oauth            | 授权服务     | ✔    |
+| fire-user-consumer    | 用户对外服务 | ✔    |
+| fire-user-producer    | 用户基础服务 | ✔    |
+| fire-job              | 任务调度     | -    |
+| fire-message-consumer | 消息服务     | -    |
+| fire-message-producer | 消息基础服务 | -    |
 
