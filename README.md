@@ -24,8 +24,8 @@
 | 熔断及限流         | Spring Cloud Alibaba Sentinel | [GitHub](https://github.com/alibaba/Sentinel) | - |
 | 分布式事务         | Seata                         | [官网](https://github.com/seata/seata) | - |
 | ORM框架      | MyBatis-Plus        | [官网](https://baomidou.com/) | ✔ |
-| 消息队列           | RocketMQ                         | -                        | - |
-| 服务调用           | OpenFeign                     | -                    | ✔ |
+| 消息队列           | RocketMQ                         | [官网](http://rocketmq.apache.org/)                        | - |
+| 服务调用           | OpenFeign                     | [官网](https://spring.io/projects/spring-cloud-openfeign)                    | ✔ |
 | API文档           | Knife4j                     | [官网](https://doc.xiaominfo.com/guide/useful.html) | ✔ |
 | 持续交付       | Jenkins(jenkinsfile脚本),Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 持续集成 | Github, Nexus | - | ✔ |
