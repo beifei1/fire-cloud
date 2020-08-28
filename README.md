@@ -38,11 +38,11 @@
 
 |                       |              |      |
 | --------------------- | ------------ | ---- |
-| fire-gateway          | 网关服务     | ✔    |
-| fire-oauth            | 授权服务     | ✔    |
+| fire-service-gateway          | 网关服务     | ✔    |
+| fire-service-oauth            | 授权服务     | ✔    |
 | fire-user-consumer    | 用户对外服务 | ✔    |
 | fire-user-producer    | 用户基础服务 | ✔    |
-| fire-job              | 任务调度     | -    |
+| fire-service-job              | 任务调度     | -    |
 | fire-message-consumer | 消息服务     | -    |
 | fire-message-producer | 消息基础服务 | -    |
 
