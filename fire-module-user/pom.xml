@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>cn.fire</groupId>
-    <artifactId>fire-service-user</artifactId>
+    <artifactId>fire-module-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fire-user</name>
     <description>Demo project for Spring Boot</description>
