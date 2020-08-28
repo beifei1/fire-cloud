@@ -18,7 +18,7 @@
 | ------------------ | ----------------------------- |---|---|
 | 网关               | Spring Cloud Gateway 2.0      | [官网](https://spring.io/projects/spring-cloud-gateway) | ✔ |
 | 权限控制           | Spring Cloud Security Oauth2  | [官网](https://spring.io/projects/spring-cloud-security) | ✔ |
-| 任务调度           | Xxl-Job                       | [官网](https://www.xuxueli.com/xxl-job/) | - |
+| 任务调度           | XXL-Job                       | [官网](https://www.xuxueli.com/xxl-job/) | - |
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    | [官网](https://nacos.io/en-us/) | ✔ |
 | 熔断及限流         | Spring Cloud Alibaba Sentinel | [GitHub](https://github.com/alibaba/Sentinel) | - |
 | 分布式事务         | Seata                         | [官网](https://github.com/seata/seata) | - |
