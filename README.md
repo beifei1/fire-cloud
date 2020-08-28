@@ -29,7 +29,7 @@
 
 ## 调用关系：
 
-
+![image](https://github.com/beifei1/fire-cloud/blob/master/deploy/Untitled%20Diagram.png)
 
 ## 服务说明：
 
