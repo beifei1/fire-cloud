@@ -44,5 +44,5 @@
 | fire-oauth         | 授权服务     | ✔    |
 | fire-user-consumer | 用户对外服务 | ✔    |
 | fire-user-producer | 用户基础服务 | ✔    |
-| fire-job           | 任务调度     | -    |
+| fire-job           | 任务调度     | -    | 
 
