@@ -1,20 +1,16 @@
 [![GitHub forks](https://img.shields.io/github/forks/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/network)    [![GitHub stars](https://img.shields.io/github/stars/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/stargazers)   [![GitHub issues](https://img.shields.io/github/issues/beifei1/fire-cloud?style=flat-square)](https://github.com/beifei1/fire-cloud/issues)
-   
 
-## 简介：
 
-基于spring cloud netflix和spring cloud alibaba的微服务脚手架，目前处于开发阶段。可能随时进行调整。
 
-**关键组件版本**
+## 项目概述：
 
-|                       |                               |
-| --------------------- | ----------------------------- |
-| spring boot           |      2.2.5.RELEASE            |
-| spring cloud          | Hoxton.SR3                    |
-| spring cloud alibaba  | 2.2.1.RELEASE                 |
-| mybatis-plus          | 3.3.2                         |
+基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务脚手架，目前处于开发阶段。
 
-**技术选型**
+在项目中会标注一些在实际应用中自己总结的解决方案，如果有意见或建议，望不吝赐教，大家一起探讨。我的个人邮箱 wangzhichaomin@163.com。
+
+最近也在看《微服务架构设计模式》，在设计过程中可能对结构随时进行调整，同时会记录结构设计过程中的典型错误及修正方式。
+
+## 技术选型：
 
 |                    |                               |   |
 | ------------------ | ----------------------------- |---|
@@ -24,11 +20,23 @@
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    | ✔ |
 | 熔断及限流         | Spring Cloud Alibaba Sentinel | - |
 | 分布式事务         | Seata                         | - |
-| 持久层框架         | MyBatis和MyBatis-Plus         | ✔ |
+| ORM框架      | MyBatis-Plus        | ✔ |
 | 消息队列           | RocketMQ                         | - |
 | 服务调用           | OpenFeign                     | ✔ |
 | API文档           | Knife4j                     | ✔ |
-| 持续集成           | Jenkins,Ansible              | ✔ |
-| 缓存           | Redis,redisson              | ✔|
+| 持续交付       | Jenkins(jenkinsfile方式),ansible | ✔ |
+| 持续集成 | Github, Nexus | ✔ |
+| 缓存           | Redis,redisson，J2cache(计划) | ✔|
+| 数据库连接池 | Hikari | ✔ |
 
-对于在项目中用到的关键技术点及设计实现方式，后期我会在会wiki中标注。如果有好的建议或者意见欢迎提issues或直接邮件联系我
+## 拓补图：
+
+## 服务说明：
+
+|                    |              |      |
+| ------------------ | ------------ | ---- |
+| fire-gateway       | 网关服务     | ✔    |
+| fire-oauth         | 授权服务     | ✔    |
+| fire-user-consumer | 用户对外服务 | ✔    |
+| fire-user-producer | 用户基础服务 | ✔    |
+| fire-job           | 任务调度     | -    |
