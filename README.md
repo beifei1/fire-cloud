@@ -50,13 +50,13 @@
 
 Spring Cloud Security OAuth2
 
-- #### [如何Jwt Token增强，在JwtToken中装载用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/AuthServerConfig.java)
+- #### [使用Jwt Token增强，在JwtToken中加入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/AuthServerConfig.java)
 
-- #### [如何自定义授权模式](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/granter)
+- #### [自定义OAuth2授权模式](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/granter)
 
 - #### [在OAuth2中使用自定义异常响应](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/enhancer)
 
-- #### [在Resource Server中自动注入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
+- #### [在Resources Server中自动注入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
 
 Jenkinsfile及Ansiable集成
 
