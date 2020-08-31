@@ -1,26 +1,22 @@
 ---
  - block:
-      #获取文件路径
     - name: Get file name
       local_action: shell find /var/lib/jenkins/workspace/{{ project_name }}/ -name {{ project_name }}-*.jar
       register: file_name
       tags: get_filename
 
-      #获取正在运行的当前项目的pid
     - name: Acquisition process PID
       tags:
         - test
       shell: ps -ef | grep -v grep | grep {{ project_name }}-{{ server_port }} | awk '{print $2}'
       register: running_processes
 
-      #停止当前进程
     - name: Stop present process
       shell: kill {{item}}
       tags:
         - test1
       with_items: "{{ running_processes.stdout_lines }}"
 
-      #等待 timeout 秒
     - name: Wait for the process to finish
       wait_for:
         path: /proc/{{ item }}/status
@@ -32,31 +28,26 @@
       ignore_errors: yes
       register: killed_processes
 
-      #强杀进程
     - name: Force kill process
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
-      #删除上次的jar
     - name: Drop prev archives
       file:
         state: absent
         path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
       become: yes
 
-      #路径不存在则创建路径
     - name: Create directory if not exists
       file:
         state: directory
         path: /usr/local/fire-cloud/{{ project_name }}
       become: yes
 
-      #从本地上传jenkins制品
     - name: Upload Jenkins archives
       copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
       when: file_name.stdout != ''
 
-      #启动程序
     - name: Startup process
       shell: nohup java -jar /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar &
       tags: start app
@@ -66,7 +57,6 @@
     - name: Print result
       debug: var=start_result
 
-      #等待端口可访问，超时时间timeout
     - name: Wait {{ server_port }} available
       wait_for:
         port: "{{ server_port }}"
