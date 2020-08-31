@@ -70,7 +70,7 @@ Spring Cloud Gateway2.0：
 
 Spring Cloud Alibaba Nacos:
 
-- #### [Nacos使用多配置文件](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/resources/bootstrap.yml)
+- #### [Nacos Config使用多配置文件](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/resources/bootstrap.yml)
 
 更新中...
 
