@@ -15,14 +15,8 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.util.FileCopyUtils;
-import sun.security.rsa.RSAPublicKeyImpl;
 
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.X509EncodedKeySpec;
 
 /**
  * @Author: wangzc
