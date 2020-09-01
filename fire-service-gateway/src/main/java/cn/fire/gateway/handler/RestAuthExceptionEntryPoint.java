@@ -32,7 +32,7 @@ public class RestAuthExceptionEntryPoint implements ServerAuthenticationEntryPoi
         ServerHttpResponse response = serverWebExchange.getResponse();
         response.setStatusCode(HttpStatus.FORBIDDEN);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
-        String body= JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.INVALID_TOKEN.getCode(),"invalid token"));
+        String body= JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.INVALID_TOKEN.getCode(),"not passed"));
         DataBuffer buffer =  response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
         return response.writeWith(Mono.just(buffer));
     }
