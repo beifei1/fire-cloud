@@ -26,7 +26,7 @@ public class UserProfileFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
-        if (StringUtils.isBlank(token) && !StringUtils.startsWith(token, BEARER_PREFIEX)) {
+        if (StringUtils.isBlank(token) || !StringUtils.startsWith(token, BEARER_PREFIEX)) {
             return chain.filter(exchange);
         }
         try {

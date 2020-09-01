@@ -85,8 +85,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Bean
     public KeyPair keyPair() {
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/cnsesan-jwt.jks"),"cnsesan123".toCharArray());
-        return keyStoreKeyFactory.getKeyPair("cnsesan-jwt");
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/firecloud.jks"),"123456".toCharArray());
+        return keyStoreKeyFactory.getKeyPair("firecloud");
     }
 
     public TokenEnhancerChain tokenEnhancerChain() {
