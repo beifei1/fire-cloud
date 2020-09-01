@@ -22,16 +22,16 @@ import java.util.Map;
 public class AuthorizationController {
 
 
-    @Autowired
-    private KeyPair keyPair;
-
-    /**
-     * 对外暴漏公匙
-     * @return
-     */
-    @RequestMapping("/rsa/public")
-    public Map<String,Object> getKey() {
-        return new JWKSet(new RSAKey.Builder((RSAPublicKey)keyPair.getPublic()).build()).toJSONObject();
-    }
+//    @Autowired
+//    private KeyPair keyPair;
+//
+//    /**
+//     * 对外暴漏公匙
+//     * @return
+//     */
+//    @RequestMapping("/rsa/public")
+//    public Map<String,Object> getKey() {
+//        return new JWKSet(new RSAKey.Builder((RSAPublicKey)keyPair.getPublic()).build()).toJSONObject();
+//    }
 
 }
