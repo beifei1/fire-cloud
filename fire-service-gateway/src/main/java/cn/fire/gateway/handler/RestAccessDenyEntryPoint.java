@@ -31,7 +31,7 @@ public class RestAccessDenyEntryPoint implements ServerAccessDeniedHandler {
         ServerHttpResponse response = serverWebExchange.getResponse();
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
         response.getHeaders().add("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
-        String body = JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.TOKEN_UNAUTHORIZAD.getCode(), "Permission Denied"));
+        String body = JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.TOKEN_UNAUTHORIZAD.getCode(), "Permission denied"));
         DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
         return response.writeWith(Mono.just(buffer));
     }
