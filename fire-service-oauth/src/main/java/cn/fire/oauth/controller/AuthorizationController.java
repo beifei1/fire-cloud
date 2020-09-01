@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Api(tags = "认证授权控制器")
 @RestController
-@RequestMapping("/oauth")
+@RequestMapping
 public class AuthorizationController {
 
 

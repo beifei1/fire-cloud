@@ -16,7 +16,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -56,7 +55,6 @@ public class UserController {
      */
     @GetMapping("/profile")
     @ApiOperation("用户资料")
-    @PreAuthorize("hasRole('admin')")
     @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@ApiIgnore @Profile JUser jUser) {
 
@@ -77,7 +75,6 @@ public class UserController {
      */
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
-    @PreAuthorize("hasRole('super')")
     @ApiOperationSupport(author = "beifei")
     public R<Boolean> delete(@RequestBody ID id) {
         Boolean bool = userServiceFeign.deleteByUserId(id.getObjectId());

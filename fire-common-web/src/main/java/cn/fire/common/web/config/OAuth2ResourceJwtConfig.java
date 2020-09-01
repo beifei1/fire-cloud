@@ -21,9 +21,9 @@ import java.io.IOException;
  * @Date: 2020/7/30 16:55
  */
 
-@Slf4j
-@Configuration
-@ConditionalOnClass(EnableResourceServer.class)
+//@Slf4j
+//@Configuration
+//@ConditionalOnClass(EnableResourceServer.class)
 public class OAuth2ResourceJwtConfig {
 
     @Bean
@@ -41,7 +41,7 @@ public class OAuth2ResourceJwtConfig {
         try {
             pubkey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
         } catch (IOException e) {
-            log.error("解析pubkey发生错误");
+//            log.error("解析pubkey发生错误");
         }
 
         converter.setVerifierKey(pubkey);
