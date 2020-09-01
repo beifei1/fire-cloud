@@ -25,12 +25,12 @@ import java.nio.charset.Charset;
 
 @Slf4j
 @Component
-public class OAuth2AuthExceptionEntryPoint implements ServerAuthenticationEntryPoint {
+public class RestAuthExceptionEntryPoint implements ServerAuthenticationEntryPoint {
 
     @Override
     public Mono<Void> commence(ServerWebExchange serverWebExchange, AuthenticationException e) {
         ServerHttpResponse response = serverWebExchange.getResponse();
-        response.setStatusCode(HttpStatus.OK);
+        response.setStatusCode(HttpStatus.FORBIDDEN);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
         String body= JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.INVALID_TOKEN.getCode(),"invalid token"));
         DataBuffer buffer =  response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));

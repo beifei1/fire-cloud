@@ -1,15 +1,13 @@
 package cn.fire.gateway.config;
 
 import cn.fire.gateway.authorization.CustomerAuthorizationManager;
-import cn.fire.gateway.handler.OAuth2AuthExceptionEntryPoint;
-import cn.fire.gateway.handler.Oauth2AccessDenyEntryPoint;
+import cn.fire.gateway.handler.RestAuthExceptionEntryPoint;
+import cn.fire.gateway.handler.RestAccessDenyEntryPoint;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -31,8 +29,8 @@ public class WebFluxSecurityConfig {
 
     private final IgnoreConfigUrl configUrl;
     private final CustomerAuthorizationManager authorizationManager;
-    private final Oauth2AccessDenyEntryPoint accessDenyEntryPoint;
-    private final OAuth2AuthExceptionEntryPoint authExceptionEntryPoint;
+    private final RestAccessDenyEntryPoint accessDenyEntryPoint;
+    private final RestAuthExceptionEntryPoint authExceptionEntryPoint;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {

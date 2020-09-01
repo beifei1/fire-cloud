@@ -24,18 +24,15 @@ import java.nio.charset.Charset;
 
 @Slf4j
 @Component
-public class Oauth2AccessDenyEntryPoint implements ServerAccessDeniedHandler {
-
+public class RestAccessDenyEntryPoint implements ServerAccessDeniedHandler {
 
     @Override
     public Mono<Void> handle(ServerWebExchange serverWebExchange, AccessDeniedException e) {
-
         ServerHttpResponse response = serverWebExchange.getResponse();
-        response.setStatusCode(HttpStatus.FORBIDDEN);
+        response.setStatusCode(HttpStatus.UNAUTHORIZED);
         response.getHeaders().add("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
         String body = JSONObject.toJSONString(R.fail(BaseException.BaseErrorEnum.TOKEN_UNAUTHORIZAD.getCode(), "permission denied"));
         DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
         return response.writeWith(Mono.just(buffer));
-
     }
 }
