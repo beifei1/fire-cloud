@@ -58,9 +58,7 @@ public class UserController {
     @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@ApiIgnore @Profile JUser jUser) {
 
-        log.info("=======================jwt user: {}",jUser.toString());
-
-        UserDO user = userServiceFeign.getById(jUser.getUserId());
+        UserDO user = userServiceFeign.getById(1L);
         UserDetailVO userDetail = UserDetailVO.builder().build();
         BeanUtils.copyProperties(user,userDetail);
 

@@ -4,8 +4,8 @@ import cn.fire.common.web.anno.Profile;
 import cn.fire.common.web.consts.WebConsts;
 import cn.fire.common.web.core.request.JUser;
 import com.alibaba.fastjson.JSONObject;
-import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
@@ -40,17 +40,16 @@ public class GlobalUserResolver implements HandlerMethodArgumentResolver {
 
         if (StringUtils.isNotBlank(authorization)) {
             log.info(authorization);
-            Jwt jwt = JwtHelper.decode(authorization);
-            if (jwt != null) {
-                JSONObject jsonClaims = JSONObject.parseObject(jwt.getClaims());
-                JUser profile = new JUser();
-                profile.setGender(jsonClaims.getInteger("gender"));
-                profile.setMobile(jsonClaims.getString("mobile"));
-                profile.setUserId(jsonClaims.getLong("user_id"));
-                profile.setUserName(jsonClaims.getString("user_name"));
-
-                return profile;
-            }
+//            if (jwt != null) {
+//                JSONObject jsonClaims = JSONObject.parseObject(jwt.getClaims());
+//                JUser profile = new JUser();
+//                profile.setGender(jsonClaims.getInteger("gender"));
+//                profile.setMobile(jsonClaims.getString("mobile"));
+//                profile.setUserId(jsonClaims.getLong("user_id"));
+//                profile.setUserName(jsonClaims.getString("user_name"));
+//
+//                return profile;
+//            }
         }
         return null;
     }
