@@ -10,14 +10,12 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import java.util.List;
 
-import java.net.URI;
-
 /**
  * @Author: wangzc
  * @Date: 2020/9/1 13:36
  */
 @Component
-public class CustomerAuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
+public class FireAuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
 
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> mono, AuthorizationContext authorizationContext) {

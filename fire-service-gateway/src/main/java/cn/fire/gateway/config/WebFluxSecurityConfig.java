@@ -1,6 +1,6 @@
 package cn.fire.gateway.config;
 
-import cn.fire.gateway.authorization.CustomerAuthorizationManager;
+import cn.fire.gateway.authorization.FireAuthorizationManager;
 import cn.fire.gateway.handler.RestAuthExceptionEntryPoint;
 import cn.fire.gateway.handler.RestAccessDenyEntryPoint;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ import java.security.interfaces.RSAPublicKey;
 public class WebFluxSecurityConfig {
 
     private final IgnoreConfigUrl configUrl;
-    private final CustomerAuthorizationManager authorizationManager;
+    private final FireAuthorizationManager authorizationManager;
     private final RestAccessDenyEntryPoint accessDenyEntryPoint;
     private final RestAuthExceptionEntryPoint authExceptionEntryPoint;
 
