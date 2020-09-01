@@ -104,10 +104,10 @@
             <artifactId>commons-pool2</artifactId>
         </dependency>
 
-<!--        <dependency>
+       <dependency>
             <groupId>com.nimbusds</groupId>
             <artifactId>nimbus-jose-jwt</artifactId>
-        </dependency>-->
+        </dependency>
 
     </dependencies>
 

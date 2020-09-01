@@ -1,6 +1,7 @@
 package cn.fire.gateway.authorization;
 
 import com.google.common.collect.Lists;
+import lombok.SneakyThrows;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.ReactiveAuthorizationManager;
 import org.springframework.security.core.Authentication;
@@ -9,6 +10,7 @@ import org.springframework.security.web.server.authorization.AuthorizationContex
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @Author: wangzc
@@ -17,6 +19,7 @@ import java.util.List;
 @Component
 public class FireAuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
 
+    @SneakyThrows
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> mono, AuthorizationContext authorizationContext) {
         //从Redis中获取当前路径可访问角色列表
@@ -24,7 +27,7 @@ public class FireAuthorizationManager implements ReactiveAuthorizationManager<Au
 //        Object obj = redisTemplate.opsForHash().get(RedisConstant.RESOURCE_ROLES_MAP, uri.getPath());
 //        List<String> authorities = Convert.toList(String.class,obj);
 //        authorities = authorities.stream().map(i -> i = AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
-        List<String> authorities = Lists.newArrayList("ROLE_admin");
+        List<String> authorities = Lists.newArrayList("admin");
         //认证通过且角色匹配的用户可访问当前路径
         return mono
                 .filter(Authentication::isAuthenticated)
