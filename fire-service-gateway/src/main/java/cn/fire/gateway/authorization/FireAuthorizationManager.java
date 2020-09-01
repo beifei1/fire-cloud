@@ -10,7 +10,6 @@ import org.springframework.security.web.server.authorization.AuthorizationContex
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * @Author: wangzc
@@ -27,7 +26,7 @@ public class FireAuthorizationManager implements ReactiveAuthorizationManager<Au
 //        Object obj = redisTemplate.opsForHash().get(RedisConstant.RESOURCE_ROLES_MAP, uri.getPath());
 //        List<String> authorities = Convert.toList(String.class,obj);
 //        authorities = authorities.stream().map(i -> i = AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
-        List<String> authorities = Lists.newArrayList("admin");
+        List<String> authorities = Lists.newArrayList("ROLE_admin");
         //认证通过且角色匹配的用户可访问当前路径
         return mono
                 .filter(Authentication::isAuthenticated)

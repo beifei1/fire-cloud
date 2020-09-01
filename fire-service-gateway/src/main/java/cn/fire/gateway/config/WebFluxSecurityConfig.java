@@ -46,6 +46,7 @@ public class WebFluxSecurityConfig {
                 .jwt()
                 .publicKey(publicKey())
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
+        http.oauth2ResourceServer().authenticationEntryPoint(authExceptionEntryPoint);
         http.authorizeExchange()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
                 .pathMatchers(configUrl.getUrls().toArray(new String[configUrl.getUrls().size()])).permitAll()
@@ -74,7 +75,7 @@ public class WebFluxSecurityConfig {
         return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);
     }
 
-
+    @Bean
     public RSAPublicKey publicKey() {
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/firecloud.jks"),"123456".toCharArray());
         return (RSAPublicKey) keyStoreKeyFactory.getKeyPair("firecloud").getPublic();
