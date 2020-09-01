@@ -1,8 +1,10 @@
 package cn.fire.user.api.pojo.entity;
 
 import cn.fire.common.core.BaseDO;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import java.util.List;
 
 /**
  * @Author: wangzc
@@ -16,5 +18,8 @@ public class RoleDO extends BaseDO {
     private String roleName;
 
     private String roleDesc;
+
+    @TableField(exist = false)
+    private List<String> permissions;
 
 }

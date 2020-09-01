@@ -26,6 +26,7 @@
         <jackson-databind.version>2.10.2</jackson-databind.version>
         <redisson.boot.starter.version>3.13.3</redisson.boot.starter.version>
         <common-pool.version>2.8.1</common-pool.version>
+        <nimbus-version>8.20</nimbus-version>
     </properties>
 
     <distributionManagement>
@@ -181,6 +182,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>${common-pool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>nimbus-jose-jwt</artifactId>
+                <version>${nimbus-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

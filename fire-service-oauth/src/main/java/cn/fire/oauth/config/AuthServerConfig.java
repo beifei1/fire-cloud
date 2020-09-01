@@ -33,6 +33,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
+import java.security.KeyPair;
 import java.util.*;
 
 /**
@@ -53,11 +54,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private IUserService userService;
 
-    /**
-     * 配置Client令牌
-     * @param clients
-     * @throws Exception
-     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -69,11 +65,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .accessTokenValiditySeconds(3600);
     }
 
-    /**
-     * 配置验证端点相关信息
-     * @param endpoints
-     * @throws Exception
-     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
@@ -86,23 +77,18 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .authenticationManager(authenticationManager);
     }
 
-    /**
-     * JwtToken转换器
-     * @return
-     */
     private JwtAccessTokenConverter jwtAccessTokenConverter() {
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/cnsesan-jwt.jks"),"cnsesan123".toCharArray());
-
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("cnsesan-jwt"));
-
+        converter.setKeyPair(keyPair());
         return converter;
     }
 
-    /**
-     * jwt 自定义增强，加入用户相关信息
-     * @return
-     */
+    @Bean
+    public KeyPair keyPair() {
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/cnsesan-jwt.jks"),"cnsesan123".toCharArray());
+        return keyStoreKeyFactory.getKeyPair("cnsesan-jwt");
+    }
+
     public TokenEnhancerChain tokenEnhancerChain() {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
 
@@ -123,13 +109,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         return tokenEnhancerChain;
     }
 
-    /**
-     * 加入自定义授权方式
-     * @param userService
-     * @param endpoints
-     * @return
-     * @throws Exception
-     */
     private  List<TokenGranter> getTokenGranter(IUserService userService,AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         List<TokenGranter> tokenGranters = new ArrayList<>(Collections.singletonList(endpoints.getTokenGranter()));
 
@@ -139,13 +118,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 endpoints.getClientDetailsService(),
                 endpoints.getOAuth2RequestFactory()
         ));
-
-//        tokenGranters.add(new MobilePasswordTokenGranter(
-//                userService,
-//                endpoints.getTokenServices(),
-//                endpoints.getClientDetailsService(),
-//                endpoints.getOAuth2RequestFactory()
-//        ));
 
         return tokenGranters;
     }
