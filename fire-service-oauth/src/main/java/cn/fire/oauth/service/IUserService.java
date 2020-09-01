@@ -11,10 +11,6 @@ import cn.fire.user.api.pojo.entity.UserDO;
 
 public interface IUserService {
 
-    UserDTO getByUserMobile(String mobile) throws UserException;
-
     UserDTO getByMobileAndCode(String mobile,String smsCode) throws UserException;
-
-    UserDTO getByMobileAndPassword(String mobile,String password) throws UserException;
 
 }

@@ -56,7 +56,7 @@ public class UserController {
      */
     @GetMapping("/profile")
     @ApiOperation("用户资料")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasRole('admin')")
     @ApiOperationSupport(author = "beifei")
     public R<UserDetailVO> detail(@ApiIgnore @Profile JUser jUser) {
 
@@ -77,7 +77,7 @@ public class UserController {
      */
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
-    @PreAuthorize("hasAuthority('super')")
+    @PreAuthorize("hasRole('super')")
     @ApiOperationSupport(author = "beifei")
     public R<Boolean> delete(@RequestBody ID id) {
         Boolean bool = userServiceFeign.deleteByUserId(id.getObjectId());
