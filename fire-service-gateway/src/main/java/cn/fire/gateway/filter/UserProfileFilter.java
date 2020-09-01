@@ -1,5 +1,6 @@
 package cn.fire.gateway.filter;
 
+import cn.fire.common.web.consts.WebConsts;
 import com.nimbusds.jose.JWSObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -34,7 +35,7 @@ public class UserProfileFilter implements GlobalFilter, Ordered {
             JWSObject jwsObject = JWSObject.parse(realToken);
             String userStr = jwsObject.getPayload().toString();
 
-            ServerHttpRequest request = exchange.getRequest().mutate().header("x-fire-user", userStr).build();
+            ServerHttpRequest request = exchange.getRequest().mutate().header(WebConsts.USER_PROFILE_HEADER_NAME, userStr).build();
             exchange = exchange.mutate().request(request).build();
 
         } catch (ParseException e) {
