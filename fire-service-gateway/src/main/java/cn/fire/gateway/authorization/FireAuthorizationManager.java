@@ -28,13 +28,12 @@ public class FireAuthorizationManager implements ReactiveAuthorizationManager<Au
 //        authorities = authorities.stream().map(i -> i = AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
         List<String> authorities = Lists.newArrayList("ROLE_admin");
         //认证通过且角色匹配的用户可访问当前路径
-        return Mono.just(new AuthorizationDecision(true));
-//        return mono
-//                .filter(Authentication::isAuthenticated)
-//                .flatMapIterable(Authentication::getAuthorities)
-//                .map(GrantedAuthority::getAuthority)
-//                .any(authorities::contains)
-//                .map(AuthorizationDecision::new)
-//                .defaultIfEmpty(new AuthorizationDecision(false));
+        return mono
+                .filter(Authentication::isAuthenticated)
+                .flatMapIterable(Authentication::getAuthorities)
+                .map(GrantedAuthority::getAuthority)
+                .any(authorities::contains)
+                .map(AuthorizationDecision::new)
+                .defaultIfEmpty(new AuthorizationDecision(false));
     }
 }
