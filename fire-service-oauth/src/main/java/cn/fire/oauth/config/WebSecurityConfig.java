@@ -1,6 +1,7 @@
 package cn.fire.oauth.config;
 
 import cn.fire.oauth.config.enhancer.AuthExceptionEntryPoint;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -37,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(new AuthExceptionEntryPoint())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/v2/api-docs","/oauth/**","/rsa/public").anonymous()
+                .antMatchers("/v2/api-docs","/oauth/**","/rsa/public").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .httpBasic();
@@ -57,12 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Override
+    @SneakyThrows
     public AuthenticationManager authenticationManager() {
-        try {
-            return super.authenticationManager();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        return null;
+        return super.authenticationManager();
     }
 }

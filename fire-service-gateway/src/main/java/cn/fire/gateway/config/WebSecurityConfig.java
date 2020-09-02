@@ -32,7 +32,7 @@ import java.security.interfaces.RSAPublicKey;
 @AllArgsConstructor
 @Configuration
 @EnableWebFluxSecurity
-public class WebFluxSecurityConfig {
+public class WebSecurityConfig {
 
     private final IgnoreConfigUrl configUrl;
     private final FireAuthorizationManager authorizationManager;
@@ -42,11 +42,7 @@ public class WebFluxSecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
 
-        http.oauth2ResourceServer()
-                .jwt()
-                .publicKey(publicKey())
-                .jwtAuthenticationConverter(jwtAuthenticationConverter());
-
+        http.oauth2ResourceServer().jwt().publicKey(publicKey()).jwtAuthenticationConverter(jwtAuthenticationConverter());
         http.oauth2ResourceServer().authenticationEntryPoint(authExceptionEntryPoint);
         http.oauth2ResourceServer().accessDeniedHandler(accessDenyEntryPoint);
 
