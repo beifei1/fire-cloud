@@ -11,6 +11,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authorization.ReactiveAuthorizationManager;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -35,14 +36,17 @@ import java.security.interfaces.RSAPublicKey;
 public class WebSecurityConfig {
 
     private final IgnoreConfigUrl configUrl;
-    private final FireAuthorizationManager authorizationManager;
+    private final ReactiveAuthorizationManager authorizationManager;
     private final RestAccessDenyEntryPoint accessDenyEntryPoint;
     private final RestAuthExceptionEntryPoint authExceptionEntryPoint;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
 
-        http.oauth2ResourceServer().jwt().publicKey(publicKey()).jwtAuthenticationConverter(jwtAuthenticationConverter());
+        http.oauth2ResourceServer().jwt()
+                .publicKey(publicKey())
+                .jwtAuthenticationConverter(jwtAuthenticationConverter());
+
         http.oauth2ResourceServer().authenticationEntryPoint(authExceptionEntryPoint);
         http.oauth2ResourceServer().accessDeniedHandler(accessDenyEntryPoint);
 
@@ -50,6 +54,7 @@ public class WebSecurityConfig {
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
                 .pathMatchers(configUrl.getUrls().toArray(new String[configUrl.getUrls().size()])).permitAll()
                 .pathMatchers("/oauth/**","/doc.html","/swagger-resources","/webjars/**","/**/v2/api-docs").permitAll()
+                .pathMatchers("/**").authenticated()
                 .anyExchange().access(authorizationManager)
                 .and()
                 .exceptionHandling()
