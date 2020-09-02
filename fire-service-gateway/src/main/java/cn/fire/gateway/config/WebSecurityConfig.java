@@ -3,6 +3,7 @@ package cn.fire.gateway.config;
 import cn.fire.gateway.authorization.FireAuthorizationManager;
 import cn.fire.gateway.handler.RestAuthExceptionEntryPoint;
 import cn.fire.gateway.handler.RestAccessDenyEntryPoint;
+import cn.fire.gateway.util.Utils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -70,8 +71,8 @@ public class WebSecurityConfig {
     public Converter<Jwt, ? extends Mono<? extends AbstractAuthenticationToken>> jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter grantConvert = new JwtGrantedAuthoritiesConverter();
 
-        grantConvert.setAuthorityPrefix("ROLE_");
-        grantConvert.setAuthoritiesClaimName("authorities");
+        grantConvert.setAuthorityPrefix(Utils.Authority.ROLE_PREFIEX);
+        grantConvert.setAuthoritiesClaimName(Utils.Authority.AUTHORITY_NAME);
 
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantConvert);
