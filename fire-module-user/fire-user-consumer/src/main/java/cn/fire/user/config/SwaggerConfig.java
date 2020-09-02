@@ -30,7 +30,7 @@ public class SwaggerConfig extends AbstractSwaggerConfig {
         Arrays.stream(BaseException.BaseErrorEnum.values()).forEach(em -> {
             codes.add(new ResponseMessageBuilder().code(em.getCode()).message(em.getDescription()).build());
         });
-        Arrays.stream(UserException.BaseErrorEnum.values()).forEach(em -> {
+        Arrays.stream(UserException.ErrorEnum.values()).forEach(em -> {
             codes.add(new ResponseMessageBuilder().code(em.getCode()).message(em.getDescription()).build());
         });
     }
