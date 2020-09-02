@@ -1,6 +1,9 @@
 package cn.fire.common.web.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RedissonClient;
+import org.redisson.spring.cache.CacheConfig;
+import org.redisson.spring.cache.RedissonSpringCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.cache.Cache;
@@ -32,6 +35,9 @@ public class GlobalRedisConfig extends CachingConfigurerSupport {
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
+    @Autowired
+    private RedissonClient redissonClient;
+
     @Bean
     public RedisTemplate<String, Serializable> redisTemplate(){
         RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
@@ -46,8 +52,9 @@ public class GlobalRedisConfig extends CachingConfigurerSupport {
     @Bean
     @Override
     public CacheManager cacheManager() {
-        return RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(redisConnectionFactory)
-                .cacheDefaults(RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofDays(30))).build();
+        RedissonSpringCacheManager springCacheManager = new RedissonSpringCacheManager(redissonClient);
+        springCacheManager.setAllowNullValues(true);
+        return springCacheManager;
     }
 
     @Bean
