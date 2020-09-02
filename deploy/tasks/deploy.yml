@@ -5,18 +5,21 @@
       register: file_name
       tags: get_filename
 
+      #获取运行PID
     - name: Acquisition process PID
       tags:
         - test
       shell: ps -ef | grep -v grep | grep {{ project_name }}-{{ server_port }} | awk '{print $2}'
       register: running_processes
 
+      #停止进程
     - name: Stop present process
       shell: kill {{item}}
       tags:
         - test1
       with_items: "{{ running_processes.stdout_lines }}"
 
+      #等待进程停止
     - name: Wait for the process to finish
       wait_for:
         path: /proc/{{ item }}/status
@@ -28,26 +31,31 @@
       ignore_errors: yes
       register: killed_processes
 
+      #强制停止进程
     - name: Force kill process
       shell: kill -9 {{ item }}
       with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
 
+      #删除上一个制品
     - name: Drop prev archives
       file:
         state: absent
         path: /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar
       become: yes
 
+      #创建目录
     - name: Create directory if not exists
       file:
         state: directory
         path: /usr/local/fire-cloud/{{ project_name }}
       become: yes
 
+      #上传制品
     - name: Upload Jenkins archives
       copy: src={{file_name.stdout}}  dest=/usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar mode=0644
       when: file_name.stdout != ''
 
+      #启动进程
     - name: Startup process
       shell: nohup java -jar /usr/local/fire-cloud/{{ project_name }}/{{ project_name }}-{{ server_port }}.jar &
       tags: start app
@@ -57,6 +65,7 @@
     - name: Print result
       debug: var=start_result
 
+      #等待端口程序启动
     - name: Wait {{ server_port }} available
       wait_for:
         port: "{{ server_port }}"
