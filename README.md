@@ -50,27 +50,29 @@
 
 Spring Cloud Security OAuth2：
 
-- #### [使用Jwt增强，在JwtToken中加入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/AuthServerConfig.java)
+- [使用Jwt增强，在JwtToken中加入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/AuthServerConfig.java)
 
-- #### [自定义OAuth2授权模式](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/granter)
+- [自定义OAuth2授权模式](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/granter)
 
-- #### [在OAuth2中使用自定义异常响应](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/enhancer)
+- [在OAuth2中使用自定义异常响应](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/enhancer)
 
-- #### [在Resources Server中自动注入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
+- [在Resources Server中自动注入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
 
 持续集成与交付：
 
-- #### [利用Jenkinsfile，Ansiable，Gitlab等实现持续集成与交付](https://github.com/beifei1/fire-cloud/tree/master/deploy)
+- [利用Jenkinsfile，Ansiable，Gitlab等实现持续集成与交付](https://github.com/beifei1/fire-cloud/tree/master/deploy)
 
 Spring Cloud Gateway2.0：
 
-- #### [Knife4j集成Spring Cloud Gateway2.0统一管理微服务API文档](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/config/SwaggerConfig.java)
+- [Knife4j集成Spring Cloud Gateway2.0统一管理微服务API文档](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/config/SwaggerConfig.java)
 
-- #### [Spring Cloud Gateway2.0统一的防重放Filter](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/filter/VerificationFilter.java)
+- [Spring Cloud Gateway2.0统一的防重放Filter](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/filter/VerificationFilter.java)
+
+- [Spring Cloud Gateway2.0网关统一认证授权](https://github.com/beifei1/fire-cloud/tree/master/fire-service-gateway)
 
 Spring Cloud Alibaba Nacos:
 
-- #### [Nacos Config使用多配置文件](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/resources/bootstrap.yml)
+- [Nacos Config使用多配置文件](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/resources/bootstrap.yml)
 
 更新中...
 
