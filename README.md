@@ -26,7 +26,7 @@
 | 消息队列           | RocketMQ                         | [官网](http://rocketmq.apache.org/)                        | - |
 | 服务调用           | OpenFeign                     | [官网](https://spring.io/projects/spring-cloud-openfeign)                    | ✔ |
 | API文档           | Knife4j                     | [官网](https://doc.xiaominfo.com/guide/useful.html) | ✔ |
-| 持续交付       | Jenkins(jenkinsfile脚本),Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) / [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
+| 持续交付       | Jenkins,Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) / [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 缓存           | Redisson  | [GitHub](https://github.com/redisson/redisson) | ✔|
 | 数据库连接池 | Hikari | [GitHub](https://github.com/brettwooldridge/HikariCP) | ✔ |
 
