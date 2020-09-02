@@ -32,7 +32,7 @@
 
 ## 调用关系：
 
-![image](https://github.com/beifei1/fire-cloud/blob/master/asserts/flow.png)
+![image](https://github.com/beifei1/fire-cloud/blob/master/assets/flow.png)
 
 ## 服务说明：
 
