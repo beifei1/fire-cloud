@@ -27,6 +27,8 @@ public abstract class AbstractSwaggerConfig {
     private String scanBasePackage;
     private String docTitle;
     private String docDesc;
+    private Contact contact;
+    private String serviceUrl;
 
     static {
         Arrays.stream(BaseException.BaseErrorEnum.values()).forEach(em -> {
@@ -35,12 +37,21 @@ public abstract class AbstractSwaggerConfig {
     }
 
     public AbstractSwaggerConfig(String scanBasePackage, String docTitle, String docDesc, List<ResponseMessage> responseMessages) {
+        this(scanBasePackage,docTitle,docDesc,"N/A",new Contact("N/A","N/A","N/A"),responseMessages);
+    }
+
+    public AbstractSwaggerConfig(String scanBasePackage, String docTitle, String docDesc,String serviceUrl,List<ResponseMessage> responseMessages) {
+        this(scanBasePackage,docTitle,docDesc,serviceUrl,new Contact("N/A","N/A","N/A"),responseMessages);
+    }
+
+    public AbstractSwaggerConfig(String scanBasePackage, String docTitle, String docDesc,String serviceUrl, Contact contact, List<ResponseMessage> responseMessages) {
         this.scanBasePackage = scanBasePackage;
         this.docDesc = docDesc;
         this.docTitle = docTitle;
+        this.contact = contact;
+        this.serviceUrl = serviceUrl;
         codes.addAll(responseMessages);
     }
-
 
     @Bean
     public Docket defaultApi() {
@@ -59,8 +70,8 @@ public abstract class AbstractSwaggerConfig {
                 .apiInfo(new ApiInfoBuilder()
                 .title(docTitle)
                 .description(docDesc)
-                .termsOfServiceUrl("https://github.com/beifei1/fire-cloud")
-                .contact(new Contact("beifei", "https://github.com/beifei1/fire-cloud", "xxxxxxxxxx@163.com"))
+                .termsOfServiceUrl(serviceUrl)
+                .contact(contact)
                 .version("1.0")
                 .build())
                 .select()

@@ -5,6 +5,7 @@ import cn.fire.user.api.exception.UserException;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.*;
+import springfox.documentation.service.Contact;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PostConstruct;
@@ -27,6 +28,8 @@ public class SwaggerConfig extends AbstractSwaggerConfig {
     }
 
     public SwaggerConfig() {
-        super("cn.fire.user.controller","用户服务文档","用户服务文档", codes);
+//        super("cn.fire.user.controller","用户服务文档","用户微服务文档", codes);
+//        super("cn.fire.user.controller","用户服务文档","用户微服务文档","http://api.xxx.com/user", codes);
+        super("cn.fire.user.controller", "用户服务文档", "用户微服务文档", "http://api.xxx.com/user", new Contact("beifei","www.beifei.com","xxx@beifei.com"), codes);
     }
 }
