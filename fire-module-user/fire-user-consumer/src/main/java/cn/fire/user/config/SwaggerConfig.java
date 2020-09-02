@@ -5,7 +5,6 @@ import cn.fire.user.api.exception.UserException;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.*;
-import springfox.documentation.service.Contact;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PostConstruct;
