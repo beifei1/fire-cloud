@@ -1,6 +1,6 @@
 package cn.fire.user.config;
 
-import cn.fire.common.web.handler.GlobalUserResolver;
+import cn.fire.common.web.handler.GlobalUserProfileResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -21,8 +21,8 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    GlobalUserResolver globalUserResolver() {
-        return new GlobalUserResolver();
+    GlobalUserProfileResolver globalUserResolver() {
+        return new GlobalUserProfileResolver();
     }
 
 }

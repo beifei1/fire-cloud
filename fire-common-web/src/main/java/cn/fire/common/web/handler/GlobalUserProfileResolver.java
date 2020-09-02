@@ -20,7 +20,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * @Date: 2020/8/26 9:43
  */
 @Slf4j
-public class GlobalUserResolver implements HandlerMethodArgumentResolver {
+public class GlobalUserProfileResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter param) {
@@ -33,23 +33,19 @@ public class GlobalUserResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container, NativeWebRequest request,
-                                  WebDataBinderFactory binderFactory) throws Exception {
+                                  WebDataBinderFactory binderFactory) {
 
-        String authorization = StringUtils.isBlank(request.getHeader(WebConsts.USER_PROFILE_HEADER_NAME)) ? null :
+        String ups = StringUtils.isBlank(request.getHeader(WebConsts.USER_PROFILE_HEADER_NAME)) ? null :
                 request.getHeader(WebConsts.USER_PROFILE_HEADER_NAME).trim();
 
-        if (StringUtils.isNotBlank(authorization)) {
-            log.info(authorization);
-//            if (jwt != null) {
-//                JSONObject jsonClaims = JSONObject.parseObject(jwt.getClaims());
-//                JUser profile = new JUser();
-//                profile.setGender(jsonClaims.getInteger("gender"));
-//                profile.setMobile(jsonClaims.getString("mobile"));
-//                profile.setUserId(jsonClaims.getLong("user_id"));
-//                profile.setUserName(jsonClaims.getString("user_name"));
-//
-//                return profile;
-//            }
+        if (StringUtils.isNotBlank(ups)) {
+            JSONObject jsonClaims = JSONObject.parseObject(ups);
+            JUser profile = new JUser();
+            profile.setGender(jsonClaims.getInteger("gender"));
+            profile.setMobile(jsonClaims.getString("mobile"));
+            profile.setUserId(jsonClaims.getLong("user_id"));
+            profile.setUserName(jsonClaims.getString("user_name"));
+            return profile;
         }
         return null;
     }
