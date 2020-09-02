@@ -77,7 +77,3 @@ Spring Cloud Alibaba Nacos:
 MyBatis-Plus:
 
 - [使用MyBatis-Plus快速实现乐观锁，逻辑删除等功能](https://github.com/beifei1/fire-cloud/blob/master/fire-common/src/main/java/cn/fire/common/core/BaseDO.java)
-
-系统设计:
-
-   更新中...
