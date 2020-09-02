@@ -74,5 +74,7 @@ Spring Cloud Alibaba Nacos:
 
 - [Nacos Config使用多配置文件](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/resources/bootstrap.yml)
 
-更新中...
+MyBatis-Plus:
+
+- [使用MyBatis-Plus快速实现乐观锁，逻辑删除等功能](https://github.com/beifei1/fire-cloud/blob/master/fire-common/src/main/java/cn/fire/common/core/BaseDO.java)
 
