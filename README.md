@@ -58,7 +58,7 @@ Spring Cloud Security OAuth2：
 
 - [在Resources Server中自动注入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
 
-持续集成与交付：
+CI/CD：
 
 - [利用Jenkinsfile，Ansiable，Gitlab等实现持续集成与交付](https://github.com/beifei1/fire-cloud/tree/master/deploy)
 
@@ -78,3 +78,6 @@ MyBatis-Plus:
 
 - [使用MyBatis-Plus快速实现乐观锁，逻辑删除等功能](https://github.com/beifei1/fire-cloud/blob/master/fire-common/src/main/java/cn/fire/common/core/BaseDO.java)
 
+系统设计:
+
+   更新中...
