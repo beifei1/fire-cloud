@@ -5,13 +5,10 @@ import cn.fire.common.web.config.AbstractSwaggerConfig;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.*;
-import springfox.documentation.service.ResponseMessage;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @Author: wangzc
@@ -22,7 +19,6 @@ import java.util.List;
 @Configuration
 public class SwaggerConfig extends AbstractSwaggerConfig {
 
-    private static List<ResponseMessage> codes = new ArrayList<>();
 
     @PostConstruct
     void init () {
