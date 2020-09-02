@@ -19,7 +19,4 @@ public class RoleDO extends BaseDO {
 
     private String roleDesc;
 
-    @TableField(exist = false)
-    private List<String> permissions;
-
 }
