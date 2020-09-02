@@ -1,6 +1,5 @@
 package cn.fire.gateway.config;
 
-import cn.fire.gateway.authorization.FireAuthorizationManager;
 import cn.fire.gateway.handler.RestAuthExceptionEntryPoint;
 import cn.fire.gateway.handler.RestAccessDenyEntryPoint;
 import cn.fire.gateway.util.Utils;
@@ -36,7 +35,7 @@ import java.security.interfaces.RSAPublicKey;
 @EnableWebFluxSecurity
 public class WebSecurityConfig {
 
-    private final IgnoreConfigUrl configUrl;
+    private final IgnoreUriConfig configUrl;
     private final ReactiveAuthorizationManager authorizationManager;
     private final RestAccessDenyEntryPoint accessDenyEntryPoint;
     private final RestAuthExceptionEntryPoint authExceptionEntryPoint;

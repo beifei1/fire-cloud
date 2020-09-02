@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 @EqualsAndHashCode(callSuper = false)
 @ConfigurationProperties(prefix = "spring.security.ignore")
-public class IgnoreConfigUrl {
+public class IgnoreUriConfig {
 
     private List<String> urls;
 
