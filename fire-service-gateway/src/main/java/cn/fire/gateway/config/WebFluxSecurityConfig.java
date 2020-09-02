@@ -46,6 +46,7 @@ public class WebFluxSecurityConfig {
                 .jwt()
                 .publicKey(publicKey())
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
+
         http.oauth2ResourceServer().authenticationEntryPoint(authExceptionEntryPoint);
         http.oauth2ResourceServer().accessDeniedHandler(accessDenyEntryPoint);
 
