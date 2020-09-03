@@ -56,6 +56,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     }
 
     @Override
+    @Cacheable(key = "#mobile")
     public UserDO getByMobile(String mobile) throws UserException {
         return userMapper.selectOne(new QueryWrapper<UserDO>().eq(StringUtils.isNoneBlank(mobile),"mobile",mobile));
     }
