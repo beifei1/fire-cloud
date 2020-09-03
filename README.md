@@ -64,3 +64,5 @@
 - 通过OpenFeign提供的继承特性减少冗余代码 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-producer/src/main/java/cn/fire/user/controller/UserController.java)
 - Spring Cloud Gateway 统一管理微服务API文档 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/config/SwaggerConfig.java)
 - Spring Cloud Gateway2.0网关统一认证授权 [查看](https://github.com/beifei1/fire-cloud/tree/master/fire-service-gateway)
+
+
