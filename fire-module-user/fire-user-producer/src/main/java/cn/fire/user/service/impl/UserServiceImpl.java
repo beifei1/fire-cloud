@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 
 @Service
-@CacheConfig(cacheNames = "UserCache:")
+@CacheConfig(cacheNames = "UserCache")
 public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements IUserService {
 
     @Autowired
