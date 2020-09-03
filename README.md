@@ -47,11 +47,12 @@
 | fire-message-producer | 消息基础服务 | -    |
 
 ## 快速预览
-##### CI/CD：
+
+#### CI/CD：
 
 - 利用Jenkinsfile，Ansiable，Gitlab等实现持续集成与交付 [查看](https://github.com/beifei1/fire-cloud/tree/master/deploy)
 
-##### Spring Cloud ：
+#### Spring Cloud ：
 
 - Nacos Config使用多配置文件 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/resources/bootstrap.yml)
 
