@@ -50,13 +50,13 @@
 
 Spring Cloud Security OAuth2：
 
-- [在JwtToken中加入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/AuthServerConfig.java)
+- [在Jwt中加入自定义用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/AuthServerConfig.java)
 
-- [自定义OAuth2授权模式](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/granter)
+- [OAuth2增加自定义授权模式](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/granter)
 
 - [在OAuth2中使用自定义异常响应](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/enhancer)
 
-- [在微服务中自动注入用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
+- [在微服务中快捷使用用户信息](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
 
 CI/CD：
 
@@ -66,7 +66,7 @@ Spring Cloud Gateway2.0：
 
 - [Knife4j集成Spring Cloud Gateway2.0统一管理微服务API文档](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/config/SwaggerConfig.java)
 
-- [Spring Cloud Gateway2.0防重放](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/filter/VerificationFilter.java)
+- [Spring Cloud Gateway2.0防重放方案](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/filter/VerificationFilter.java)
 
 - [Spring Cloud Gateway2.0网关统一认证授权](https://github.com/beifei1/fire-cloud/tree/master/fire-service-gateway)
 
@@ -77,3 +77,7 @@ Spring Cloud Alibaba Nacos:
 MyBatis-Plus:
 
 - [使用MyBatis-Plus快速实现乐观锁，逻辑删除等功能](https://github.com/beifei1/fire-cloud/blob/master/fire-common/src/main/java/cn/fire/common/core/BaseDO.java)
+
+OpenFeign
+
+- [通过OpenFeign提供的继承特性减少冗余代码](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-producer/src/main/java/cn/fire/user/controller/UserController.java)
