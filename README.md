@@ -77,3 +77,7 @@ Spring Cloud Alibaba Nacos:
 MyBatis-Plus:
 
 - [使用MyBatis-Plus快速实现乐观锁，逻辑删除等功能](https://github.com/beifei1/fire-cloud/blob/master/fire-common/src/main/java/cn/fire/common/core/BaseDO.java)
+
+OpenFeign
+
+- [通过OpenFeign提供的继承特性减少冗余代码](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-producer/src/main/java/cn/fire/user/controller/UserController.java)
