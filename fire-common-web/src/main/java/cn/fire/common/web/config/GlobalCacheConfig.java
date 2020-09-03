@@ -3,7 +3,7 @@ package cn.fire.common.web.config;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
-import org.redisson.spring.cache.CacheConfig;
+import org.redisson.codec.MarshallingCodec;
 import org.redisson.spring.cache.RedissonSpringCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -13,15 +13,12 @@ import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.io.Serializable;
-import java.time.Duration;
 
 /**
  * @Author: wangzc
@@ -54,7 +51,7 @@ public class GlobalCacheConfig extends CachingConfigurerSupport {
     @Override
     public CacheManager cacheManager() {
         RedissonSpringCacheManager cacheManager = new RedissonSpringCacheManager(redissonClient);
-        cacheManager.setCodec(JsonJacksonCodec.INSTANCE);
+//        cacheManager.setCodec(JsonJacksonCodec.INSTANCE);
 //        cacheManager.setCacheNames();
 //        cacheManager.setConfig();
         cacheManager.setAllowNullValues(true);

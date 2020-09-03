@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  */
 
 @Service
-@CacheConfig(cacheNames = "UserCache")
+@CacheConfig(cacheNames = "UserCache:")
 public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements IUserService {
 
     @Autowired
@@ -62,7 +62,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     }
 
     @Override
-    @CacheEvict(key = "#userId")
+    @CacheEvict(cacheNames = "user:", key = "#userId")
     public Boolean deleteByUserId(Long userId) throws UserException {
         UserDO user = userMapper.selectById(userId);
         if (Objects.isNull(user)) {
@@ -83,6 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     }
 
     @Override
+    @Cacheable(cacheNames = "user:role:" ,key = "#userId")
     public List<RoleDO> getByRoleUserId(Long userId) {
 
         List<UserRoleDO> userRoles = userRoleMapper.selectList(new QueryWrapper<UserRoleDO>().eq("user_id",userId));
