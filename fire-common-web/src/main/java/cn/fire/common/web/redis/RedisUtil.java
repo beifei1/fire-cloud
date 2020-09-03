@@ -1,10 +1,8 @@
 package cn.fire.common.web.redis;
 
-import cn.fire.common.web.config.GlobalRedisConfig;
-import org.redisson.api.*;
+import cn.fire.common.web.config.GlobalCacheConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -18,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2020/8/21 9:39
  */
 @Component
-@ConditionalOnBean(GlobalRedisConfig.class)
+@ConditionalOnBean(GlobalCacheConfig.class)
 public class RedisUtil {
 
     @Autowired

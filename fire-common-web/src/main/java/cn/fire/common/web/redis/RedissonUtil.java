@@ -1,6 +1,6 @@
 package cn.fire.common.web.redis;
 
-import cn.fire.common.web.config.GlobalRedisConfig;
+import cn.fire.common.web.config.GlobalCacheConfig;
 import org.redisson.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Component
-@ConditionalOnBean(GlobalRedisConfig.class)
+@ConditionalOnBean(GlobalCacheConfig.class)
 public class RedissonUtil {
 
     @Autowired

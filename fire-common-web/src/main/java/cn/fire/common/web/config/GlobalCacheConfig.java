@@ -30,7 +30,7 @@ import java.time.Duration;
 @Slf4j
 @Configuration
 @ConditionalOnClass(name = "org.springframework.data.redis.connection.RedisConnectionFactory")
-public class GlobalRedisConfig extends CachingConfigurerSupport {
+public class GlobalCacheConfig extends CachingConfigurerSupport {
 
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
