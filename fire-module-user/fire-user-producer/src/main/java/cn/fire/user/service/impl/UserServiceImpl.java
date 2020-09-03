@@ -83,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     }
 
     @Override
-    @Cacheable(cacheNames = "user:role:" ,key = "#userId")
+    @Cacheable(cacheNames = "user:role" ,key = "#userId")
     public List<RoleDO> getByRoleUserId(Long userId) {
 
         List<UserRoleDO> userRoles = userRoleMapper.selectList(new QueryWrapper<UserRoleDO>().eq("user_id",userId));
