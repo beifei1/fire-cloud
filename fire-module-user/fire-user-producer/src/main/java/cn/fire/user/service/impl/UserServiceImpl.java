@@ -1,6 +1,5 @@
 package cn.fire.user.service.impl;
 
-import cn.fire.common.web.redis.RedisUtil;
 import cn.fire.common.web.redis.RedissonUtil;
 import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.RoleDO;
@@ -42,9 +41,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
 
     @Autowired
     private UserRoleMapper userRoleMapper;
-
-    @Autowired
-    private RedisUtil redisUtil;
 
     @Autowired
     private RedissonUtil redissonUtil;
