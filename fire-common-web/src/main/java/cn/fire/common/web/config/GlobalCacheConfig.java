@@ -2,6 +2,7 @@ package cn.fire.common.web.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RedissonClient;
+import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.spring.cache.CacheConfig;
 import org.redisson.spring.cache.RedissonSpringCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +53,12 @@ public class GlobalCacheConfig extends CachingConfigurerSupport {
     @Bean
     @Override
     public CacheManager cacheManager() {
-        RedissonSpringCacheManager springCacheManager = new RedissonSpringCacheManager(redissonClient);
-        springCacheManager.setAllowNullValues(true);
-        return springCacheManager;
+        RedissonSpringCacheManager cacheManager = new RedissonSpringCacheManager(redissonClient);
+        cacheManager.setCodec(JsonJacksonCodec.INSTANCE);
+//        cacheManager.setCacheNames();
+//        cacheManager.setConfig();
+        cacheManager.setAllowNullValues(true);
+        return cacheManager;
     }
 
     @Bean
