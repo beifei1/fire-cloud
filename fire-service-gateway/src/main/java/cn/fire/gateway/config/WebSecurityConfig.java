@@ -43,6 +43,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
 
+        http.cors();
         http.oauth2ResourceServer().jwt()
                 .publicKey(publicKey())
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
