@@ -52,11 +52,13 @@ public class WebSecurityConfig {
         http.oauth2ResourceServer().accessDeniedHandler(accessDenyEntryPoint);
 
         http.authorizeExchange()
+
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
                 .pathMatchers(configUrl.getUrls().toArray(new String[configUrl.getUrls().size()])).permitAll()
                 .pathMatchers("/oauth/**","/doc.html","/swagger-resources","/webjars/**","/**/v2/api-docs").permitAll()
                 .pathMatchers("/**").authenticated()
                 .anyExchange().access(authorizationManager)
+
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDenyEntryPoint)
