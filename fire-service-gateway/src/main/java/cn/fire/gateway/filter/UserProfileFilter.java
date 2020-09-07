@@ -40,7 +40,7 @@ public class UserProfileFilter implements GlobalFilter, Ordered {
 
         } catch (ParseException e) {
             e.printStackTrace();
-            log.error("解析Token时发生异常，详见:{}", e.getMessage());
+            log.error("解析jwt异常，详见:{}", e);
         }
         return chain.filter(exchange);
     }
