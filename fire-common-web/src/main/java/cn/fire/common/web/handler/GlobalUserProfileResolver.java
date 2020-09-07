@@ -1,5 +1,6 @@
 package cn.fire.common.web.handler;
 
+import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.anno.Profile;
 import cn.fire.common.web.consts.WebConsts;
 import cn.fire.common.web.core.request.JUser;
@@ -22,7 +23,6 @@ public class GlobalUserProfileResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public boolean supportsParameter(MethodParameter param) {
-
         if (param.getParameterType().isAssignableFrom(JUser.class) && param.hasParameterAnnotation(Profile.class)) {
             return Boolean.TRUE;
         }
@@ -30,21 +30,18 @@ public class GlobalUserProfileResolver implements HandlerMethodArgumentResolver 
     }
 
     @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container, NativeWebRequest request,
-                                  WebDataBinderFactory binderFactory) {
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container, NativeWebRequest request, WebDataBinderFactory binderFactory) {
+        String profile = StringUtils.isBlank(request.getHeader(WebConsts.USER_PROFILE_HEADER_NAME)) ? null : request.getHeader(WebConsts.USER_PROFILE_HEADER_NAME).trim();
 
-        String ups = StringUtils.isBlank(request.getHeader(WebConsts.USER_PROFILE_HEADER_NAME)) ? null :
-                request.getHeader(WebConsts.USER_PROFILE_HEADER_NAME).trim();
-
-        if (StringUtils.isNotBlank(ups)) {
-            JSONObject jsonClaims = JSONObject.parseObject(ups);
-            JUser profile = new JUser();
-            profile.setGender(jsonClaims.getInteger("gender"));
-            profile.setMobile(jsonClaims.getString("mobile"));
-            profile.setUserId(jsonClaims.getLong("user_id"));
-            profile.setUserName(jsonClaims.getString("user_name"));
+        if (StringUtils.isNotBlank(profile)) {
+            JSONObject claims = JSONObject.parseObject(profile);
+            JUser user = new JUser();
+            user.setGender(claims.getInteger("gender"));
+            user.setMobile(claims.getString("mobile"));
+            user.setUserId(claims.getLong("user_id"));
+            user.setUserName(claims.getString("user_name"));
             return profile;
         }
-        return null;
+        throw BaseException.instance(BaseException.BaseErrorEnum.EMPTY_USER_PROFILE_ERROR);
     }
 }

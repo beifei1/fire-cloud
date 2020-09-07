@@ -22,7 +22,8 @@ public class BaseException extends RuntimeException {
         TOKEN_UNAUTHORIZAD(10007,"token权限不足"),
         MESSAGE_NOT_ALLOWED(10008,"不允许的请求方法"),
         OAUTH2_AUTH_DENY(10009, "Oauth2认证未通过"),
-        REQUEST_SECURITY_VALID_ERROR(10010,"请求安全验证未通过");
+        REQUEST_SECURITY_VALID_ERROR(10010,"请求安全验证未通过"),
+        EMPTY_USER_PROFILE_ERROR(10011, "用户信息为空");
 
         private int code;
         private String description;
