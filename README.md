@@ -20,7 +20,7 @@
 | 权限控制           | Spring Cloud Security Oauth2  | [官网](https://spring.io/projects/spring-cloud-security) | ✔ |
 | 任务调度           | XXL-Job                       | [官网](https://www.xuxueli.com/xxl-job/) | - |
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    | [官网](https://nacos.io/en-us/) | ✔ |
-| 熔断及限流         | Spring Cloud Alibaba Sentinel | [GitHub](https://github.com/alibaba/Sentinel) | - |
+| 熔断及限流         | Spring Cloud Alibaba Sentinel | [GitHub](https://github.com/alibaba/Sentinel) | ✔ |
 | 分布式事务         | Seata                         | [官网](https://github.com/seata/seata) | - |
 | ORM框架      | MyBatis-Plus        | [官网](https://baomidou.com/) | ✔ |
 | 消息队列           | RocketMQ                         | [官网](http://rocketmq.apache.org/)                        | - |
