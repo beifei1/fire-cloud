@@ -30,6 +30,16 @@
 | 缓存           | Redisson,Spring Cache  | [GitHub](https://github.com/redisson/redisson) | ✔|
 | 数据库连接池 | Hikari | [GitHub](https://github.com/brettwooldridge/HikariCP) | ✔ |
 
+## 组件版本：
+
+- **Spring Cloud**：Hoxton.SR3
+- **Spring Cloud Alibaba**：2.2.1.RELEASE
+- **Spring Boot**：2.2.5.RELEASE
+- **Lombok**：1.18.12
+- **MyBatis-Plus**：3.3.2
+- **Knife4j**：2.0.4
+- **redisson-starter**：3.13.4
+
 ## 调用关系：
 
 ![image](https://github.com/beifei1/fire-cloud/blob/master/assets/flow.png)
