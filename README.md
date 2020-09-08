@@ -66,4 +66,8 @@
 - Spring Cloud Gateway 统一管理微服务API文档 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/config/SwaggerConfig.java)
 - Spring Cloud Gateway2.0网关统一认证授权 [查看](https://github.com/beifei1/fire-cloud/tree/master/fire-service-gateway)
 
+#### Spring MVC
+
+- 使用ResponseBodyAdvice统一Http body响应，减少重复编码 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-common-web/src/main/java/cn/fire/common/web/handler/GlobalResultBodyHandler.java)
+
 
