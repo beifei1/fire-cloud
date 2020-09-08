@@ -69,5 +69,6 @@
 #### Spring MVC
 
 - 使用ResponseBodyAdvice处理响应，减少重复编码 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-common-web/src/main/java/cn/fire/common/web/handler/GlobalResultBodyHandler.java)
+- 使用Jackson处理LocalDateTime响应为时间戳 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-common-web/src/main/java/cn/fire/common/web/config/GlobalJacksonConfig.java)
 
 
