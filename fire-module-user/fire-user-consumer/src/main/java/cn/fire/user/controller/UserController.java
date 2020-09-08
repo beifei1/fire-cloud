@@ -1,7 +1,7 @@
 package cn.fire.user.controller;
 
 import cn.fire.common.web.anno.Profile;
-import cn.fire.common.web.anno.EnhanceBody;
+import cn.fire.common.web.anno.Body;
 import cn.fire.common.web.core.request.ID;
 import cn.fire.common.web.core.request.JUser;
 import cn.fire.common.web.core.response.R;
@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
-@EnhanceBody
+@Body
 @RequestMapping("/user")
 @Api(tags = "用户控制器")
 public class UserController {

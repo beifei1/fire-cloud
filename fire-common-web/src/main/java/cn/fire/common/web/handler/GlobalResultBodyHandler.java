@@ -1,6 +1,6 @@
 package cn.fire.common.web.handler;
 
-import cn.fire.common.web.anno.EnhanceBody;
+import cn.fire.common.web.anno.Body;
 import cn.fire.common.web.core.response.R;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ import java.util.Objects;
 @RestControllerAdvice
 public class GlobalResultBodyHandler implements ResponseBodyAdvice<Object> {
 
-    private final Class<? extends Annotation> ANNOTATION_TYPE = EnhanceBody.class;
+    private final Class<? extends Annotation> ANNOTATION_TYPE = Body.class;
 
     @Override
     public boolean supports(MethodParameter param, Class<? extends HttpMessageConverter<?>> converterType) {

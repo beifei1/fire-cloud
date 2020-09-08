@@ -13,6 +13,6 @@ import java.lang.annotation.*;
 @ResponseBody
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
-public @interface EnhanceBody {
+public @interface Body {
 
 }
