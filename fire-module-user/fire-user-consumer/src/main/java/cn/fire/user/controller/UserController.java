@@ -1,6 +1,7 @@
 package cn.fire.user.controller;
 
 import cn.fire.common.web.anno.Profile;
+import cn.fire.common.web.anno.EnhanceBody;
 import cn.fire.common.web.core.request.ID;
 import cn.fire.common.web.core.request.JUser;
 import cn.fire.common.web.core.response.R;
@@ -29,6 +30,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
+@EnhanceBody(true)
 @RequestMapping("/user")
 @Api(tags = "用户控制器")
 public class UserController {
@@ -56,7 +58,7 @@ public class UserController {
     @GetMapping("/profile")
     @ApiOperation("用户资料")
     @ApiOperationSupport(author = "beifei")
-    public R<UserDetailVO> detail(@ApiIgnore @Profile JUser jUser) {
+    public UserDetailVO detail(@ApiIgnore @Profile JUser jUser) {
 
         log.info("================================:{}", jUser.toString());
 
@@ -64,7 +66,7 @@ public class UserController {
         UserDetailVO userDetail = UserDetailVO.builder().build();
         BeanUtils.copyProperties(user,userDetail);
 
-        return R.ok(userDetail);
+        return userDetail;
     }
 
 
@@ -76,10 +78,10 @@ public class UserController {
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
     @ApiOperationSupport(author = "beifei")
-    public R<Boolean> delete(@RequestBody ID id) {
+    public Boolean delete(@RequestBody ID id) {
         Boolean bool = userServiceFeign.deleteByUserId(id.getObjectId());
         System.out.println(bool);
-        return R.ok();
+        return bool;
     }
 
     /**
@@ -90,9 +92,9 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation("用户登录")
     @ApiOperationSupport(author = "beifei")
-    public R<UserLoginVO> login(@Valid @RequestBody UserLoginAO param) {
+    public UserLoginVO login(@Valid @RequestBody UserLoginAO param) {
 
-        return R.ok();
+        return new UserLoginVO();
     }
 
     /**
@@ -103,7 +105,7 @@ public class UserController {
     @PostMapping("/update")
     @ApiOperation(("更新用户资料"))
     @ApiOperationSupport(author = "beifei")
-    public R<Boolean> update(@Valid @RequestBody UserLoginAO param) {
-        return R.ok();
+    public Boolean update(@Valid @RequestBody UserLoginAO param) {
+        return Boolean.TRUE;
     }
 }
