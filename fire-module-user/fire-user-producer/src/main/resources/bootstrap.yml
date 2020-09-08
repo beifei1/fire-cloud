@@ -22,3 +22,53 @@ spring:
       discovery:
         namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
         group: base-service
+
+#  #sharding sphere配置
+#  shardingsphere:
+#    datasource:
+#      names: ds-user-0,ds-user-1 #datasource名字
+#
+#      #datasource 0
+#      ds-user-0:
+#        type: com.zaxxer.hikari.HikariDataSource #使用Hikari数据库连接池
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://127.0.0.1:3306/fire-user-0?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+#        username: root
+#        password: root123
+#
+#      ds-user-1:
+#        type: com.zaxxer.hikari.HikariDataSource #使用Hikari数据库连接池
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://127.0.0.1:3306/fire-user-1?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+#        username: root
+#        password: root123
+#
+#    #分片规则
+#    sharding:
+#      tables:
+#        #user表配置
+#        user:
+#          #映射到ds-user-0和ds-user-1的user表们
+#          actualDataNodes: ds-user-0.user_$->{[0,2,4,6]},ds-user-1.user_$->{[1,3,5,7]}
+#          #主键生成策略
+#          key-generator:
+#            column: id
+#            type: SNOWFLAKE  #雪花Id
+#          #数据源策略
+#          database-strategy:
+#            inline:
+#              algorithm-expression: ds-user-$->{id % 2}
+#              sharding-column: id
+#          #表策略
+#          table-strategy:
+#            inline:
+#              algorithm-expression: user_$->{id % 8}
+#              sharding-column: id
+#
+#        #user config表仅映射到 数据源1
+#        user-config:
+#          actualDataNodes: ds-user-0.user_config
+#    #拓展属性配置
+#    props:
+#      sql:
+#        show: true

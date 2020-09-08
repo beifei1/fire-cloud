@@ -28,6 +28,7 @@
         <apache-common-pool.version>2.8.1</apache-common-pool.version>
         <apache-common-lang.version>3.10</apache-common-lang.version>
         <nimbus-version>8.20</nimbus-version>
+        <sharding-sphere-boot-version>4.0.0-RC2</sharding-sphere-boot-version>
     </properties>
 
     <distributionManagement>
@@ -193,6 +194,12 @@
                 <groupId>com.nimbusds</groupId>
                 <artifactId>nimbus-jose-jwt</artifactId>
                 <version>${nimbus-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>${sharding-sphere-boot-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
