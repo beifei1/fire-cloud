@@ -40,7 +40,7 @@ public class GlobalUserProfileResolver implements HandlerMethodArgumentResolver 
             user.setMobile(claims.getString("mobile"));
             user.setUserId(claims.getLong("user_id"));
             user.setUserName(claims.getString("user_name"));
-            return profile;
+            return user;
         }
         throw BaseException.instance(BaseException.BaseErrorEnum.EMPTY_USER_PROFILE_ERROR);
     }
