@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
-@EnhanceBody(true)
+@EnhanceBody
 @RequestMapping("/user")
 @Api(tags = "用户控制器")
 public class UserController {

@@ -15,6 +15,4 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface EnhanceBody {
 
-    boolean value() default false;
-
 }
