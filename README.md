@@ -14,6 +14,7 @@
 
 ## 技术选型：
 
+|                    |                               |                               |   |
 | ------------------ | ----------------------------- |---|---|
 | 网关               | Spring Cloud Gateway 2.0      | [官网](https://spring.io/projects/spring-cloud-gateway) | ✔ |
 | 权限控制           | Spring Cloud Security Oauth2  | [官网](https://spring.io/projects/spring-cloud-security) | ✔ |
@@ -45,6 +46,7 @@
 
 ## 服务说明：
 
+|                       |              |      |
 | --------------------- | ------------ | ---- |
 | fire-service-gateway          | 网关服务     | ✔    |
 | fire-service-oauth            | 授权服务     | ✔    |
