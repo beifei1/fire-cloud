@@ -29,7 +29,6 @@
 | 持续交付       | Jenkins,Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) / [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 缓存           | Redisson,Spring Cache  | [GitHub](https://github.com/redisson/redisson) | ✔|
 | 数据库中间件           | ShardingSphere  | [官网](http://shardingsphere.apache.org/index_zh.html) | ✔|
-| 数据库连接池 | Hikari | [GitHub](https://github.com/brettwooldridge/HikariCP) | ✔ |
 
 ## 组件版本：
 
@@ -40,6 +39,7 @@
 - **MyBatis-Plus**：3.3.2
 - **Knife4j**：2.0.4
 - **Redisson**：3.13.4
+- **ShardingSphere**：4.0.0-RC2
 
 ## 调用关系：
 
