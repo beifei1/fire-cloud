@@ -28,7 +28,7 @@
 | API文档           | Knife4j                     | [官网](https://doc.xiaominfo.com/guide/useful.html) | ✔ |
 | 持续交付       | Jenkins,Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) / [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 缓存           | Redisson,Spring Cache  | [GitHub](https://github.com/redisson/redisson) | ✔|
-| 分库分表           | ShardingSphere  | [官网](http://shardingsphere.apache.org/index_zh.html) | ✔|
+| 数据库中间件           | ShardingSphere  | [官网](http://shardingsphere.apache.org/index_zh.html) | ✔|
 | 数据库连接池 | Hikari | [GitHub](https://github.com/brettwooldridge/HikariCP) | ✔ |
 
 ## 组件版本：
@@ -83,4 +83,6 @@
 
 - 使用Jackson处理LocalDateTime响应为时间戳 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-common-web/src/main/java/cn/fire/common/web/config/GlobalJacksonConfig.java)
 
+#### 数据源
 
+- 使用ShardingSphere分库分表 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-producer/src/main/resources/bootstrap.yml)
