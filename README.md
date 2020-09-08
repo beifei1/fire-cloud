@@ -2,9 +2,9 @@
 
 
 
-## 项目概述：
+## 项目简介：
 
-基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务脚手架，目前处于开发阶段。在过程中可能对结构随时进行调整。
+基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架
 
 ## 运行环境：
 
