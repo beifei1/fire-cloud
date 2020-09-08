@@ -38,7 +38,7 @@
 - **Lombok**：1.18.12
 - **MyBatis-Plus**：3.3.2
 - **Knife4j**：2.0.4
-- **redisson-starter**：3.13.4
+- **Redisson**：3.13.4
 
 ## 调用关系：
 
