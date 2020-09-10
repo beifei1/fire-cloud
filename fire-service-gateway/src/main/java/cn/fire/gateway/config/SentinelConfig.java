@@ -37,7 +37,7 @@ public class SentinelConfig {
     }
 
     @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
+    @Order(-1)
     GlobalFilter sentienGatewayFilter() {
         return new SentinelGatewayFilter();
     }
