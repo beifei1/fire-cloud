@@ -55,7 +55,7 @@ public class SentinelConfig {
 
     private void initGatewayRules() {
         Set<GatewayFlowRule> rules = new HashSet<>();
-        rules.add(new GatewayFlowRule("aliyun_route")
+        rules.add(new GatewayFlowRule("fire-service-oauth")
                 .setCount(10)
                 .setIntervalSec(1)
         );
