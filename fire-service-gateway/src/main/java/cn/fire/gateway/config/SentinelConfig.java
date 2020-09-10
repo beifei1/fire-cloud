@@ -48,18 +48,18 @@ public class SentinelConfig {
     }
 
 
-    @PostConstruct
-    void doInit() {
-        initGatewayRules();
-    }
-
-    private void initGatewayRules() {
-        Set<GatewayFlowRule> rules = new HashSet<>();
-        rules.add(new GatewayFlowRule("fire-service-oauth")
-                .setCount(10)
-                .setIntervalSec(1)
-        );
-        GatewayRuleManager.loadRules(rules);
-    }
+//    @PostConstruct
+//    void doInit() {
+//        initGatewayRules();
+//    }
+//
+//    private void initGatewayRules() {
+//        Set<GatewayFlowRule> rules = new HashSet<>();
+//        rules.add(new GatewayFlowRule("fire-service-oauth")
+//                .setCount(10)
+//                .setIntervalSec(1)
+//        );
+//        GatewayRuleManager.loadRules(rules);
+//    }
 
 }
