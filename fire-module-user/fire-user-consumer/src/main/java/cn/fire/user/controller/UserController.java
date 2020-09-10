@@ -28,9 +28,9 @@ import javax.validation.Valid;
  * @Date: 2020/7/29 16:35
  */
 
+@Body
 @Slf4j
 @RestController
-@Body
 @RequestMapping("/user")
 @Api(tags = "用户控制器")
 public class UserController {
