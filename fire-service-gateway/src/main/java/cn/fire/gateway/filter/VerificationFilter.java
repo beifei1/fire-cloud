@@ -64,7 +64,7 @@ public class VerificationFilter implements GlobalFilter, Ordered {
             }
         }
 
-        //TODO 补全验证逻辑
+        //TODO 补全验证逻辑，参数字典序
 
         Flux<DataBuffer> dataBuffer = request.getBody();
         dataBuffer.subscribe(buffer -> {
