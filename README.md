@@ -86,3 +86,37 @@
 #### 数据源
 
 - 使用ShardingSphere分库分表 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-producer/src/main/resources/bootstrap.yml)
+
+## Jenkinsfile使用
+
+在项目中使用jenksinfile需要安装几个jenkins插件，这里是jenkinsfile的[简介](https://www.cnblogs.com/stulzq/p/10115589.html)。如果希望深入学习，推荐《Jenkins 2.X实践指南》。作者翟志军
+
+[Pipeline](https://plugins.jenkins.io/workflow-aggregator)
+
+提供Jenkins Pipeline项目支持
+
+[Ansible plugin](https://plugins.jenkins.io/ansible)
+
+提供Ansible的jenkins支持
+
+[Config File Provider Plugin](https://plugins.jenkins.io/config-file-provider)
+
+文件管理插件，支持多种文件类型。在项目中把setting.xml文件委托给Jenkins进行管理
+
+```javascript
+configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
+    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING package -Dmaven.test.skip=true"
+}
+```
+
+[Credentials](https://plugins.jenkins.io/credentials)
+
+凭证管理，在Jenkins中管理凭证，在jenkinsfile中进行使用，例如SSH Key，UserName/Password等
+
+```javascript
+git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branch: "${params.repo_branch}"
+```
+
+[Email Extension Plugin](https://plugins.jenkins.io/email-ext)
+
+邮件增加，用于发送高级邮件模板
