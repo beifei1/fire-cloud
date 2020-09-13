@@ -89,7 +89,7 @@
 
 ## Jenkinsfile及Jenkins插件
 
-在项目中使用jenksinfile需要安装几个jenkins插件，这里是jenkinsfile的[简介](https://www.cnblogs.com/stulzq/p/10115589.html)。如果希望深入学习，推荐《Jenkins 2.X实践指南》。作者翟志军
+在项目中使用jenksinfile需要安装几个jenkins插件，这里是jenkinsfile的[简介](https://www.cnblogs.com/stulzq/p/10115589.html)。如果希望深入学习，推荐[《Jenkins 2.X实践指南》](https://item.jd.com/12512889.html)。作者翟志军
 
 #### Pipeline：
 
