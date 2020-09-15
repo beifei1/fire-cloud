@@ -18,3 +18,4 @@ spring:
       discovery:
         namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
         group: base-service
+
