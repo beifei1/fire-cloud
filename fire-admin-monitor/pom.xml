@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.fire</groupId>
-    <artifactId>fire-admin-actuator</artifactId>
+    <artifactId>fire-admin-monitor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fire-admin-actuator</name>
+    <name>fire-admin-monitor</name>
     <description>monitor project</description>
 
     <properties>
