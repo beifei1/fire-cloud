@@ -29,6 +29,7 @@
 | 持续交付       | Jenkins,Ansible | [Jenkinsfile](https://github.com/beifei1/fire-cloud/blob/master/Jenkinsfile) / [Ansiable](http://www.ansible.com.cn/docs/playbooks.html) | ✔ |
 | 缓存           | Redisson,Spring Cache  | [GitHub](https://github.com/redisson/redisson) | ✔|
 | 数据库中间件           | ShardingSphere  | [官网](http://shardingsphere.apache.org/index_zh.html) | ✔|
+| 健康监控           | Spring boot Admin  | [GitHub](https://github.com/codecentric/spring-boot-admin) | ✔|
 
 ## 组件版本：
 
