@@ -18,7 +18,7 @@
 | ------------------ | ----------------------------- |---|---|
 | 网关               | Spring Cloud Gateway 2.0      | [官网](https://spring.io/projects/spring-cloud-gateway) | ✔ |
 | 权限控制           | Spring Cloud Security Oauth2  | [官网](https://spring.io/projects/spring-cloud-security) | ✔ |
-| 任务调度           | XXL-Job                       | [官网](https://www.xuxueli.com/xxl-job/) | - |
+| 任务调度           | Xxl-Job                       | [官网](https://www.xuxueli.com/xxl-job/) | ✔ |
 | 服务治理及配置中心 | Spring Cloud Alibaba Nacos    | [官网](https://nacos.io/en-us/) | ✔ |
 | 熔断及限流         | Spring Cloud Alibaba Sentinel | [GitHub](https://github.com/alibaba/Sentinel) | ✔ |
 | 分布式事务         | Seata                         | [官网](https://github.com/seata/seata) | - |
@@ -53,7 +53,7 @@
 | fire-service-oauth            | 授权服务     | ✔    |
 | fire-user-consumer    | 用户对外服务 | ✔    |
 | fire-user-producer    | 用户基础服务 | ✔    |
-| fire-service-job              | 任务调度     | -    |
+| fire-job-admin              | 任务调度管理     |  ✔   |
 | fire-message-consumer | 消息服务     | -    |
 | fire-message-producer | 消息基础服务 | -    |
 
