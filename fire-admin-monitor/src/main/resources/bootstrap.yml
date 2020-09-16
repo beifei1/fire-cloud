@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: fire-admin-monitor
+  cloud:
+    nacos:
+      server-addr: http://192.144.176.31:80
+      discovery:
+        namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
+        group: base-service
+  security:
+    user:
+      name: admin
+      password: 123456
+server:
+  port: 9999
