@@ -15,6 +15,10 @@ spring:
           data-id: fire-common-http-certification.properties
           group: common
           refresh: true
+        extension-configs[2]:
+          data-id: fire-spring-boot-admin-client.properties
+          group: common
+          refresh: true
       discovery:
         namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
         group: base-service

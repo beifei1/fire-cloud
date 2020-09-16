@@ -7,6 +7,8 @@ spring:
       discovery:
         namespace: 5b54e467-6e84-470b-9725-5ddf28d0a663
         group: base-service
+        ## 不注册自己
+        register-enabled: false
   security:
     user:
       name: admin

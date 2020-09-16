@@ -55,7 +55,7 @@ public class WebSecurityConfig {
 
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
                 .pathMatchers(configUrl.getUrls().toArray(new String[configUrl.getUrls().size()])).permitAll()
-                .pathMatchers("/oauth/**","/doc.html","/swagger-resources","/webjars/**","/**/v2/api-docs").permitAll()
+                .pathMatchers("/oauth/**","/doc.html","/swagger-resources","/webjars/**","/**/v2/api-docs","/actuator/**").permitAll()
                 .pathMatchers("/**").authenticated()
                 .anyExchange().access(authorizationManager)
 
