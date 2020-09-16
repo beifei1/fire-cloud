@@ -32,13 +32,9 @@ public class GlobalResultBodyHandler implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType,
                                   Class<? extends HttpMessageConverter<?>> converter, ServerHttpRequest request, ServerHttpResponse response) {
 
-        if (body instanceof R) {
-            return body;
-        }
+        if (body instanceof R) { return body; }
 
-        if (Objects.isNull(body)) {
-            return R.ok();
-        }
+        if (Objects.isNull(body)) { return R.ok(); }
 
         return R.ok(body);
     }
