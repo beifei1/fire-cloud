@@ -105,7 +105,7 @@ Spring Cloud Gateway2.0网关统一认证授权 [查看](https://github.com/beif
 
 #### Config File Provider Plugin：
 
-文件管理插件，支持多种文件类型。在项目中把setting.xml委托给Jenkins进行管理
+配置文件管理插件，支持多种类型
 
 ```javascript
 configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
@@ -115,7 +115,7 @@ configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',ta
 
 #### Credentials：
 
-凭证管理，在Jenkins中管理凭证，在jenkinsfile中进行使用，例如SSH Key，UserName/Password等
+凭证管理插件，在Jenkins中管理凭证，如SSH Key，UserName/Password等
 
 ```javascript
 git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branch: "${params.repo_branch}"
