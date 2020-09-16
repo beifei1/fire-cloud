@@ -123,4 +123,4 @@ git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branc
 
 #### Email Extension Plugin：
 
-邮件增强，用于发送高级邮件模板
+邮件增强，用于发送高级邮件模板，例如Html
