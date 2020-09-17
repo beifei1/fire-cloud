@@ -14,7 +14,7 @@
 
 **Intellij IDEA** [官网](https://www.jetbrains.com/) 
 
-[^Lombok]: 开发工具需要安装lombok插件
+###### 开发工具需要安装lombok插件
 
 ## 技术选型：
 
