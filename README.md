@@ -68,11 +68,11 @@ Jetbrains对于开源项目也有免费的LICENSE支持。如果你有开源项�
 - Nacos Config使用多配置文件
 - 在Jwt中加入自定义元信息
 - OAuth2增加自定义授权模式
-- 网关鉴权后，向下游服务传递用户信息，并在微服务中通过Spring增强自动注入用户信息
+- 网关鉴权后，向下游服务传递用户信息，并在微服务中API中注入
 - 通过OpenFeign提供的继承特性减少重复编码
 - Spring Cloud Gateway统一管理微服务API文档
 - Spring Cloud Gateway作为ResourceServer统一认证及权限控制，保护下游微服务应用
-- 使用ResponseBodyAdvice处理响应，减少重复的XX.OK(T)等类似操作
+- 使用ResponseBodyAdvice处理响应，减少重复的Resp.ok(T)等类似操作
 - 使用Jackson处理LocalDateTime响应为时间戳，前后端通过时间戳进行时间传输
 - 使用ShardingSphere分库分表
 - 使用DistributedLock接口用于拓展不同分布式锁实现，见RedisDistributedLock，基于Redisson
