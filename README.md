@@ -10,9 +10,11 @@
 
 **Java SDK:** 1.8 +
 
+**Maven：**3.10 + 
+
 **Intellij IDEA** [官网](https://www.jetbrains.com/) 
 
-###### 开发工具需要安装Lombok插件
+[^Lombok]: 开发工具需要安装lombok插件
 
 ## 技术选型：
 
