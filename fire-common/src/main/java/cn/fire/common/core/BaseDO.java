@@ -23,11 +23,14 @@ public class BaseDO implements Serializable {
     private Long id;
 
     /**
-     * 乐观所插件
+     * 乐观锁/更新时间
      */
     @Version
     private LocalDateTime updateTime;
 
+    /**
+     * 创建时间
+     */
     private LocalDateTime createTime;
 
     /**
