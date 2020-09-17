@@ -1,6 +1,6 @@
 package cn.fire.common.web.lock.impl;
 
-import cn.fire.common.web.lock.DistributedLock;
+import cn.fire.common.web.lock.IDistributedLock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  * @Date: 2020/9/17 11:20
  */
 //TODO zookeeper distributed lock
-public class ZookeeperDistributedLock implements DistributedLock {
+public class ZKDistributedLock implements IDistributedLock {
 
     @Override
     public <T> T lock(String key, Supplier<T> success, Supplier<T> failure) {

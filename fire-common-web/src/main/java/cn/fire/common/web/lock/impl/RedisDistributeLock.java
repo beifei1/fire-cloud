@@ -1,6 +1,6 @@
 package cn.fire.common.web.lock.impl;
 
-import cn.fire.common.web.lock.DistributedLock;
+import cn.fire.common.web.lock.IDistributedLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 @Primary
 @Component
 @ConditionalOnBean(RedissonClient.class)
-public class RedisDistributeLock implements DistributedLock {
+public class RedisDistributeLock implements IDistributedLock {
 
     @Autowired
     private RedissonClient redissonClient;
@@ -30,6 +30,8 @@ public class RedisDistributeLock implements DistributedLock {
             return success.get();
         } catch (IllegalStateException e) {
             return failure.get();
+        } finally {
+            unLock(key);
         }
     }
 
@@ -40,20 +42,26 @@ public class RedisDistributeLock implements DistributedLock {
             return success.get();
         } catch (IllegalStateException e) {
             return failure.get();
+        } finally {
+            unLock(key);
         }
     }
 
     @Override
     public <T> T tryLock(String key, Supplier<T> success, Supplier<T> failure) {
-        Boolean bool = redissonClient.getLock(key).tryLock();
-        return bool ? success.get() : failure.get();
+        try {
+            Boolean bool = redissonClient.getLock(key).tryLock();
+            return bool ? success.get() : failure.get();
+        } finally {
+            unLock(key);
+        }
     }
 
 
     @Override
     public <T> T tryLock(String key, TimeUnit timeUnit, int waitTime, int leaseTime, Supplier<T> success, Supplier<T> failure) {
         try {
-            Boolean bool = redissonClient.getLock(key).tryLock(waitTime,leaseTime, timeUnit);
+            Boolean bool = redissonClient.getLock(key).tryLock(waitTime, leaseTime, timeUnit);
             return bool ? success.get() : failure.get();
         } catch (InterruptedException e) {
             return failure.get();
@@ -67,6 +75,8 @@ public class RedisDistributeLock implements DistributedLock {
             return bool ? success.get() : failure.get();
         } catch (InterruptedException e) {
             return failure.get();
+        } finally {
+            unLock(key);
         }
     }
 

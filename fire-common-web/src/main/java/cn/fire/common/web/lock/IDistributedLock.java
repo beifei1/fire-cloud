@@ -8,7 +8,7 @@ import java.util.function.Supplier;
  * @Date: 2020/9/17 11:00
  */
 
-public interface DistributedLock {
+public interface IDistributedLock {
 
     <T> T lock(String key, Supplier<T> success, Supplier<T> failure);
 
