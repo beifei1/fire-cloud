@@ -8,7 +8,7 @@ import java.util.function.Supplier;
  * @Date: 2020/9/17 11:00
  */
 
-public interface IDistributedLock {
+public interface DistributedLock {
 
     /**
      * 加锁 逻辑处理不带返回值，用Runnable传递逻辑

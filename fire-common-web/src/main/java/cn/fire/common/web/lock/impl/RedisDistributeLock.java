@@ -1,6 +1,6 @@
 package cn.fire.common.web.lock.impl;
 
-import cn.fire.common.web.lock.IDistributedLock;
+import cn.fire.common.web.lock.DistributedLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 @Primary
 @Component
 @ConditionalOnBean(RedissonClient.class)
-public class RedisDistributeLock implements IDistributedLock {
+public class RedisDistributeLock implements DistributedLock {
 
     @Autowired
     private RedissonClient redissonClient;
