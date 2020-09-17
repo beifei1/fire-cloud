@@ -24,6 +24,75 @@ public class RedisDistributeLock implements IDistributedLock {
     private RedissonClient redissonClient;
 
     @Override
+    public void lock(String key, Runnable success, Runnable failure) {
+        try {
+            redissonClient.getLock(key).lock();
+            success.run();
+        } catch (IllegalStateException e) {
+            failure.run();
+        } finally {
+            unLock(key);
+        }
+    }
+
+    @Override
+    public void lock(String key, TimeUnit timeUnit, int leaseTime, Runnable success, Runnable failure) {
+        try {
+            redissonClient.getLock(key).lock(leaseTime, timeUnit);
+            success.run();
+        } catch (IllegalStateException e) {
+            failure.run();
+        } finally {
+            unLock(key);
+        }
+    }
+
+    @Override
+    public void tryLock(String key, Runnable success, Runnable failure) {
+        try {
+            Boolean bool = redissonClient.getLock(key).tryLock();
+            if (bool) {
+                success.run();
+            } else {
+                failure.run();
+            }
+
+        } finally {
+            unLock(key);
+        }
+    }
+
+    @Override
+    public void tryLock(String key, TimeUnit timeUnit, int waitTime, int leaseTime, Runnable success, Runnable failure) {
+        try {
+            Boolean bool = redissonClient.getLock(key).tryLock(waitTime, leaseTime, timeUnit);
+            if (bool) {
+                success.run();
+            } else {
+                failure.run();
+            }
+        } catch (InterruptedException e) {
+            failure.run();
+        }
+    }
+
+    @Override
+    public void tryLock(String key, TimeUnit timeUnit, int waitTime, Runnable success, Runnable failure) {
+        try {
+            Boolean bool = redissonClient.getLock(key).tryLock(waitTime, timeUnit);
+            if (bool) {
+                success.run();
+            } else {
+                failure.run();
+            }
+        } catch (InterruptedException e) {
+            failure.run();
+        } finally {
+            unLock(key);
+        }
+    }
+
+    @Override
     public <T> T lock(String key, Supplier<T> success, Supplier<T> failure) {
         try {
             redissonClient.getLock(key).lock();

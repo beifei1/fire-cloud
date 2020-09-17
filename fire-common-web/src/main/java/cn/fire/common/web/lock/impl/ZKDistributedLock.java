@@ -13,6 +13,31 @@ import java.util.function.Supplier;
 public class ZKDistributedLock implements IDistributedLock {
 
     @Override
+    public void lock(String key, Runnable success, Runnable failure) {
+
+    }
+
+    @Override
+    public void lock(String key, TimeUnit timeUnit, int leaseTime, Runnable success, Runnable failure) {
+
+    }
+
+    @Override
+    public void tryLock(String key, Runnable success, Runnable failure) {
+
+    }
+
+    @Override
+    public void tryLock(String key, TimeUnit timeUnit, int waitTime, int leaseTime, Runnable success, Runnable failure) {
+
+    }
+
+    @Override
+    public void tryLock(String key, TimeUnit timeUnit, int waitTime, Runnable success, Runnable failure) {
+
+    }
+
+    @Override
     public <T> T lock(String key, Supplier<T> success, Supplier<T> failure) {
         return null;
     }
