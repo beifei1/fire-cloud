@@ -10,7 +10,9 @@
 
 **Java SDK:** 1.8 +
 
-**Intellij IDEA**  [链接](https://www.jetbrains.com/)
+**Intellij IDEA** [官网](https://www.jetbrains.com/) 
+
+Idea对于开源项目也有免费的LICENSE支持。如果你有开源项目，并且符合相关条件，可以到Jetbrains官网申请免费的全家桶授权码
 
 ## 技术选型：
 
