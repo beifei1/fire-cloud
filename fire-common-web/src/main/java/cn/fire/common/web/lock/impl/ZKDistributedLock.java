@@ -6,10 +6,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
+ * TODO 实现zookeeper版的分布式锁
  * @Author: wangzc
  * @Date: 2020/9/17 11:20
  */
-//TODO zookeeper distributed lock
 public class ZKDistributedLock implements IDistributedLock {
 
     @Override
