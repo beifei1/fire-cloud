@@ -73,7 +73,7 @@
 - 使用ResponseBodyAdvice处理响应，减少重复的XX.OK(T)等类似操作
 - 使用Jackson处理LocalDateTime响应为时间戳，前后端通过时间戳进行时间传输
 - 使用ShardingSphere分库分表
-- 封装DistributedLock用于拓展不同实现，见RedisDistributedLock实现
+- 使用DistributedLock接口用于拓展不同分布式锁实现，见RedisDistributedLock，基于Redisson
 - 利用Mybatis-Plus快速实现乐观锁，逻辑删除
 - 使用Spring boot admin监控微服务应用
 - 利用ControllerAdvince实现Producer->Consumer->前端的自动业务及系统异常传递
