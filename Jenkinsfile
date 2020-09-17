@@ -1,18 +1,22 @@
 pipeline {
     agent any
 
+//这里是触发器，可以根据需要自己选择，包括定时触发，定时去SCM拉取更新，由更新触发，或者由上游任务触发，或者由Gitlab主动调用jenkins暴漏的webhook触发
 //    triggers {
 //       cron('0 0 * * *')
 //       pollSCM('H/1 0 * * *')
 //       upstream(upstreamProjects: 'fire-user-provider,fire-user-consumer', threshold: hudson.model.Result.SUCCESS)
 //       gitlab(triggerOnPush: true, triggerOnMergeRequest: false, branchFilterType: 'All')
 //    }
+    //执行Pipeline需要的工具，需要配合Jenkins配置使用
     tools {
         maven 'maven-3.10.0'
         jdk 'JDK8'
     }
+    //保留的构建个数，对应配置里的那个参数，你懂的
     options { buildDiscarder(logRotator(numToKeepStr: '3'))}
 
+    //环境变量
     environment {
         _github_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
         _deploy_to_nexus = "${params.deploy_nexus}"
@@ -20,6 +24,7 @@ pipeline {
         _build_state_notify_to = "wangzhichao03@tojoy.com"
     }
 
+    //参数化构建,效果就是在点击构建按钮后，后增加一步填写参数的步骤，脚本根据参数设置进行构建
     parameters {
         choice(name:'deploy_nexus',choices:'False\nTrue',description:'是否发布制品到Nexus')
         choice(name:'node_env',choices:'dev\ntest\nprod',description:'机器环境')
@@ -29,6 +34,7 @@ pipeline {
         string(defaultValue: 'master', name: 'repo_branch', description: 'Git 分支')
     }
 
+    //从git上拉取代码, credentialsId在jenkins的凭证管理里获取
     stages {
         stage('同步代码') {
             steps {
@@ -38,9 +44,9 @@ pipeline {
             }
         }
 
-//        stage('代码质量检查') {steps {echo '配合sonar'} }
-
+        //集成了配置文件管理，进行应用打包
         stage ("构建打包") {
+            //when不能直接调用参数化构建里定义的参数，需要在环境变量中接收一下
             when {equals expected: 'False', actual: _deploy_to_nexus}
             steps {
                configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
@@ -49,6 +55,7 @@ pipeline {
             }
         }
 
+        //这里根据选择的参数是仅打包还是同时发布到私服
         stage ("构建打包发布") {
             when {equals expected: 'True', actual: _deploy_to_nexus}
             steps {;
@@ -57,10 +64,8 @@ pipeline {
                }
             }
         }
-//        stage('单元测试') {steps {echo '配合junit'} }
-//        stage('覆盖率检测') {steps {echo '配合jacoco'} }
-//        stage('性能测试') {steps {echo '配合jmeter'}}
 
+        //集成ansiable进行应用部署
         stage('应用部署') {
             steps {
                 ansiblePlaybook(playbook: "${env.WORKSPACE}/deploy/playbook/${params.project_name}.yml", inventory: "${env.WORKSPACE}/deploy/inventory/${params.node_env}/hosts", credentialsId: '89533194-9774-4444-b42b-c9362a308b1b')
@@ -69,7 +74,7 @@ pipeline {
     }
     post {
         always {
-            cleanWs()
+            cleanWs()  //jenkinsfile自带的函数，每次构建后清理构建空间
         }
         failure {
             sendNotifyEmail("失败");

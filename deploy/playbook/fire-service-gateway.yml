@@ -1,7 +1,7 @@
 ---
-- hosts: fire-service-gateway
-  remote_user: root
-  vars:
+- hosts: fire-service-gateway  #这里对应的hosts文件的机器组
+  remote_user: root #远程机器执行命令的用户
+  vars:  #自定义参数
     project_name: fire-service-gateway
     server_port: 6020
   tasks:
