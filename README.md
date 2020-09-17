@@ -10,6 +10,8 @@
 
 **Java SDK:** 1.8 +
 
+开发工具需要安装lombok插件
+
 **Intellij IDEA** [官网](https://www.jetbrains.com/) 
 
 Jetbrains对于开源项目也有免费的LICENSE支持。如果你有开源项目，并且符合相关条件，可以到官网申请免费的全家桶授权码
