@@ -4,7 +4,7 @@
 
 ## 项目简介：
 
-基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架
+基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不对或者不合理的地方，欢迎随时指出。给我发邮件或者提issue都可以。也希望对你有所帮助
 
 ## 运行环境：
 
@@ -61,35 +61,27 @@
 
 ## 快速预览
 
-#### CI/CD：
+```
+- 利用Jenkinsfile，Ansiable，Gitlab等实现持续集成与交付
+- Nacos Config使用多配置文件
+- 在Jwt中加入自定义元信息
+- OAuth2增加自定义授权模式
+- 网关鉴权后，传递用户信息，并在微服务中通过Spring增强注入用户信息
+- 通过OpenFeign提供的继承特性减少重复编码
+- Spring Cloud Gateway 统一管理微服务API文档
+- Spring Cloud Gateway作为ResourceServer统一认证及权限控制，保护下游微服务应用
+- 使用ResponseBodyAdvice处理响应，减少重复的XX.OK(T)等类似操作
+- 使用Jackson处理LocalDateTime响应为时间戳，前后端通过时间戳进行时间传输
+- 使用ShardingSphere分库分表
+- 封装DistributedLock用于拓展不同实现，见RedisDistributedLock实现
+- 利用Mybatis-Plus快速实现乐观锁，逻辑删除
+- 使用Spring boot admin监控微服务应用
+- 利用ControllerAdvince实现Producer->Consumer->前端的自动业务及系统异常传递
+- 通过配置中心实现网关白名单控制
+- 通过timestamp, nonce等实现简单的防重放
+  持续更新中...
 
-利用Jenkinsfile，Ansiable，Gitlab等实现持续集成与交付 [查看](https://github.com/beifei1/fire-cloud/tree/master/deploy)
-
-#### Spring Cloud ：
-
-Nacos Config使用多配置文件 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/resources/bootstrap.yml)
-
-在Jwt中加入自定义用户信息 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-service-oauth/src/main/java/cn/fire/oauth/config/AuthServerConfig.java)
-
-OAuth2增加自定义授权模式 [查看](https://github.com/beifei1/fire-cloud/tree/master/fire-service-oauth/src/main/java/cn/fire/oauth/granter)
-
-在微服务中快捷使用用户信息 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-consumer/src/main/java/cn/fire/user/controller/UserController.java)
-
-通过OpenFeign提供的继承特性减少冗余代码 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-producer/src/main/java/cn/fire/user/controller/UserController.java)
-
-Spring Cloud Gateway 统一管理微服务API文档 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-service-gateway/src/main/java/cn/fire/gateway/config/SwaggerConfig.java)
-
-Spring Cloud Gateway2.0网关统一认证授权 [查看](https://github.com/beifei1/fire-cloud/tree/master/fire-service-gateway)
-
-#### Spring MVC
-
-使用ResponseBodyAdvice处理响应，减少重复编码 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-common-web/src/main/java/cn/fire/common/web/handler/GlobalResultBodyHandler.java)
-
-使用Jackson处理LocalDateTime响应为时间戳 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-common-web/src/main/java/cn/fire/common/web/config/GlobalJacksonConfig.java)
-
-#### 数据源
-
-使用ShardingSphere分库分表 [查看](https://github.com/beifei1/fire-cloud/blob/master/fire-module-user/fire-user-producer/src/main/resources/bootstrap.yml)
+```
 
 ## Jenkinsfile及Jenkins插件
 
