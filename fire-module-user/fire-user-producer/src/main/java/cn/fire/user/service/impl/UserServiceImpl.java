@@ -1,6 +1,6 @@
 package cn.fire.user.service.impl;
 
-import cn.fire.common.web.redis.Redis;
+import cn.fire.common.web.redis.RedisUtil;
 import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.RoleDO;
 import cn.fire.user.api.pojo.entity.UserDO;
@@ -43,7 +43,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
     private UserRoleMapper userRoleMapper;
 
     @Autowired
-    private Redis redis;
+    private RedisUtil redis;
 
     @Override
     @Cacheable(key = "#userId")
