@@ -11,18 +11,19 @@ import java.util.function.Supplier;
  */
 //TODO zookeeper distributed lock
 public class ZookeeperDistributedLock implements DistributedLock {
+
     @Override
     public <T> T lock(String key, Supplier<T> success, Supplier<T> failure) {
         return null;
     }
 
     @Override
-    public <T> T lock(String key, TimeUnit unit, int leaseTime, Supplier<T> success, Supplier<T> failure) {
+    public <T> T lock(String key, TimeUnit timeUnit, int leaseTime, Supplier<T> success, Supplier<T> failure) {
         return null;
     }
 
     @Override
-    public <T> T tryLock(String key, TimeUnit timeUnit, int waitTime, Supplier<T> success, Supplier<T> failure) {
+    public <T> T tryLock(String key, Supplier<T> success, Supplier<T> failure) {
         return null;
     }
 
@@ -32,7 +33,12 @@ public class ZookeeperDistributedLock implements DistributedLock {
     }
 
     @Override
-    public <T> T unLock(String key) {
+    public <T> T tryLock(String key, TimeUnit timeUnit, int waitTime, Supplier<T> success, Supplier<T> failure) {
         return null;
+    }
+
+    @Override
+    public void unLock(String key) {
+
     }
 }
