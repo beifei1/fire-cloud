@@ -10,11 +10,9 @@
 
 **Java SDK:** 1.8 +
 
-开发工具需要安装lombok插件
-
 **Intellij IDEA** [官网](https://www.jetbrains.com/) 
 
-Jetbrains对于开源项目也有免费的LICENSE支持。如果你有开源项目并且符合相关条件，可以到官网申请免费的授权码
+###### 开发工具需要安装Lombok插件。Jetbrains对于开源项目也有免费的LICENSE支持。可以看下具体的要求，申请免费的授权码
 
 ## 技术选型：
 
