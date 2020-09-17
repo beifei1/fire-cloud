@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 public interface IDistributedLock {
 
     /**
-     * 加锁 逻辑处理不带返回值
+     * 加锁 逻辑处理不带返回值，用Runnable传递逻辑
      * @param key
      * @param success 加锁成功逻辑
      * @param failure 加锁失败逻辑
@@ -19,7 +19,7 @@ public interface IDistributedLock {
     void lock(String key, Runnable success, Runnable failure);
 
     /**
-     * 加锁 逻辑处理不带返回值
+     * 加锁 逻辑处理不带返回值，用Runnable传递逻辑
      * @param key
      * @param timeUnit
      * @param leaseTime 锁失效时间
@@ -29,7 +29,7 @@ public interface IDistributedLock {
     void lock(String key, TimeUnit timeUnit, int leaseTime, Runnable success, Runnable failure);
 
     /**
-     * 获取锁 逻辑处理不带返回值
+     * 获取锁 逻辑处理不带返回值，用Runnable传递逻辑
      * @param key
      * @param success 成功逻辑
      * @param failure 失败逻辑
@@ -37,7 +37,7 @@ public interface IDistributedLock {
     void tryLock(String key, Runnable success, Runnable failure);
 
     /**
-     * 获取锁 不带返回值
+     * 获取锁 不带返回值，用Runnable传递逻辑
      * @param key
      * @param timeUnit
      * @param waitTime 加锁等待时长
@@ -48,7 +48,7 @@ public interface IDistributedLock {
     void tryLock(String key, TimeUnit timeUnit, int waitTime, int leaseTime, Runnable success, Runnable failure);
 
     /**
-     * 获取锁 不带返回值
+     * 获取锁 不带返回值，用Runnable传递逻辑
      * @param key
      * @param timeUnit
      * @param waitTime 加锁等待时长
