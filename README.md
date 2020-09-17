@@ -12,7 +12,7 @@
 
 **Intellij IDEA** [官网](https://www.jetbrains.com/) 
 
-###### 开发工具需要安装Lombok插件。Jetbrains对于开源项目也有免费的LICENSE支持。可以看下具体的要求，申请免费的授权码
+###### 开发工具需要安装Lombok插件
 
 ## 技术选型：
 
