@@ -10,7 +10,7 @@
 
 **Java SDK:** 1.8 +
 
-**Maven：**3.10 + 
+**Maven**：3.10 + 
 
 **Intellij IDEA** [官网](https://www.jetbrains.com/) 
 
