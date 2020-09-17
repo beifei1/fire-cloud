@@ -6,11 +6,11 @@
 
 基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不对或者不合理的地方，欢迎随时指出。给我发邮件或者提issue都可以,也希望对你有所帮助
 
-## 运行环境：
+## 开发环境：
 
 **Java SDK:** 1.8 +
 
-**Maven:** 3.10.0
+**Intellij IDEA**  [链接](https://www.jetbrains.com/)
 
 ## 技术选型：
 
