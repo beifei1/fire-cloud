@@ -4,7 +4,7 @@
 
 ## 项目简介：
 
-基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不对或者不合理的地方，欢迎随时指出。给我发邮件或者提issue都可以,也希望对你有所帮助
+基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不合理或需要讨论的地方，欢迎随时指出。给我发邮件或者提issue都可以,也希望对你有所帮助
 
 ## 开发环境：
 
