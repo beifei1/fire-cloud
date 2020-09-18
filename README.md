@@ -73,6 +73,7 @@
 - 网关鉴权后，向下游服务传递用户信息，并在微服务中API中注入
 - 通过OpenFeign提供的继承特性减少重复编码
 - Spring Cloud Gateway统一管理微服务API文档
+- 使用knife4j提供的API增强在文档中进行接口排序, 标注常用信息等
 - Spring Cloud Gateway作为ResourceServer统一认证及权限控制，保护下游微服务应用
 - 使用ResponseBodyAdvice处理响应，减少重复的Resp.ok(T)等类似操作
 - 使用Jackson处理LocalDateTime响应为时间戳，前后端通过时间戳进行时间传输
@@ -82,7 +83,7 @@
 - 使用Spring Boot Admin监控微服务应用
 - 利用ControllerAdvice实现Producer->Consumer->前端的自动业务及系统异常传递
 - 通过配置中心实现网关白名单控制
-- 通过timestamp, nonce等实现简单的防重放
+- 通过timestamp, nonce等在网关实现简单的防重放
   持续更新中...
 
 ```
