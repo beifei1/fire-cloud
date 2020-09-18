@@ -7,6 +7,6 @@
 [fire-user-producer]
 119.45.213.212
 
-[fire-service-oauth]
+[fire-service-uaa]
 119.45.213.212
 192.144.176.31

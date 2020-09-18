@@ -1,5 +1,5 @@
 ---
-- hosts: fire-service-oauth
+- hosts: fire-service-uaa
   remote_user: root
   vars:
     project_name: fire-service-oauth

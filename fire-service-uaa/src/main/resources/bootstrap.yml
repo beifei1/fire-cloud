@@ -1,6 +1,6 @@
 spring:
   application:
-    name: fire-service-oauth
+    name: fire-service-uaa
   cloud:
     nacos:
       server-addr: http://192.144.176.31:80

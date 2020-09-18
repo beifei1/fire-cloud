@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>cn.fire</groupId>
-    <artifactId>fire-service-oauth</artifactId>
+    <artifactId>fire-service-uaa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fire-oauth</name>
-    <description>oauth server for fire project</description>
+    <name>fire-uaa</name>
+    <description>uaa for fire project</description>
 
     <properties>
         <java.version>1.8</java.version>

@@ -55,7 +55,7 @@
 |                       |              |      |
 | --------------------- | ------------ | ---- |
 | fire-service-gateway          | 网关服务     | ✔    |
-| fire-service-oauth            | 授权服务     | ✔    |
+| fire-service-uaa            | 授权服务     | ✔    |
 | fire-user-consumer    | 用户对外服务 | ✔    |
 | fire-user-producer    | 用户基础服务 | ✔    |
 | fire-admin-job              | 任务调度管理     |  ✔   |
