@@ -6,6 +6,8 @@
 
 基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不合理或需要讨论的地方，欢迎随时指出。给我发邮件或者提issue都可以,也希望对你有所帮助
 
+Nacos配置中心: [http://192.144.176.31/nacos](http://192.144.176.31/nacos)  nacos/nacos666666
+
 ## 开发环境：
 
 **Java SDK:** 1.8 +
