@@ -8,7 +8,7 @@
 
 Nacos: [http://192.144.176.31/nacos](http://192.144.176.31/nacos)  nacos/nacos666666
 
-Docs: http://Gateway:port/doc.html
+Docs: http://gateway:port/doc.html
 
 ## 开发环境：
 
