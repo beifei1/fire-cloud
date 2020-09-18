@@ -13,7 +13,7 @@ pipeline {
         maven 'maven-3.10.0'
         jdk 'JDK8'
     }
-    //保留的构建个数，对应手工配置里的那个参数，你懂的
+    //保留的构建个数，对应手工配置里的那个参数
     options { buildDiscarder(logRotator(numToKeepStr: '3'))}
 
     //环境变量
