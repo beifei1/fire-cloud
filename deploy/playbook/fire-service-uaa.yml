@@ -2,7 +2,7 @@
 - hosts: fire-service-uaa
   remote_user: root
   vars:
-    project_name: fire-service-oauth
+    project_name: fire-service-uaa
     server_port: 6010
   tasks:
     - include: ../tasks/deploy.yml
