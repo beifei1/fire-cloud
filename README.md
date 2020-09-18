@@ -74,6 +74,7 @@
 - 通过OpenFeign提供的继承特性减少重复编码
 - Spring Cloud Gateway统一管理微服务API文档
 - 使用knife4j提供的API增强在文档中进行接口排序, 标注常用信息等
+- 使用knife4j自动加载自定义业务异常码
 - Spring Cloud Gateway作为ResourceServer统一认证及权限控制，保护下游微服务应用
 - 使用ResponseBodyAdvice处理响应，减少重复的Resp.ok(T)等类似操作
 - 使用Jackson处理LocalDateTime响应为时间戳，前后端通过时间戳进行时间传输
