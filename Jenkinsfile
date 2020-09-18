@@ -1,19 +1,19 @@
 pipeline {
     agent any
 
-//这里是触发器，可以根据需要自己选择，包括定时触发，定时去SCM拉取更新，由更新触发，或者由上游任务触发，或者由Gitlab主动调用jenkins暴漏的webhook触发
+      //触发器，可以根据需要自己选择，包括定时触发，定时去SCM拉取更新，由更新触发，或者由上游任务触发，或者由Gitlab主动调用jenkins暴漏的webhook触发
 //    triggers {
 //       cron('0 0 * * *')
 //       pollSCM('H/1 0 * * *')
 //       upstream(upstreamProjects: 'fire-user-provider,fire-user-consumer', threshold: hudson.model.Result.SUCCESS)
 //       gitlab(triggerOnPush: true, triggerOnMergeRequest: false, branchFilterType: 'All')
 //    }
-    //执行Pipeline需要的工具，需要配合Jenkins配置使用
+    //执行Pipeline需要的工具，需要配合Jenkins全局工具配置使用
     tools {
         maven 'maven-3.10.0'
         jdk 'JDK8'
     }
-    //保留的构建个数，对应手工配置里的那个参数
+    //保留的构建个数，对应手工配置里的参数
     options { buildDiscarder(logRotator(numToKeepStr: '3'))}
 
     //环境变量
@@ -85,7 +85,7 @@ pipeline {
     }
 }
 
-//定义发送邮件脚本
+//发送通知邮件
 def sendNotifyEmail(subjectKeyword) {
     emailext (
          body: '''${FILE, path="/var/lib/jenkins/notify.html"}''',
