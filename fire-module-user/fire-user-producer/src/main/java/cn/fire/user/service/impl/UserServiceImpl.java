@@ -1,5 +1,6 @@
 package cn.fire.user.service.impl;
 
+import cn.fire.common.web.lock.DistributedLock;
 import cn.fire.common.web.redis.RedisUtil;
 import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.RoleDO;
@@ -13,6 +14,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -29,6 +32,7 @@ import java.util.stream.Collectors;
  * @Date: 2020/7/31 11:17
  */
 
+@Slf4j
 @Service
 @CacheConfig(cacheNames = "UserCache")
 public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements IUserService {
@@ -44,6 +48,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
 
     @Autowired
     private RedisUtil redis;
+
+    @Autowired
+    private DistributedLock distributedLock;
 
     @Override
     @Cacheable(key = "#userId")
@@ -70,6 +77,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,UserDO> implements I
 
     @Override
     public UserDO getByMobileAndCode(String mobile, String smsCode) throws UserException {
+
+        //使用分布式锁
+        String currentCode = distributedLock.lock("sms" + mobile, TimeUnit.SECONDS, 500, () -> smsCode, ()-> StringUtils.EMPTY);
+
+        log.info("=======================================================:{}", currentCode);
+
         return userMapper.selectOne(new QueryWrapper<UserDO>().eq("mobile",mobile));
     }
 
