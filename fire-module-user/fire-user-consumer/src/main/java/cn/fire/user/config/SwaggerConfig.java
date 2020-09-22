@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
 /**
@@ -19,16 +18,16 @@ import java.util.Arrays;
 @Configuration
 public class SwaggerConfig extends AbstractSwaggerConfig {
 
-    @PostConstruct
-    void init () {
+    static {
         Arrays.stream(UserException.ErrorEnum.values()).forEach(em -> {
             codes.add(new ResponseMessageBuilder().code(em.getCode()).message(em.getDescription()).build());
         });
     }
 
+
     public SwaggerConfig() {
-//        super("cn.fire.user.controller","用户服务文档","用户微服务文档", codes);
         super("cn.fire.user.controller","用户服务文档","用户微服务文档","http://api.xxx.com/user", codes);
+//        super("cn.fire.user.controller","用户服务文档","用户微服务文档", codes);
 //        super("cn.fire.user.controller", "用户服务文档", "用户微服务文档", "http://api.xxx.com/user", new Contact("beifei","www.beifei.com","xxx@beifei.com"), codes);
     }
 }
