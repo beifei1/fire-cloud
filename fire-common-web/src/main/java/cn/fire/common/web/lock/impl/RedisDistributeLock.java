@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 /**
  * redis 分布式锁实现
- * 用Runnable和 Supplier来传递执行成功或者失败的逻辑，此处的Runnable和多线程没关系,只是做为一个FunctionalInterface执行逻辑
+ * 用Runnable和 Supplier来传递执行成功或者失败的逻辑，此处的Runnable和多线程没关系
  * @Author: wangzc
  * @Date: 2020/9/17 11:11
  */
