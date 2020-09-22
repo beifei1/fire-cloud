@@ -12,6 +12,8 @@ import java.util.List;
 
 
 /**
+ * 使用OpenFeign提供的继承特性，实现FeignClient接口，减少重复编码
+ * 
  * @Author: wangzc
  * @Date: 2020/7/31 11:13
  */

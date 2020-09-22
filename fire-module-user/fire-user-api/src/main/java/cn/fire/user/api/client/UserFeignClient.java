@@ -11,31 +11,31 @@ import java.util.*;
  * @Date: 2020/7/31 10:53
  */
 
-@RequestMapping
+@RequestMapping("/producer/user")
 public interface UserFeignClient {
 
 
-    @RequestMapping("service/user/getById")
+    @RequestMapping("/getById")
     UserDO getById(@RequestParam(value = "userId") Long userId);
 
 
-    @RequestMapping("service/user/getByMobile")
+    @RequestMapping("/getByMobile")
     UserDO getByMobile(@RequestParam(value = "mobile") String mobile);
 
 
-    @RequestMapping("service/user/deleteByUserId")
+    @RequestMapping("/deleteByUserId")
     Boolean deleteByUserId(@RequestParam("userId") Long userId);
 
 
-    @RequestMapping("service/user/queryByMobileAndCode")
+    @RequestMapping("/queryByMobileAndCode")
     UserDO getByMobileAndCode(@RequestParam("mobile") String mobile,@RequestParam("smsCode") String smsCode);
 
 
-    @RequestMapping("service/user/queryByMobileAndPassword")
+    @RequestMapping("/queryByMobileAndPassword")
     UserDO getByMobileAndPassword(@RequestParam("mobile") String mobile,@RequestParam("password") String password);
 
 
-    @RequestMapping("service/user/getUserRoleByUserId")
+    @RequestMapping("/getUserRoleByUserId")
     List<RoleDO> getRoleByUserId(@RequestParam("userId") Long userId);
 
 }
