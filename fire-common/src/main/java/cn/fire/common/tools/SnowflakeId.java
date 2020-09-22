@@ -12,6 +12,11 @@ package cn.fire.common.tools;
  * 加起来刚好64位，为一个Long型。<br>
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。
  */
+
+/**
+ * twitter雪花id算法java实现，详见 https://www.cnblogs.com/h--d/p/11342741.html
+ * 构造函数提供了不同机器及数据中心用来构造雪花Id，可将配置写入到配置中心进行管理
+ */
 public class SnowflakeId {
 
     /**
