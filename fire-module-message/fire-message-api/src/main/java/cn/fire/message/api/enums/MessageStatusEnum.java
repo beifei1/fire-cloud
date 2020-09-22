@@ -7,7 +7,9 @@ package cn.fire.message.api.enums;
 
 public enum  MessageStatusEnum {
 
-    WAITING_CONFIRM("等待确认"), SENDING("发送中");
+    WAITING_CONFIRM("等待确认"),
+
+    SENDING("发送中");
 
     private String desc;
 
