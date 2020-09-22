@@ -63,7 +63,7 @@ Docs: http://gateway:port/doc.html
 | fire-user-consumer    | 用户对外服务 | ✔    |
 | fire-user-producer    | 用户基础服务 | ✔    |
 | fire-admin-job              | 任务调度管理     |  ✔   |
-| fire-admin-monitor              | 应用健康监控     |  ✔   |
+| fire-admin-boot              | 应用监控     |  ✔   |
 | fire-message-consumer | 消息服务     | -    |
 | fire-message-producer | 消息基础服务 | -    |
 
