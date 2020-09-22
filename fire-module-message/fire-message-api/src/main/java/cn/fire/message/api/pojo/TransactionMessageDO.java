@@ -3,9 +3,6 @@ package cn.fire.message.api.pojo;
 import cn.fire.common.core.BaseDO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.time.LocalDateTime;
-
 /**
  * @Author: wangzc
  * @Date: 2020/9/22 10:38
@@ -23,11 +20,6 @@ public class TransactionMessageDO extends BaseDO {
 	 * 创建人
 	 */
 	private String creator;
-
-	/**
-	 * 编辑时间
-	 */
-	private LocalDateTime editTime;
 
 	/**
 	 * 消息ID
