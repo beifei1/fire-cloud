@@ -6,6 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 参数自动注入注解
+ * @see cn.fire.common.web.handler.GlobalUserProfileResolver
  * @Author: wangzc
  * @Date: 2020/8/26 9:39
  */

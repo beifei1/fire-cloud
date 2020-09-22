@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 
 /**
  * 处理Controller Response使用R自动包裹响应对象
- *
+ * @see cn.fire.common.web.handler.GlobalResultBodyHandler
  * @Author: wangzc
  * @Date: 2020/9/8 9:29
  */

@@ -14,6 +14,7 @@ import java.lang.annotation.Annotation;
 import java.util.Objects;
 
 /**
+ * ResponseBody增强, 在Controller中不用再使用Resp.ok(T)等操作，减少重复编码
  * @Author: wangzc
  * @Date: 2020/9/8 9:32
  */
