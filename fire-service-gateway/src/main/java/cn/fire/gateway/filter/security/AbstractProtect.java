@@ -1,6 +1,8 @@
 package cn.fire.gateway.filter.security;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
@@ -11,13 +13,15 @@ import java.util.List;
  * @Date: 2020/9/25 11:04
  */
 
-@AllArgsConstructor
+@Data
 public abstract class AbstractProtect {
 
-    private final ServerHttpRequest httpRequest;
-    private final String timestamp;
-    private final String nonce;
-    private final String sign;
+    private ServerHttpRequest httpRequest;
+    private String timestamp;
+    private String nonce;
+    private String sign;
+
+    public AbstractProtect() {}
 
     protected abstract List<HttpMethod> supportMethods();
 

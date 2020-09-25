@@ -2,6 +2,8 @@ package cn.fire.gateway.filter;
 
 import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.response.R;
+import cn.fire.gateway.filter.security.AbstractProtect;
+import cn.fire.gateway.filter.security.consts.Consts;
 import cn.fire.gateway.filter.security.enums.MethodEnum;
 import cn.fire.gateway.util.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -34,11 +36,7 @@ import java.util.Objects;
 @Slf4j
 @Component
 @ConditionalOnProperty(name = "gateway.request.security.enable",havingValue = "true")
-public class SecurityFilter implements GlobalFilter, Ordered {
-
-    private static final String H_TIMESTAMP = "x-fire-timestamp";
-    private static final String H_NONCE = "x-fire-nonce";
-    private static final String H_SIGN = "x-fire-sign";
+public class SecurityFilter implements GlobalFilter, Ordered, Consts {
 
     private RedisUtil redisUtil;
 
@@ -67,9 +65,15 @@ public class SecurityFilter implements GlobalFilter, Ordered {
             }
         }
 
-        Boolean passed = MethodEnum.getObject(request.getMethod()).isPassed();
+        AbstractProtect protect = MethodEnum.getObject(request.getMethod());
+        protect.setHttpRequest(request);
+        protect.setNonce(nonce);
+        protect.setSign(sign);
+        protect.setTimestamp(timestamp);
 
-        if (Objects.isNull(passed) || Boolean.FALSE.equals(passed)) {
+        Boolean bool = protect.isPassed();
+
+        if (Objects.isNull(bool) || Boolean.FALSE.equals(bool)) {
 
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] responseContent = JSONObject.toJSONString(
