@@ -1,7 +1,7 @@
 package cn.fire.user.service.impl;
 
 import cn.fire.common.web.lock.DistributedLock;
-import cn.fire.common.web.redis.RedisUtil;
+import cn.fire.common.web.util.RedisUtil;
 import cn.fire.user.api.exception.UserException;
 import cn.fire.user.api.pojo.entity.RoleDO;
 import cn.fire.user.api.pojo.entity.UserDO;

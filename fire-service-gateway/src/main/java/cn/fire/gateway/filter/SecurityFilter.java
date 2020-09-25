@@ -31,7 +31,7 @@ import java.io.IOException;
 @Slf4j
 @Component
 @ConditionalOnProperty(name = "gateway.request.security.enable",havingValue = "true")
-public class VerificationFilter implements GlobalFilter, Ordered {
+public class SecurityFilter implements GlobalFilter, Ordered {
 
     private static final String H_TIMESTAMP = "x-fire-timestamp";
     private static final String H_NONCE = "x-fire-nonce";

@@ -1,4 +1,4 @@
-package cn.fire.common.web.redis;
+package cn.fire.common.web.util;
 
 import cn.fire.common.web.config.GlobalCacheConfig;
 import lombok.SneakyThrows;
