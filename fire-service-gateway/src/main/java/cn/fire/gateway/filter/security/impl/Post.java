@@ -21,6 +21,6 @@ public class Post extends AbstractProtect implements Consts {
 
     @Override
     protected Boolean verify() {
-        return null;
+        return Boolean.TRUE;
     }
 }

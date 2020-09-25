@@ -93,6 +93,6 @@ public class SecurityFilter implements GlobalFilter, Ordered, Consts {
 
     @Override
     public int getOrder() {
-        return 0;
+        return Ordered.HIGHEST_PRECEDENCE;
     }
 }
