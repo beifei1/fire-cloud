@@ -16,15 +16,15 @@ import org.springframework.http.HttpMethod;
 public enum MethodEnum {
 
     //POST验证逻辑
-    POST(HttpMethod.POST, SpringUtil.getBean(POST.class)),
+    POST(HttpMethod.POST, SpringUtil.getBean(Post.class)),
     //GET验证逻辑
-    GET(HttpMethod.GET,SpringUtil.getBean(GET.class)),
+    GET(HttpMethod.GET,SpringUtil.getBean(Get.class)),
     //OPTIONS验证逻辑
-    OPTIONS(HttpMethod.OPTIONS,SpringUtil.getBean(OPTIONS.class)),
+    OPTIONS(HttpMethod.OPTIONS,SpringUtil.getBean(Options.class)),
     //DELETE验证逻辑
-    DELETE(HttpMethod.DELETE, SpringUtil.getBean(DELETE.class)),
+    DELETE(HttpMethod.DELETE, SpringUtil.getBean(Delete.class)),
     //PUT验证逻辑
-    PUT(HttpMethod.PUT, SpringUtil.getBean(PUT.class));
+    PUT(HttpMethod.PUT, SpringUtil.getBean(Put.class));
 
     private HttpMethod method;
     private AbstractProtect protect;

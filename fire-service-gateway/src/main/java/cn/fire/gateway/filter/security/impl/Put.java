@@ -4,7 +4,6 @@ import cn.fire.gateway.filter.security.AbstractProtect;
 import com.google.common.collect.Lists;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -12,10 +11,10 @@ import java.util.List;
  * @Author: wangzc
  * @Date: 2020/9/25 13:34
  */
-@Component
-public class PUT extends AbstractProtect {
-    public PUT(ServerHttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
-        super(httpRequest, httpMethod, timestamp, nonce, sign);
+public class Put extends AbstractProtect {
+
+    public Put(ServerHttpRequest httpRequest, String timestamp, String nonce, String sign) {
+        super(httpRequest, timestamp, nonce, sign);
     }
 
     @Override

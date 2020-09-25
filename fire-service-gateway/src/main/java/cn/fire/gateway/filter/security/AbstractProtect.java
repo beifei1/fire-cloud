@@ -3,7 +3,6 @@ package cn.fire.gateway.filter.security;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 
 import java.util.List;
 
@@ -16,29 +15,21 @@ import java.util.List;
 public abstract class AbstractProtect {
 
     private final ServerHttpRequest httpRequest;
-    private final HttpMethod httpMethod;
     private final String timestamp;
     private final String nonce;
     private final String sign;
-
-    protected void isSupport() throws HttpRequestMethodNotSupportedException {
-        List<HttpMethod> methods = supportMethods();
-        if (!methods.contains(httpMethod)) {
-            throw new HttpRequestMethodNotSupportedException("不支持的请求方式");
-        }
-    }
 
     protected abstract List<HttpMethod> supportMethods();
 
     protected abstract Boolean verify();
 
+    protected boolean isSupportMethod() {
+        List<HttpMethod> methods = supportMethods();
+        return methods.contains(httpRequest.getMethod());
+    }
+
     public Boolean isPassed() {
-        try {
-            isSupport();
-        } catch (HttpRequestMethodNotSupportedException ex) {
-            return Boolean.FALSE;
-        }
-        return verify();
+        return isSupportMethod() && verify();
     }
 
 }

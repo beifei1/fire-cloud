@@ -4,26 +4,23 @@ import cn.fire.gateway.filter.security.AbstractProtect;
 import com.google.common.collect.Lists;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * @Author: wangzc
- * @Date: 2020/9/25 11:09
+ * @Date: 2020/9/25 11:17
  */
 
-@Component
-public class POST extends AbstractProtect {
+public class Get extends AbstractProtect {
 
-
-    public POST(ServerHttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
-        super(httpRequest, httpMethod, timestamp, nonce, sign);
+    public Get(ServerHttpRequest httpRequest, String timestamp, String nonce, String sign) {
+        super(httpRequest, timestamp, nonce, sign);
     }
 
     @Override
     protected List<HttpMethod> supportMethods() {
-        return Lists.newArrayList(HttpMethod.POST);
+        return Lists.newArrayList(HttpMethod.GET);
     }
 
     @Override

@@ -9,24 +9,22 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Options全部为通过
  * @Author: wangzc
- * @Date: 2020/9/25 11:17
+ * @Date: 2020/9/25 13:33
  */
-@Component
-public class OPTIONS extends AbstractProtect {
+public class Delete extends AbstractProtect {
 
-    public OPTIONS(ServerHttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
-        super(httpRequest, httpMethod, timestamp, nonce, sign);
+    public Delete(ServerHttpRequest httpRequest, String timestamp, String nonce, String sign) {
+        super(httpRequest, timestamp, nonce, sign);
     }
 
     @Override
     protected List<HttpMethod> supportMethods() {
-        return Lists.newArrayList(HttpMethod.OPTIONS);
+        return Lists.newArrayList(HttpMethod.DELETE);
     }
 
     @Override
     protected Boolean verify() {
-        return Boolean.TRUE;
+        return null;
     }
 }
