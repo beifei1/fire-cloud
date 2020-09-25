@@ -22,6 +22,7 @@ public class Post extends AbstractProtect {
 
     @Override
     protected Boolean verify() {
+        log.info(log.getClass().getName());
         log.info("POST 验证逻辑");
         return Boolean.TRUE;
     }
