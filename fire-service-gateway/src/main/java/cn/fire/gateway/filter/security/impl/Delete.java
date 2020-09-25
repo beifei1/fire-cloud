@@ -4,7 +4,6 @@ import cn.fire.gateway.filter.security.AbstractProtect;
 import com.google.common.collect.Lists;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
