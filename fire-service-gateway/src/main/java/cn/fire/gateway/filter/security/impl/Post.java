@@ -3,6 +3,7 @@ package cn.fire.gateway.filter.security.impl;
 import cn.fire.gateway.filter.security.AbstractProtect;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @Date: 2020/9/25 11:09
  */
 
+@Component
 public class Post extends AbstractProtect {
 
 
