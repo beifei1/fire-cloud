@@ -13,10 +13,10 @@ import java.util.List;
  */
 
 @Component
-public class GetProtect extends AbstractProtect {
+public class Get extends AbstractProtect {
 
 
-    public GetProtect(HttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
+    public Get(HttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
         super(httpRequest, httpMethod, timestamp, nonce, sign);
     }
 

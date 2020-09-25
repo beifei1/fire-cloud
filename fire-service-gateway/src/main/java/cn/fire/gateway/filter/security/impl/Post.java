@@ -11,10 +11,10 @@ import java.util.List;
  * @Date: 2020/9/25 11:09
  */
 
-public class PostProtect extends AbstractProtect {
+public class Post extends AbstractProtect {
 
 
-    public PostProtect(HttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
+    public Post(HttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
         super(httpRequest, httpMethod, timestamp, nonce, sign);
     }
 

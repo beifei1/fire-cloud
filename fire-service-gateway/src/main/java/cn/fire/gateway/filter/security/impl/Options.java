@@ -13,9 +13,9 @@ import java.util.List;
  * @Date: 2020/9/25 11:17
  */
 @Component
-public class OptionsProtect extends AbstractProtect {
+public class Options extends AbstractProtect {
 
-    public OptionsProtect(HttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
+    public Options(HttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
         super(httpRequest, httpMethod, timestamp, nonce, sign);
     }
 
