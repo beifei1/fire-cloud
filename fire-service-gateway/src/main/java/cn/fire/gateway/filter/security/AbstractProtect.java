@@ -3,6 +3,7 @@ package cn.fire.gateway.filter.security;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public abstract class AbstractProtect {
 
-    private final HttpRequest httpRequest;
+    private final ServerHttpRequest httpRequest;
     private final HttpMethod httpMethod;
     private final String timestamp;
     private final String nonce;

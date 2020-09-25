@@ -3,7 +3,7 @@ package cn.fire.gateway.filter.security.impl;
 import cn.fire.gateway.filter.security.AbstractProtect;
 import com.google.common.collect.Lists;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpRequest;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 public class OPTIONS extends AbstractProtect {
 
-    public OPTIONS(HttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
+    public OPTIONS(ServerHttpRequest httpRequest, HttpMethod httpMethod, String timestamp, String nonce, String sign) {
         super(httpRequest, httpMethod, timestamp, nonce, sign);
     }
 

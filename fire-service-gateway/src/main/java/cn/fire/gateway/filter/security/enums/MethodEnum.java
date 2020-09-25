@@ -34,7 +34,7 @@ public enum MethodEnum {
         this.protect = protect;
     }
 
-    public static AbstractProtect getOrderBusiness(HttpMethod method) {
+    public static AbstractProtect getObject(HttpMethod method) {
         for (MethodEnum value : MethodEnum.values()) {
             if (value.method == method) {
                 return value.getProtect();

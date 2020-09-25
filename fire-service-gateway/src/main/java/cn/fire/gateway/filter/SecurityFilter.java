@@ -2,6 +2,7 @@ package cn.fire.gateway.filter;
 
 import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.response.R;
+import cn.fire.gateway.filter.security.enums.MethodEnum;
 import cn.fire.gateway.util.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -64,7 +65,7 @@ public class SecurityFilter implements GlobalFilter, Ordered {
             }
         }
 
-        //TODO 补全验证逻辑，参数字典序
+//        Boolean passed = MethodEnum.getObject(request.getMethod()).isPassed();
 
         Flux<DataBuffer> dataBuffer = request.getBody();
         dataBuffer.subscribe(buffer -> {
