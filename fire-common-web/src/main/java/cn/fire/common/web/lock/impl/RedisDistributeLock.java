@@ -3,7 +3,7 @@ package cn.fire.common.web.lock.impl;
 import cn.fire.common.web.lock.DistributedLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
  */
 @Primary
 @Component
-@ConditionalOnBean(RedissonClient.class)
+@ConditionalOnClass(name = "org.springframework.data.redis.connection.RedisConnectionFactory")
 public class RedisDistributeLock implements DistributedLock {
 
     @Autowired
