@@ -43,7 +43,7 @@ public abstract class AbstractProtect {
      *
      * @return
      */
-    public Boolean enable() {
+    public Boolean isPassed() {
         return verify();
     }
 
