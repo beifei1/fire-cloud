@@ -1,4 +1,4 @@
-package cn.fire.common.web.util;
+package cn.fire.gateway.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

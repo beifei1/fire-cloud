@@ -1,17 +1,20 @@
 package cn.fire.gateway.filter.security.impl;
 
 import cn.fire.gateway.filter.security.AbstractProtect;
-import cn.fire.gateway.filter.security.consts.Consts;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
  * @Author: wangzc
  * @Date: 2020/9/25 11:17
  */
-
-public class Get extends AbstractProtect implements Consts {
+@Slf4j
+@Component
+public class Get extends AbstractProtect {
 
     @Override
     protected List<HttpMethod> supportMethods() {
@@ -20,6 +23,7 @@ public class Get extends AbstractProtect implements Consts {
 
     @Override
     protected Boolean verify() {
+        log.info("GET 验证逻辑");
         return null;
     }
 }

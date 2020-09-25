@@ -4,7 +4,6 @@ import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.response.R;
 import cn.fire.gateway.config.IgnoreUriConfig;
 import cn.fire.gateway.filter.security.AbstractProtect;
-import cn.fire.gateway.filter.security.consts.Consts;
 import cn.fire.gateway.filter.security.enums.MethodEnum;
 import cn.fire.gateway.util.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -30,6 +29,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+import static cn.fire.gateway.util.Utils.Security.*;
+
 /**
  * 防重放Gateway过滤器
  * @Author: wangzc
@@ -38,7 +39,7 @@ import java.util.Objects;
 @Slf4j
 @Component
 @ConditionalOnProperty(name = "gateway.request.security.enable",havingValue = "true")
-public class SecurityFilter implements GlobalFilter, Ordered, Consts {
+public class SecurityFilter implements GlobalFilter, Ordered {
 
     private RedisUtil redisUtil;
 

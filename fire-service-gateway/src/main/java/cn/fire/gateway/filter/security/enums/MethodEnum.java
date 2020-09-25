@@ -1,8 +1,8 @@
 package cn.fire.gateway.filter.security.enums;
 
-import cn.fire.common.web.util.SpringUtil;
 import cn.fire.gateway.filter.security.AbstractProtect;
 import cn.fire.gateway.filter.security.impl.*;
+import cn.fire.gateway.util.SpringUtil;
 import lombok.Getter;
 import org.springframework.http.HttpMethod;
 
@@ -20,7 +20,7 @@ public enum MethodEnum {
     //GET验证逻辑
     GET(HttpMethod.GET,SpringUtil.getBean(Get.class)),
     //OPTIONS验证逻辑
-    OPTIONS(HttpMethod.OPTIONS,SpringUtil.getBean(Options.class)),
+    OPTIONS(HttpMethod.OPTIONS, SpringUtil.getBean(Options.class)),
     //DELETE验证逻辑
     DELETE(HttpMethod.DELETE, SpringUtil.getBean(Delete.class)),
     //PUT验证逻辑
