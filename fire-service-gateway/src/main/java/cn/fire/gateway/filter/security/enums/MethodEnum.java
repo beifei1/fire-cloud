@@ -2,9 +2,7 @@ package cn.fire.gateway.filter.security.enums;
 
 import cn.fire.common.web.util.SpringUtil;
 import cn.fire.gateway.filter.security.AbstractProtect;
-import cn.fire.gateway.filter.security.impl.GET;
-import cn.fire.gateway.filter.security.impl.OPTIONS;
-import cn.fire.gateway.filter.security.impl.POST;
+import cn.fire.gateway.filter.security.impl.*;
 import lombok.Getter;
 import org.springframework.http.HttpMethod;
 
@@ -22,9 +20,11 @@ public enum MethodEnum {
     //GET验证逻辑
     GET(HttpMethod.GET,SpringUtil.getBean(GET.class)),
     //OPTIONS验证逻辑
-    OPTIONS(HttpMethod.OPTIONS,SpringUtil.getBean(OPTIONS.class));
-//    DELETE(HttpMethod.DELETE, SpringUtil.getBean(TVGoodsProducer.class)),
-//    PUT(HttpMethod.PUT, SpringUtil.getBean(MeetingTimeFeignClient.class));
+    OPTIONS(HttpMethod.OPTIONS,SpringUtil.getBean(OPTIONS.class)),
+    //DELETE验证逻辑
+    DELETE(HttpMethod.DELETE, SpringUtil.getBean(DELETE.class)),
+    //PUT验证逻辑
+    PUT(HttpMethod.PUT, SpringUtil.getBean(PUT.class));
 
     private HttpMethod method;
     private AbstractProtect protect;

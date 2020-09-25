@@ -23,6 +23,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * 防重放Gateway过滤器
@@ -65,17 +67,26 @@ public class SecurityFilter implements GlobalFilter, Ordered {
             }
         }
 
-//        Boolean passed = MethodEnum.getObject(request.getMethod()).isPassed();
+        Boolean passed = MethodEnum.getObject(request.getMethod()).isPassed();
 
-        Flux<DataBuffer> dataBuffer = request.getBody();
-        dataBuffer.subscribe(buffer -> {
-            try {
-                String body = IOUtils.toString(buffer.asInputStream());
-                log.info(body);
-            } catch (IOException e) {
-                log.error("解析RequestBody异常:{}", e);
-            }
-        });
+        if (Objects.isNull(passed) || Boolean.FALSE.equals(passed)) {
+
+            response.setStatusCode(HttpStatus.FORBIDDEN);
+            byte[] responseContent = JSONObject.toJSONString(
+                                R.fail(BaseException.BaseErrorEnum.REQUEST_SECURITY_VALID_ERROR.getCode(), BaseException.BaseErrorEnum.REQUEST_SECURITY_VALID_ERROR.getDescription())
+                    ).getBytes(StandardCharsets.UTF_8);
+
+            return response.writeWith(Flux.just(response.bufferFactory().wrap(responseContent)));
+        }
+//        Flux<DataBuffer> dataBuffer = request.getBody();
+//        dataBuffer.subscribe(buffer -> {
+//            try {
+//                String body = IOUtils.toString(buffer.asInputStream());
+//                log.info(body);
+//            } catch (IOException e) {
+//                log.error("解析RequestBody异常:{}", e);
+//            }
+//        });
 
         return chain.filter(exchange);
     }
