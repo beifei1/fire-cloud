@@ -2,6 +2,7 @@ package cn.fire.gateway.filter;
 
 import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.response.R;
+import cn.fire.gateway.config.IgnoreUriConfig;
 import cn.fire.gateway.filter.security.AbstractProtect;
 import cn.fire.gateway.filter.security.consts.Consts;
 import cn.fire.gateway.filter.security.enums.MethodEnum;
@@ -10,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -39,6 +41,9 @@ import java.util.Objects;
 public class SecurityFilter implements GlobalFilter, Ordered, Consts {
 
     private RedisUtil redisUtil;
+
+    @Autowired
+    private IgnoreUriConfig ignoreUrl;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -82,15 +87,6 @@ public class SecurityFilter implements GlobalFilter, Ordered, Consts {
 
             return response.writeWith(Flux.just(response.bufferFactory().wrap(responseContent)));
         }
-//        Flux<DataBuffer> dataBuffer = request.getBody();
-//        dataBuffer.subscribe(buffer -> {
-//            try {
-//                String body = IOUtils.toString(buffer.asInputStream());
-//                log.info(body);
-//            } catch (IOException e) {
-//                log.error("解析RequestBody异常:{}", e);
-//            }
-//        });
 
         return chain.filter(exchange);
     }
