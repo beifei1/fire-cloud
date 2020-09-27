@@ -89,42 +89,22 @@ Api docs: http://gateway/doc.html
 - 使用Spring Boot Admin监控微服务应用
 - Producer->Consumer->前端的自动业务及系统异常传递
 - 网关白名单控制
-- 网关防重放
-- 通过MQ实现最终一致性
+- 在网关实现防重放
+- 提取消息服务，通过消息队列实现最终一致性
   持续更新中...
 
 ```
 
-## Jenkinsfile及Jenkins插件
+## Jenkinsfile
 
-在项目中使用jenksinfile需要安装几个jenkins插件，这里是jenkinsfile的[简介](https://www.cnblogs.com/stulzq/p/10115589.html)。如果希望深入学习，推荐[《Jenkins 2.X实践指南》](https://item.jd.com/12512889.html)。作者翟志军
+在项目中使用jenksinfile需要安装下列的jenkins插件，这里是jenkinsfile的[简介](https://www.cnblogs.com/stulzq/p/10115589.html)。如果希望深入学习，推荐[《Jenkins 2.X实践指南》](https://item.jd.com/12512889.html)。作者翟志军
 
-#### Pipeline：
+**Pipeline：** 提供Jenkins Pipeline项目支持
 
-提供Jenkins Pipeline项目支持
+**Ansible plugin：** 提供Ansible的Jenkins支持
 
-#### Ansible plugin：
+**Config File Provider Plugin：** 配置文件管理插件，在pipeline中使用
 
-提供Ansible的jenkins支持
+**Credentials：** 凭证管理，在Jenkins中管理凭证，如SSH Key，UserName/Password等
 
-#### Config File Provider Plugin：
-
-配置文件管理插件，支持多种类型
-
-```javascript
-configFileProvider([configFile(fileId: 'd4231502-faae-45f4-b0d9-c4bff6e15692',targetLocation: 'setting.xml', variable: 'MAVEN_GLOBALE_SETTING')]) {
-    sh "mvn -f ${params.pom_path} -s $MAVEN_GLOBALE_SETTING package -Dmaven.test.skip=true"
-}
-```
-
-#### Credentials：
-
-凭证管理插件，在Jenkins中管理凭证，如SSH Key，UserName/Password等
-
-```javascript
-git credentialsId: "${_github_credentialsId}", url: "${params.repo_addr}", branch: "${params.repo_branch}"
-```
-
-#### Email Extension Plugin：
-
-邮件增强，用于发送高级邮件模板，例如Html
+**Email Extension Plugin：** 邮件增强，用于发送高级邮件模板，例如Html
