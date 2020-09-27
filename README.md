@@ -84,12 +84,13 @@ Api docs: http://gateway/doc.html
 - 使用ResponseBodyAdvice处理响应，减少重复的Resp.ok(T)等类似操作
 - 使用Jackson处理LocalDateTime响应为时间戳，前后端通过时间戳进行时间传输
 - 使用ShardingSphere分库分表
-- 使用DistributedLock接口用于拓展不同分布式锁实现，见RedisDistributedLock，基于Redisson
+- 使用DistributedLock接口用于拓展不同分布式锁实现
 - 利用Mybatis-Plus快速实现乐观锁，逻辑删除
 - 使用Spring Boot Admin监控微服务应用
-- 利用ControllerAdvice实现Producer->Consumer->前端的自动业务及系统异常传递
-- 通过配置中心实现网关白名单控制
-- 通过timestamp, nonce等在网关实现简单的防重放
+- Producer->Consumer->前端的自动业务及系统异常传递
+- 网关白名单控制
+- 网关防重放
+- 通过MQ实现最终一致性
   持续更新中...
 
 ```
