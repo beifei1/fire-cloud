@@ -22,9 +22,17 @@ public class GlobalFeignConfig {
     @Autowired
     private ObjectFactory<HttpMessageConverters> objectFactory;
 
+    /**
+     * feign构造器
+     * @return
+     */
     @Bean
     public Feign.Builder feignBuilder() { return Feign.builder(); }
 
+    /**
+     * 设置不重试
+     * @return
+     */
     @Bean
     Retryer retryer () { return Retryer.NEVER_RETRY; }
 
