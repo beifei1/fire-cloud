@@ -38,6 +38,7 @@ Api docs: http://gateway/doc.html
 | 缓存           | Redisson,Spring Cache  | [GitHub](https://github.com/redisson/redisson) | ✔|
 | 数据库中间件           | ShardingSphere  | [官网](http://shardingsphere.apache.org/index_zh.html) | ✔|
 | 健康监控           | Spring boot Admin  | [GitHub](https://github.com/codecentric/spring-boot-admin) | ✔|
+| 日志           | Logback  | [官网](http://logback.qos.ch/) | ✔|
 
 ## 组件版本：
 
