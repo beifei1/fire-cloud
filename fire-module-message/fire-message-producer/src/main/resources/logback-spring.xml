@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="LOG_NAME" value="fire-message-producer"/>
+    <property name="LOG_NAME" value="${spring.application.name}"/>
     <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%-21.21thread] [%-46.46logger{46}:%-4.4line] - %msg%n"/>
-    <property name="LOG_PATH" value="/usr/local/studycloud/logs"/>
+    <property name="LOG_PATH" value="/usr/local/firecloud/logs"/>
     <contextName>${LOG_NAME}</contextName>
 
     <!-- 控制台输出 -->
