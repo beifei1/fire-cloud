@@ -50,6 +50,7 @@ public class SecurityFilter implements GlobalFilter, Ordered {
 
         ServerHttpRequest request = exchange.getRequest();
 
+        //TODO 加入不需要验证参数签名的逻辑
 //        if (request.getPath().contextPath().value().contains())
 
         String timestamp = request.getHeaders().getFirst(H_TIMESTAMP);
