@@ -10,14 +10,10 @@ spring:
           group: common
           refresh: true
         extension-configs[1]:
-          data-id: fire-common-http-certification.properties
-          group: common
-          refresh: true
-        extension-configs[2]:
           data-id: fire-common-redis.properties
           group: common
           refresh: true
-        extension-configs[3]:
+        extension-configs[2]:
           data-id: fire-spring-boot-admin-client.properties
           group: common
           refresh: true
