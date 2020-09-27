@@ -19,52 +19,52 @@ public class MessageController implements MessageFeignClient {
 
     @Override
     public void saveWaitingConfirmMessage(TransactionMessageDO message) throws MessageException {
-
+        messageService.saveWaitingConfirmMessage(message);
     }
 
     @Override
     public void confirmAndSendMessage(String messageId) throws MessageException {
-
+        messageService.confirmAndSendMessage(messageId);
     }
 
     @Override
     public void saveAndSendMessage(TransactionMessageDO message) throws MessageException {
-
+        messageService.saveAndSendMessage(message);
     }
 
     @Override
     public void directSendMessage(TransactionMessageDO message) throws MessageException {
-
+        messageService.directSendMessage(message);
     }
 
     @Override
     public void reSendMessage(TransactionMessageDO message) throws MessageException {
-
+        messageService.reSendMessage(message);
     }
 
     @Override
     public void updateMessageToDead(String messageId) throws MessageException {
-
+        messageService.updateMessageToDead(messageId);
     }
 
     @Override
     public TransactionMessageDO getMessageByMessageId(String messageId) throws MessageException {
-        return null;
+        return messageService.getMessageByMessageId(messageId);
     }
 
     @Override
     public void deleteMessageByMessageId(String messageId) throws MessageException {
-
+        messageService.deleteMessageByMessageId(messageId);
     }
 
     @Override
     public void reSendDeadMessageByQueueName(String queueName, int batchNumber) throws MessageException {
-
+        messageService.reSendDeadMessageByQueueName(queueName,batchNumber);
     }
 
     @Override
     public void sendStringMessage(String queueName, String message) throws MessageException {
-
+        messageService.sendStringMessage(queueName, message);
     }
 
 }
