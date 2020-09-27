@@ -2,7 +2,7 @@ package cn.fire.message.controller;
 
 import cn.fire.message.api.client.MessageFeignClient;
 import cn.fire.message.api.exception.MessageException;
-import cn.fire.message.api.pojo.TransactionMessageDO;
+import cn.fire.message.api.pojo.entity.TransactionMessageDO;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

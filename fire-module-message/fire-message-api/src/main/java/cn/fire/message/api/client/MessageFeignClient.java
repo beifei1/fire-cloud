@@ -1,7 +1,7 @@
 package cn.fire.message.api.client;
 
 import cn.fire.message.api.exception.MessageException;
-import cn.fire.message.api.pojo.TransactionMessageDO;
+import cn.fire.message.api.pojo.entity.TransactionMessageDO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 

@@ -1,6 +1,7 @@
-package cn.fire.message.api.pojo;
+package cn.fire.message.api.pojo.entity;
 
 import cn.fire.common.core.BaseDO;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("t_transaction_message")
 public class TransactionMessageDO extends BaseDO {
 
     /**
