@@ -3,6 +3,8 @@ package cn.fire.message.controller;
 import cn.fire.message.api.client.MessageFeignClient;
 import cn.fire.message.api.exception.MessageException;
 import cn.fire.message.api.pojo.entity.TransactionMessageDO;
+import cn.fire.message.service.IMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class MessageController implements MessageFeignClient {
+
+    @Autowired
+    private IMessageService messageService;
 
     @Override
     public void saveWaitingConfirmMessage(TransactionMessageDO message) throws MessageException {

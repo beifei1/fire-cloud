@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMessageDO> implements IMessageService {
 
-    @Autowired
-    private RedisUtil redisUtil;
+//    @Autowired
+//    private RedisUtil redisUtil;
 
     @Autowired
     private MessageMapper messageMapper;
