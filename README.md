@@ -55,7 +55,7 @@ Api docs: http://gateway/doc.html
 
 ![image](https://github.com/beifei1/fire-cloud/blob/master/assets/flow.png)
 
-## 服务说明：
+## 目录结构：
 
 |                       |              |      |
 | --------------------- | ------------ | ---- |
