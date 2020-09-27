@@ -56,6 +56,14 @@ public class TransactionMessageDO extends BaseDO {
     /**
      * 消息状态
      */
-    private String status;
+    private String state;
+
+    /**
+     * 增加发送次数
+     */
+    public void addSendTimes() {
+		sendTimes ++;
+	}
+
 
 }

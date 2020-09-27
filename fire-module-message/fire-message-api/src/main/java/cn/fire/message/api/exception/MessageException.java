@@ -11,7 +11,7 @@ public class MessageException extends BaseException {
 
     public enum ErrorEnum implements IEnum {
 
-        USER_NOT_EXIST(12000, "消息不存在");
+        MESSAGE_NOT_EXIST(12000, "消息不存在");
 
         private int code;
         private String description;
