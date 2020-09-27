@@ -45,8 +45,8 @@ public interface MessageFeignClient {
      * 重新发送消息
      * @param message
      */
-    @PostMapping("/repeatSendMessage")
-    void repeatSendMessage(TransactionMessageDO message) throws MessageException;
+    @PostMapping("/reSendMessage")
+    void reSendMessage(TransactionMessageDO message) throws MessageException;
 
     /**
      * 更新消息状态为死亡消息
@@ -75,8 +75,8 @@ public interface MessageFeignClient {
      * @param queueName
      * @param batchNumber
      */
-    @PostMapping("/repeatSendDeadMessageByQueueName")
-    void repeatSendDeadMessageByQueueName(String queueName, int batchNumber) throws MessageException;
+    @PostMapping("/reSendDeadMessageByQueueName")
+    void reSendDeadMessageByQueueName(String queueName, int batchNumber) throws MessageException;
 
     /**
      * 发送String消息
