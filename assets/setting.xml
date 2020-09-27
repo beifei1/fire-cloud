@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <localRepository>${user.home}/.m2/repository</localRepository>
+
+  <mirrors>
+	<mirror>
+      <id>aliyun</id>
+      <name>aliyun</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+	  <mirrorOf>*</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>fire-nexus</id>
+      <name>aliyun</name>
+      <url>http://119.45.213.212/nexus/repository/maven-public/</url>
+	  <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+
+
+  <profiles>
+	<profile>
+		<id>jdk1.8</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+			<jdk>1.8</jdk>
+		</activation>
+		<properties>
+			<maven.compiler.source>1.8</maven.compiler.source>
+			<maven.compiler.target>1.8</maven.compiler.target>
+			<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+		</properties>
+	</profile>
+
+	<profile>
+		<id>nexus</id>
+		<repositories>
+			<repository>
+				<id>central</id>
+				<url>http://central</url>
+				<releases>
+					<enabled>true</enabled>
+					<updatePolicy>always</updatePolicy>
+					<checksumPolicy>warn</checksumPolicy>
+				</releases>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+			</repository>
+		</repositories>
+      <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+			<url>http://central</url>
+            <releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+            <snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+        </pluginRepository>
+       </pluginRepositories>
+	</profile>
+  </profiles>
+
+
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+    <activeProfile>jdk1.8</activeProfile>
+  </activeProfiles>
+
+</settings>
