@@ -59,6 +59,12 @@
             <artifactId>fire-common-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.fire</groupId>
+            <artifactId>fire-common-config</artifactId>
+        </dependency>
+
+
         <!-- spring cloud alibaba-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

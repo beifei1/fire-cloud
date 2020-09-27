@@ -129,6 +129,12 @@
 
             <dependency>
                 <groupId>cn.fire</groupId>
+                <artifactId>fire-common-config</artifactId>
+                <version>${fire-cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.fire</groupId>
                 <artifactId>fire-user-api</artifactId>
                 <version>${fire-cloud.version}</version>
             </dependency>

@@ -54,6 +54,11 @@
             <groupId>cn.fire</groupId>
             <artifactId>fire-common-web</artifactId>
         </dependency>
+                <dependency>
+            <groupId>cn.fire</groupId>
+            <artifactId>fire-common-config</artifactId>
+        </dependency>
+
         <!--spring cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
