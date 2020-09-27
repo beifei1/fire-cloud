@@ -58,7 +58,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         message.setState(MessageStatusEnum.SENDING.name());
         updateById(message);
 
-        //TODO redis lpush
+        //TODO message queue push
     }
 
     @Override
@@ -78,7 +78,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
 
 		save(message);
 
-		//TODO redis lpush
+		//TODO message queue push
 
     }
 
@@ -93,7 +93,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
             throw MessageException.instance(BaseException.BaseErrorEnum.INVALID_PARAMTER_ERROR);
         }
 
-        //TODO redis lpush
+        //TODO message queue push
     }
 
     @Override
@@ -110,7 +110,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         message.addSendTimes();
         updateById(message);
 
-        //todo redis push
+        //TODO message queue push
     }
 
     @Override
@@ -151,6 +151,6 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
             throw MessageException.instance(BaseException.BaseErrorEnum.INVALID_PARAMTER_ERROR);
         }
 
-        //TODO redis lpush
+        //TODO message queue push
     }
 }
