@@ -1,9 +1,8 @@
-package cn.fire.gateway.filter;
+package cn.fire.gateway.filter.security;
 
 import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.response.R;
 import cn.fire.gateway.config.IgnoreUriConfig;
-import cn.fire.gateway.filter.security.AbstractProtect;
 import cn.fire.gateway.filter.security.enums.MethodEnum;
 import cn.fire.gateway.util.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -51,6 +50,8 @@ public class SecurityFilter implements GlobalFilter, Ordered {
 
         ServerHttpRequest request = exchange.getRequest();
 
+//        if (request.getPath().contextPath().value().contains())
+
         String timestamp = request.getHeaders().getFirst(H_TIMESTAMP);
         String nonce = request.getHeaders().getFirst(H_NONCE);
         String sign = request.getHeaders().getFirst(H_SIGN);
@@ -71,7 +72,7 @@ public class SecurityFilter implements GlobalFilter, Ordered {
             }
         }
 
-        AbstractProtect protect = MethodEnum.getObject(request.getMethod());
+        AbstractMethod protect = MethodEnum.getObject(request.getMethod());
         protect.setHttpRequest(request);
         protect.setNonce(nonce);
         protect.setSign(sign);

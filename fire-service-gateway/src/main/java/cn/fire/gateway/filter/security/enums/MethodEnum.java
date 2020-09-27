@@ -1,6 +1,6 @@
 package cn.fire.gateway.filter.security.enums;
 
-import cn.fire.gateway.filter.security.AbstractProtect;
+import cn.fire.gateway.filter.security.AbstractMethod;
 import cn.fire.gateway.filter.security.impl.*;
 import cn.fire.gateway.util.SpringUtil;
 import lombok.Getter;
@@ -27,14 +27,14 @@ public enum MethodEnum {
     PUT(HttpMethod.PUT, SpringUtil.getBean(Put.class));
 
     private HttpMethod method;
-    private AbstractProtect protect;
+    private AbstractMethod protect;
 
-    MethodEnum(HttpMethod method, AbstractProtect protect) {
+    MethodEnum(HttpMethod method, AbstractMethod protect) {
         this.method = method;
         this.protect = protect;
     }
 
-    public static AbstractProtect getObject(HttpMethod method) {
+    public static AbstractMethod getObject(HttpMethod method) {
         for (MethodEnum value : MethodEnum.values()) {
             if (value.method == method) {
                 return value.getProtect();
