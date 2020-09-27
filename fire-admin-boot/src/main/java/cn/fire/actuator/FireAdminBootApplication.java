@@ -8,10 +8,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableAdminServer
 @EnableDiscoveryClient
 @SpringBootApplication
-public class FireAdminActuatorApplication {
+public class FireAdminBootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FireAdminActuatorApplication.class, args);
+        SpringApplication.run(FireAdminBootApplication.class, args);
     }
 
 }

@@ -9,10 +9,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = {"cn.fire.common.web","cn.fire.oauth"})
-public class FireOauthApplication {
+public class FireUaaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FireOauthApplication.class, args);
+        SpringApplication.run(FireUaaApplication.class, args);
     }
 
 }

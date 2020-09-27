@@ -1,6 +1,8 @@
 spring:
   application:
     name: fire-service-gateway
+  profiles:
+    active: dev
   cloud:
     nacos:
       server-addr: http://192.144.176.31:80
