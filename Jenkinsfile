@@ -21,7 +21,7 @@ pipeline {
         _github_credentialsId = 'dcae8179-aec2-4eb5-b6ce-177179d463c5'
         _deploy_to_nexus = "${params.deploy_nexus}"
         _build_state_notify_from = "wangzhichaomin@163.com"
-        _build_state_notify_to = "wangzhichao03@tojoy.com"
+        _build_state_notify_to = "wangzhichao03@aaaa.com"
     }
 
     //参数化构建,效果就是在点击构建按钮后，后增加一步填写参数的步骤，脚本根据参数设置进行构建
