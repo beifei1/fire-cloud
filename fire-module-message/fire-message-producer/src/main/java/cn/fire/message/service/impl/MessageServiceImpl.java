@@ -1,13 +1,13 @@
 package cn.fire.message.service.impl;
 
 import cn.fire.common.exception.BaseException;
+import cn.fire.common.web.util.RedisUtil;
 import cn.fire.message.api.enums.MessageStatusEnum;
 import cn.fire.message.api.enums.MessageSurviveEnum;
 import cn.fire.message.api.exception.MessageException;
 import cn.fire.message.api.pojo.entity.TransactionMessageDO;
 import cn.fire.message.dao.MessageMapper;
 import cn.fire.message.service.IMessageService;
-import cn.fire.message.service.queue.IMessageQueue;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +24,7 @@ import java.util.Objects;
 public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMessageDO> implements IMessageService {
 
     @Autowired
-    private IMessageQueue messageQueue;
+    private RedisUtil redisUtil;
 
     @Autowired
     private MessageMapper messageMapper;
@@ -57,7 +57,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         message.setState(MessageStatusEnum.SENDING.name());
         updateById(message);
 
-        messageQueue.send(message.getQueueName(), message.getMessageBody());
+        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
     }
 
     @Override
@@ -77,7 +77,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
 
 		save(message);
 
-        messageQueue.send(message.getQueueName(), message.getMessageBody());
+        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
 
     }
 
@@ -93,7 +93,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         }
 
 
-        messageQueue.send(message.getQueueName(), message.getMessageBody());
+        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
     }
 
     @Override
@@ -110,7 +110,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         message.addSendTimes();
         updateById(message);
 
-        messageQueue.send(message.getQueueName(), message.getMessageBody());
+        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
     }
 
     @Override
@@ -151,6 +151,6 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
             throw MessageException.instance(BaseException.BaseErrorEnum.INVALID_PARAMTER_ERROR);
         }
 
-        messageQueue.send(queueName, message);
+        redisUtil.lPush(queueName, message);
     }
 }

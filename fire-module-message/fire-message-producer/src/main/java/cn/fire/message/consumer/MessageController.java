@@ -1,4 +1,4 @@
-package cn.fire.message.controller;
+package cn.fire.message.consumer;
 
 import cn.fire.message.api.client.MessageFeignClient;
 import cn.fire.message.api.exception.MessageException;
