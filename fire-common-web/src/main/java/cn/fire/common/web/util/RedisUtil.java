@@ -280,6 +280,41 @@ public class RedisUtil {
     }
 
 
+
+    public boolean lPush(String key, Serializable value) {
+
+        try {
+            redisTemplate.opsForList().leftPush(key ,value);
+            return true;
+        } catch (Exception e) {
+            log.error("{}", key, e);
+            return false;
+        }
+    }
+
+
+    public boolean lPush(String key, Serializable... value) {
+
+        try {
+            redisTemplate.opsForList().leftPushAll(key, value);
+            return true;
+        } catch (Exception e) {
+            log.error("{}", key, e);
+            return false;
+        }
+    }
+
+    public boolean lPop(String key) {
+
+        try {
+            redisTemplate.opsForList().rightPop(key);
+            return true;
+        } catch (Exception e) {
+            log.error("{}", key, e);
+            return false;
+        }
+    }
+
     public boolean lSet(String key, Serializable value, long time) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
