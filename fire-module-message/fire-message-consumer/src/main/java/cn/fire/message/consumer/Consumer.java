@@ -15,10 +15,18 @@ import java.util.concurrent.TimeUnit;
 @RedisConsumer
 public class Consumer {
 
-
+    /**
+     * 队列消息监听器
+     * @param messageId
+     * @param message
+     */
     @QueueListener(queue = "", interval = 1 ,timeUnit = TimeUnit.MINUTES)
-    public void listener(String message) {
-      log.info(message);
+    public void listener(String messageId, String message) {
+        log.info("监听到队列消息");
+        log.info("消息Id: {}", messageId);
+        log.info("消息内容：{}", message);
+
+        //TODO 实现监听逻辑，并调用API进行ack
     }
 
 }

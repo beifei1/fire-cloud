@@ -5,15 +5,18 @@ import cn.fire.common.web.util.RedisUtil;
 import cn.fire.message.api.enums.MessageStatusEnum;
 import cn.fire.message.api.enums.MessageSurviveEnum;
 import cn.fire.message.api.exception.MessageException;
+import cn.fire.message.api.pojo.dto.SerializableMessage;
 import cn.fire.message.api.pojo.entity.TransactionMessageDO;
 import cn.fire.message.dao.MessageMapper;
 import cn.fire.message.service.IMessageService;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -57,7 +60,13 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         message.setState(MessageStatusEnum.SENDING.name());
         updateById(message);
 
-        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
+        //构造消息体
+        SerializableMessage<Serializable> serial = SerializableMessage.builder()
+                .data(message.getMessageBody())
+                .messageId(messageId)
+                .build();
+
+        redisUtil.lPush(message.getQueueName(), JSONObject.toJSONString(serial));
     }
 
     @Override
@@ -77,7 +86,12 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
 
 		save(message);
 
-        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
+		//构造消息体
+        SerializableMessage<Serializable> serial = SerializableMessage.builder()
+                .data(message.getMessageBody())
+                .messageId(message.getMessageId())
+                .build();
+        redisUtil.lPush(message.getQueueName(), JSONObject.toJSONString(serial));
 
     }
 
@@ -93,7 +107,12 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         }
 
 
-        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
+		//构造消息体
+        SerializableMessage<Serializable> serial = SerializableMessage.builder()
+                .data(message.getMessageBody())
+                .messageId(message.getMessageId())
+                .build();
+        redisUtil.lPush(message.getQueueName(), JSONObject.toJSONString(serial));
     }
 
     @Override
@@ -110,7 +129,12 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, TransactionMe
         message.addSendTimes();
         updateById(message);
 
-        redisUtil.lPush(message.getQueueName(), message.getMessageBody());
+		//构造消息体
+        SerializableMessage<Serializable> serial = SerializableMessage.builder()
+                .data(message.getMessageBody())
+                .messageId(message.getMessageId())
+                .build();
+        redisUtil.lPush(message.getQueueName(), JSONObject.toJSONString(serial));
     }
 
     @Override
