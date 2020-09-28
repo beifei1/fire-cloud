@@ -88,10 +88,10 @@ Api docs: http://gateway/doc.html
 - 利用Mybatis-Plus快速实现乐观锁，逻辑删除
 - 使用Spring Boot Admin监控微服务应用
 - Producer->Consumer->前端的自动业务及系统异常传递
-- 网关白名单控制
+- 实现网关白名单控制
 - 在网关实现防重放
 - 利用Redis特性实现消息队列
-- 提取消息服务，通过消息队列及Mysql实现最终一致性
+- 提取消息服务，通过消息队列及Mysql实现最终一致性,并对外提供统一API
   持续更新中...
 
 ```
