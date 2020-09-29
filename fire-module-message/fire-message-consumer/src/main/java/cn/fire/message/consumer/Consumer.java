@@ -1,8 +1,8 @@
 package cn.fire.message.consumer;
 
 import cn.fire.message.anno.QueueListener;
-import cn.fire.message.anno.RedisConsumer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2020/9/28 9:46
  */
 @Slf4j
-@RedisConsumer
+@Component
 public class Consumer {
 
     /**

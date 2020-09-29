@@ -3,6 +3,7 @@ package cn.fire.common.web.util;
 import cn.fire.common.web.config.GlobalCacheConfig;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -304,14 +305,13 @@ public class RedisUtil {
         }
     }
 
-    public boolean lPop(String key) {
+    public Serializable lPop(String key) {
 
         try {
-            redisTemplate.opsForList().rightPop(key);
-            return true;
+            return redisTemplate.opsForList().rightPop(key);
         } catch (Exception e) {
             log.error("{}", key, e);
-            return false;
+            return StringUtils.EMPTY;
         }
     }
 

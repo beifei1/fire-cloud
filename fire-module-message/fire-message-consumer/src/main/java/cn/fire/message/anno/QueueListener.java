@@ -3,7 +3,6 @@ package cn.fire.message.anno;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: wangzc
@@ -34,12 +33,5 @@ public @interface QueueListener {
      * @return
      */
     int interval() default 3;
-
-    /**
-     * 时间单位
-     * @return
-     */
-    TimeUnit timeUnit() default TimeUnit.SECONDS;
-
 
 }
