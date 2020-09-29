@@ -20,7 +20,7 @@ public class Consumer {
      * @param messageId
      * @param message
      */
-    @QueueListener(queue = "", interval = 1 ,timeUnit = TimeUnit.MINUTES)
+    @QueueListener(queue = "", interval = 1)
     public void listener(String messageId, String message) {
         log.info("监听到队列消息");
         log.info("消息Id: {}", messageId);
