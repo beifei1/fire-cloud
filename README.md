@@ -74,7 +74,7 @@ Api docs: http://gateway/doc.html
 - 利用Jenkinsfile，Ansiable，Gitlab等实现持续集成与交付
 - Nacos Config使用多配置文件
 - 在Jwt中加入自定义元信息
-- OAuth2增加自定义授权模式
+- OAuth2增加自定义授权模式实现短信,微信登录等特定业务场景
 - 网关鉴权后，向下游服务传递用户信息，并在微服务API中注入
 - 通过OpenFeign提供的继承特性减少重复编码
 - Spring Cloud Gateway统一管理微服务API文档
@@ -84,21 +84,21 @@ Api docs: http://gateway/doc.html
 - 使用ResponseBodyAdvice处理响应，减少重复的Resp.ok(T)等类似操作
 - 使用Jackson处理LocalDateTime响应为时间戳，前后端通过时间戳进行时间传输
 - 使用ShardingSphere分库分表
-- 使用DistributedLock接口用于拓展不同分布式锁实现
+- 拓展不同分布式锁实现
 - 利用Mybatis-Plus快速实现乐观锁，逻辑删除
 - 使用Spring Boot Admin监控微服务应用
-- Producer->Consumer->前端的自动业务及系统异常传递
-- 实现网关白名单控制
-- 在网关实现防重放
-- 利用Redis特性实现消息队列
-- 提取消息服务，通过消息队列及Mysql实现最终一致性,并对外提供统一API
+- 自动业务异常及系统异常传递及处理
+- 实现网关API白名单控制
+- 在网关实现API防重放
+- 利用Redis特性实现实验版本的消息队列
+- 提取消息服务，通过消息队列及Mysql实现最终一致性,并提供统一API服务
   持续更新中...
 
 ```
 
 ## Jenkinsfile
 
-在项目中使用jenksinfile需要安装下列的jenkins插件，这里是jenkinsfile的[简介](https://www.cnblogs.com/stulzq/p/10115589.html)。如果希望深入学习，推荐[《Jenkins 2.X实践指南》](https://item.jd.com/12512889.html)。作者翟志军
+在项目中使用Jenksinfile需要安装下列的Jenkins插件，[Jenkinsfile简介](https://www.cnblogs.com/stulzq/p/10115589.html)
 
 **Pipeline：** 提供Jenkins Pipeline项目支持
 
