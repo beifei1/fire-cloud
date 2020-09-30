@@ -92,6 +92,7 @@ Api docs: http://gateway/doc.html
 - 在网关实现API防重放
 - 利用Redis特性实现实验版本的消息队列
 - 通过消息队列及Mysql实现最终一致性,并提供统一API服务
+- 使用雪花Id根据构造函数生成分布式Id
   ...
 
 ```
