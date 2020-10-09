@@ -7,7 +7,7 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-	<artifactId>fire-admin-job</artifactId>
+	<artifactId>fire-admin-task</artifactId>
 	<packaging>jar</packaging>
 
 	<dependencies>
