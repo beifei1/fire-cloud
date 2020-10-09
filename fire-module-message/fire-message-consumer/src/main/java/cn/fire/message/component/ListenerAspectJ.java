@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Component
 @AllArgsConstructor
-public class MessageQueueAspect {
+public class ListenerAspectJ {
 
     private final RedisUtil redisUtil;
 
