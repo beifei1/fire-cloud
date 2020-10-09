@@ -2,57 +2,64 @@ package cn.fire.message.aspect;
 
 import cn.fire.common.web.util.RedisUtil;
 import cn.fire.message.anno.QueueListener;
+import com.alibaba.fastjson.JSONObject;
+import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TODO 实现逻辑
  * @Author: wangzc
  * @Date: 2020/9/29 14:13
  */
+@Slf4j
 @Aspect
 @Component
+@AllArgsConstructor
 public class MessageQueueAspect {
 
     private final RedisUtil redisUtil;
-
-    @Autowired
-    public MessageQueueAspect(RedisUtil redisUtil) {
-        this.redisUtil = redisUtil;
-    }
 
     /**
      * 轮询去队列中拉取消息
      * @param joinPoint
      */
+    @SneakyThrows
     @Around("@annotation(cn.fire.message.anno.QueueListener)")
     public void loop(ProceedingJoinPoint joinPoint) {
+
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
 
-        QueueListener listener = method.getAnnotation(QueueListener.class);
+        QueueListener annotation = method.getAnnotation(QueueListener.class);
 
-        String queueName = listener.queue();
-        int interval = listener.interval();
+        String queueName = annotation.queue();
+        int interval = annotation.interval();
+        Class clazz = annotation.clazz();
 
+        ScheduledExecutorService executor = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("redis-message-queue-%d").daemon(true).build());
 
-//        ScheduledExecutorService
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        },5000, interval * 1000);
+        executor.schedule(() -> {
+
+            String message = (String)redisUtil.rPop(queueName);
+
+            log.info("=========================================:{}", message);
+            //TODO 往参数里塞值
+
+        }, interval, TimeUnit.SECONDS);
 
     }
 

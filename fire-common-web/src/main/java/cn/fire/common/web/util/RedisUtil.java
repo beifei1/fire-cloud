@@ -305,7 +305,7 @@ public class RedisUtil {
         }
     }
 
-    public Serializable lPop(String key) {
+    public Serializable rPop(String key) {
 
         try {
             return redisTemplate.opsForList().rightPop(key);

@@ -4,8 +4,6 @@ import cn.fire.message.anno.QueueListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * 消费端
  * @Author: wangzc
@@ -13,14 +11,14 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class Consumer {
+public class SmsDemoConsumer {
 
     /**
      * 队列消息监听器
      * @param messageId
      * @param message
      */
-    @QueueListener(queue = "", interval = 1)
+    @QueueListener(queue = "", interval = 1, clazz = String.class)
     public void listener(String messageId, String message) {
         log.info("监听到队列消息");
         log.info("消息Id: {}", messageId);
