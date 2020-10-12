@@ -49,20 +49,34 @@ public class ListenerAspectJ {
         int interval = annotation.interval();
         Class clazz = annotation.clazz();
 
-        ScheduledExecutorService executor = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("redis-message-queue-%d").daemon(true).build());
+        ScheduledExecutorService executor = new ScheduledThreadPoolExecutor(
+                1,
+                new BasicThreadFactory.Builder().namingPattern("redis-message-queue-%d").daemon(true).build()
+        );
 
+        //获取方法参数值
+        Object[] paramValues = joinPoint.getArgs();
+
+        //定时轮询队列
         executor.schedule(() -> {
 
             String message = (String)redisUtil.rPop(queueName);
 
             log.info("=========================================:{}", message);
             //TODO 给参数赋值
-            SerializableMessage message1 = JSONObject.parseObject(message, SerializableMessage.class);
-            String messageId = message1.getMessageId();
-//            String object = message1.getData();
+            SerializableMessage serializableMessage = JSONObject.parseObject(message, SerializableMessage.class);
+
+            String messageId = serializableMessage.getMessageId();
+            Object messageData = JSONObject.parseObject((String)serializableMessage.getData(), clazz);
+
+            //为参数赋值
+            paramValues[0] = messageId;
+            paramValues[1] = messageData;
 
         }, interval, TimeUnit.SECONDS);
 
+
+//        return joinPoint.proceed(paramValues);
     }
 
 }
