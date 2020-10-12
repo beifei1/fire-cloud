@@ -2,6 +2,8 @@ package cn.fire.message.component;
 
 import cn.fire.common.web.util.RedisUtil;
 import cn.fire.message.anno.QueueListener;
+import cn.fire.message.api.pojo.dto.SerializableMessage;
+import com.alibaba.fastjson.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +56,10 @@ public class ListenerAspectJ {
             String message = (String)redisUtil.rPop(queueName);
 
             log.info("=========================================:{}", message);
-            //TODO 往参数里塞值
+            //TODO 给参数赋值
+            SerializableMessage message1 = JSONObject.parseObject(message, SerializableMessage.class);
+            String messageId = message1.getMessageId();
+//            String object = message1.getData();
 
         }, interval, TimeUnit.SECONDS);
 
