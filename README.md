@@ -8,6 +8,8 @@
 
 Nacos: [http://192.144.176.31/nacos](http://192.144.176.31/nacos)  nacos/nacos666666
 
+Sentinel: [http://119.45.213.212/#/login](http://119.45.213.212/#/login) sentinel/sentinel
+
 Docs: http://gateway/doc.html
 
 认证：http://gateway/oauth/oauth/token?grant_type=password&username=xxxxxx&password=123456 (同时需要Basic认证)
