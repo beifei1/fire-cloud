@@ -12,10 +12,6 @@ Docs: http://gateway/doc.html
 
 认证：http://gateway/oauth/oauth/token?grant_type=password&username=xxxxxx&password=123456 (同时需要Basic认证)
 
-SpringBoot Admin: http://ip:9999/login
-
-
-
 ## 开发环境：
 
 **Java SDK:** 1.8 +
