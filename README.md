@@ -4,7 +4,7 @@
 
 ## 项目简介：
 
-基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不合理或需要讨论的地方，欢迎随时指出。
+基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。需要Java8及以上版本，如果有不合理或需要讨论的地方，欢迎随时指出。
 
 Nacos: [http://192.144.176.31/nacos](http://192.144.176.31/nacos)  nacos/nacos666666
 
@@ -12,11 +12,7 @@ Docs: http://gateway/doc.html
 
 认证：http://gateway/oauth/oauth/token?grant_type=password&username=xxxxxx&password=123456 (同时需要Basic认证)
 
-## 开发环境：
-
-**Java SDK:** 1.8 +
-
-**Maven**：3.10 + 
+## 开发工具：
 
 **Intellij IDEA** [官网](https://www.jetbrains.com/) 
 
