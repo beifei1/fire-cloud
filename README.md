@@ -4,7 +4,7 @@
 
 ## 项目简介：
 
-基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。需要Java8及以上版本，如果有不合理或需要讨论的地方，欢迎随时指出。
+基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。需要Java8及以上版本，如果有不合理或需要讨论的地方，欢迎随时指出。也希望对你有所帮助
 
 Nacos: [http://192.144.176.31/nacos](http://192.144.176.31/nacos)  nacos/nacos666666
 
