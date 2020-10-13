@@ -4,11 +4,17 @@
 
 ## 项目简介：
 
-基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不合理或需要讨论的地方，欢迎随时指出
+基于Spring Cloud Netflix和Spring Cloud Alibaba的微服务业务框架。如果有不合理或需要讨论的地方，欢迎随时指出。
 
 Nacos: [http://192.144.176.31/nacos](http://192.144.176.31/nacos)  nacos/nacos666666
 
-Api docs: http://gateway/doc.html
+Docs: http://gateway/doc.html
+
+认证：http://gateway/oauth/oauth/token?grant_type=password&username=xxxxxx&password=123456 (同时需要Basic认证)
+
+SpringBoot Admin: http://ip:9999/login
+
+
 
 ## 开发环境：
 
@@ -87,6 +93,7 @@ Api docs: http://gateway/doc.html
 - 拓展不同分布式锁实现
 - 利用Mybatis-Plus快速实现乐观锁，逻辑删除
 - 使用Spring Boot Admin监控微服务应用
+- 为Spring Boot Admin添加Spring security支持
 - 自动业务异常及系统异常传递及处理
 - 实现网关API白名单控制
 - 在网关实现API防重放
