@@ -47,7 +47,6 @@ public class ListenerAspectJ {
 
         String queueName = annotation.queue();
         int interval = annotation.interval();
-        Class clazz = annotation.clazz();
 
         ScheduledExecutorService executor = new ScheduledThreadPoolExecutor(
                 1,
@@ -65,13 +64,6 @@ public class ListenerAspectJ {
             log.info("=========================================:{}", message);
             //TODO 给参数赋值
             SerializableMessage serializableMessage = JSONObject.parseObject(message, SerializableMessage.class);
-
-            String messageId = serializableMessage.getMessageId();
-            Object messageData = JSONObject.parseObject((String)serializableMessage.getData(), clazz);
-
-            //为参数赋值
-            paramValues[0] = messageId;
-            paramValues[1] = messageData;
 
         }, interval, TimeUnit.SECONDS);
 

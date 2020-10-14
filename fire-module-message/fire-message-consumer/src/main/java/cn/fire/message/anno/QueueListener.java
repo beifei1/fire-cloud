@@ -29,12 +29,6 @@ public @interface QueueListener {
     String queue() default "";
 
     /**
-     * 序列化类型
-     * @return
-     */
-    Class clazz() default String.class;
-
-    /**
      * 到队列获取数据的间隔时间
      * @return
      */

@@ -1,6 +1,7 @@
 package cn.fire.message.consumer;
 
 import cn.fire.message.anno.QueueListener;
+import cn.fire.message.core.IMessageHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -11,20 +12,15 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class SmsDemoConsumer {
+public class SmsDemoConsumer implements IMessageHandler {
 
-    /**
-     * 队列消息监听器
-     * @param messageId
-     * @param message
-     */
-    @QueueListener(queue = "", interval = 1, clazz = String.class)
-    public void listener(String messageId, String message) {
+    @Override
+    @QueueListener(value = "SMS:SEND:QUEUE", interval = 5)
+    public void messageHandler(String messageId, String messageBody) {
         log.info("监听到队列消息");
         log.info("消息Id: {}", messageId);
-        log.info("消息内容：{}", message);
+        log.info("消息内容：{}", messageBody);
 
         //TODO 实现监听逻辑，并调用API进行ack
     }
-
 }
