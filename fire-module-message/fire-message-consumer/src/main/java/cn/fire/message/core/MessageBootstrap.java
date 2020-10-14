@@ -1,10 +1,12 @@
 package cn.fire.message.core;
 
-import cn.fire.common.web.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * @Author: wangzc
@@ -15,11 +17,17 @@ import org.springframework.stereotype.Component;
 public class MessageBootstrap implements CommandLineRunner {
 
     @Autowired
-    private SpringUtil springUtil;
+    private ApplicationContext applicationContext;
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("starting loop message job....");
+
+        Map<String, IMessageHandler> beanMap = applicationContext.getBeansOfType(IMessageHandler.class);
+        beanMap.forEach((k,b) -> {
+            log.info("加载IMessageHandler实现类,beanName:{},instance:{}", k, b);
+        });
+
+
     }
 
 }
