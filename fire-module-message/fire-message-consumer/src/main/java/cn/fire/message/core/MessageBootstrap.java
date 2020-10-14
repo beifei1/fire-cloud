@@ -37,9 +37,8 @@ public class MessageBootstrap implements CommandLineRunner {
                     new BasicThreadFactory.Builder().namingPattern(k + "-redis-message-queue-%d").daemon(true).build()
             );
 
-            executor.schedule(() -> b.messageHandler(null,null), 2, TimeUnit.SECONDS);
+            executor.scheduleAtFixedRate(() -> b.messageHandler(null,null), 5,2, TimeUnit.SECONDS);
 
         });
     }
-
 }
