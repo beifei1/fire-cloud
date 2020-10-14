@@ -38,11 +38,6 @@
             <groupId>cn.fire</groupId>
             <artifactId>fire-message-api</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
         <!-- spring cloud alibaba-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
