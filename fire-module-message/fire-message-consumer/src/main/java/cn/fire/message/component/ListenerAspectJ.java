@@ -8,10 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
@@ -30,20 +29,17 @@ public class ListenerAspectJ {
 
     private final RedisUtil redisUtil;
 
-
     @SneakyThrows
-    @Before("@annotation(cn.fire.message.anno.QueueListener)")
-    public void before(JoinPoint joinPoint) {
+    @Around("@annotation(cn.fire.message.anno.QueueListener)")
+    public Object loop(ProceedingJoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
 
         QueueListener annotation = method.getAnnotation(QueueListener.class);
-
         String queueName = annotation.queue();
 
         //获取方法参数值
         Object[] paramValues = joinPoint.getArgs();
-
 
         String message = (String) redisUtil.rPop(queueName);
 
@@ -58,8 +54,10 @@ public class ListenerAspectJ {
             //为参数赋值
             paramValues[0] = messageId;
             paramValues[1] = messageData;
-        }
 
+            return joinPoint.proceed(paramValues);
+        }
+        return false;
     }
 
 }
