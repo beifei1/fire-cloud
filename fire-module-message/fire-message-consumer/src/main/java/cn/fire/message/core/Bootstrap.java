@@ -15,13 +15,13 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 轮询去队列里取数据，如果有兴趣，可以用redis提供的发布订阅模型，去通知consumer取数据
+ * 轮询去队列里取数据，如果有兴趣，可以尝试自己用redis提供的发布订阅模型，去通知channel订阅方去队列里取数据
  * @Author: wangzc
  * @Date: 2020/10/14 9:39
  */
 @Slf4j
 @Component
-public class MessageBootstrap implements CommandLineRunner {
+public class Bootstrap implements CommandLineRunner {
 
     @Autowired
     private ApplicationContext applicationContext;
