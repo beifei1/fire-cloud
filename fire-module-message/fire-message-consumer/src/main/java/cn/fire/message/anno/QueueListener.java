@@ -28,10 +28,5 @@ public @interface QueueListener {
     @AliasFor("value")
     String queue() default "";
 
-    /**
-     * 到队列获取数据的间隔时间
-     * @return
-     */
-    int interval() default 3;
 
 }

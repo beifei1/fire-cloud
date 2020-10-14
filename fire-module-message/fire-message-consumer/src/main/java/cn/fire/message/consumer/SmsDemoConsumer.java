@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class SmsDemoConsumer implements IMessageHandler {
 
     @Override
-    @QueueListener(value = "SMS:SEND:QUEUE", interval = 5)
+    @QueueListener(value = "SMS:SEND:QUEUE")
     public void messageHandler(String messageId, String messageBody) {
         log.info("监听到队列消息");
         log.info("消息Id: {}", messageId);
