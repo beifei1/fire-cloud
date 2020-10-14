@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 @AllArgsConstructor
-public class ListenerAspectJ {
+public class ListenerAspect {
 
     private final RedisUtil redisUtil;
 
