@@ -54,6 +54,11 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private IUserService userService;
 
+    /**
+     * 配置客户端信息
+     * @param clients
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -65,6 +70,11 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .accessTokenValiditySeconds(3600);
     }
 
+    /**
+     * 授权模式,授权管理器，自定义异常链路处理
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
@@ -77,18 +87,30 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .authenticationManager(authenticationManager);
     }
 
+    /**
+     * JWTToken解析
+     * @return
+     */
     private JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setKeyPair(keyPair());
         return converter;
     }
 
+    /**
+     * 公私钥加解密
+     * @return
+     */
     @Bean
     public KeyPair keyPair() {
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("static/firecloud.jks"),"123456".toCharArray());
         return keyStoreKeyFactory.getKeyPair("firecloud");
     }
 
+    /**
+     * 在Jwt中加入自定义信息
+     * @return
+     */
     public TokenEnhancerChain tokenEnhancerChain() {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
 
@@ -109,6 +131,13 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
         return tokenEnhancerChain;
     }
 
+    /**
+     * 先获取原有的授权模式，再加入新的授权模式
+     * @param userService
+     * @param endpoints
+     * @return
+     * @throws Exception
+     */
     private  List<TokenGranter> getTokenGranter(IUserService userService,AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         List<TokenGranter> tokenGranters = new ArrayList<>(Collections.singletonList(endpoints.getTokenGranter()));
 
