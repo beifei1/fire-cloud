@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * 短信验证码授权，和password授权方式一样
  * @Author: wangzc
  * @Date: 2020/8/13 15:19
  */
