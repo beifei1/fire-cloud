@@ -26,7 +26,7 @@
         <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
         <springdoc.version>1.4.3</springdoc.version>
         <knife4j.starter.version>2.0.4</knife4j.starter.version>
-        <jackson-databind.version>2.10.2</jackson-databind.version>
+        <jackson-databind.version>2.12.7.1</jackson-databind.version>
         <redisson.boot.starter.version>3.13.4</redisson.boot.starter.version>
         <apache-common-pool.version>2.8.1</apache-common-pool.version>
         <apache-common-lang.version>3.10</apache-common-lang.version>
