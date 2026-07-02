@@ -4,7 +4,6 @@ import cn.fire.common.exception.BaseException;
 import cn.fire.common.web.core.response.R;
 import cn.fire.gateway.config.IgnoreUriConfig;
 import cn.fire.gateway.filter.security.enums.MethodEnum;
-import cn.fire.gateway.util.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -39,8 +38,6 @@ import static cn.fire.gateway.util.Utils.Security.*;
 @Component
 @ConditionalOnProperty(name = "gateway.request.security.enable",havingValue = "true")
 public class SecurityFilter implements GlobalFilter, Ordered {
-
-    private RedisUtil redisUtil;
 
     @Autowired
     private IgnoreUriConfig ignoreUrl;

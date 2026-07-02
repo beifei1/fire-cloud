@@ -90,6 +90,23 @@ public class RedisUtil {
         }
     }
 
+    /**
+     * SET if Not eXists（SETNX），原子操作，用于防重放等场景
+     * @param key 键
+     * @param value 值
+     * @param time 过期时间（秒）
+     * @return true-设置成功（key不存在）, false-key已存在
+     */
+    public boolean setIfAbsent(String key, Serializable value, long time) {
+        try {
+            Boolean result = redisTemplate.opsForValue().setIfAbsent(key, value, time, TimeUnit.SECONDS);
+            return Boolean.TRUE.equals(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public long incr(String key, long delta) {
         if (delta < 0) {
             throw new RuntimeException("递增因子必须大于0");

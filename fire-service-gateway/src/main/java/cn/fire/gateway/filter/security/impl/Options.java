@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Options全部为通过
+ * OPTIONS 预检请求不做安全校验，直接放行
+ * 浏览器CORS预检请求不会携带自定义Header，因此跳过所有验证
  * @Author: wangzc
  * @Date: 2020/9/25 11:17
  */
@@ -24,7 +25,8 @@ public class Options extends AbstractMethod {
 
     @Override
     protected Boolean verify() {
-        log.info("OPTIONS 验证逻辑");
+        // OPTIONS 预检请求不做任何安全校验，直接放行
+        log.debug("OPTIONS preflight request, skip security validation");
         return Boolean.TRUE;
     }
 }

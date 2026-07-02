@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
+ * GET 请求防重放验证
+ * 签名规则：MD5(timestamp + nonce + queryString + path)
  * @Author: wangzc
  * @Date: 2020/9/25 11:17
  */
@@ -23,7 +25,18 @@ public class Get extends AbstractMethod {
 
     @Override
     protected Boolean verify() {
-        log.info("GET 验证逻辑");
-        return null;
+        // 1. 时间戳有效性校验（默认±5分钟窗口）
+        if (!validateTimestamp()) {
+            log.warn("GET request timestamp validation failed, path: {}", getHttpRequest().getURI().getPath());
+            return Boolean.FALSE;
+        }
+        // 2. Nonce防重放校验（SETNX原子操作确保同一nonce只能使用一次）
+        if (!validateNonce()) {
+            log.warn("GET request nonce already used, path: {}", getHttpRequest().getURI().getPath());
+            return Boolean.FALSE;
+        }
+        // 3. 签名校验（含Query参数）
+        String expectedSign = computeSignWithQuery();
+        return validateSign(expectedSign);
     }
 }

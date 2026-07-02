@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import lombok.SneakyThrows;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
 
 /**
  * @Author: wangzc
@@ -52,8 +54,14 @@ class DefaultToStringSerializer extends JsonSerializer<Object> {
 
     @Override
     public void serialize(Object t, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        //安全转换
-        jsonGenerator.writeString(String.valueOf(t));
+        Optional.ofNullable(t)
+                .ifPresent(a -> {
+                    try {
+                        jsonGenerator.writeString(String.valueOf(a));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
     }
 }
 

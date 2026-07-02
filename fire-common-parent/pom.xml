@@ -34,6 +34,7 @@
         <nimbus-version>8.20</nimbus-version>
         <sharding-sphere-boot-version>4.0.0-RC2</sharding-sphere-boot-version>
         <xxl-job-core.version>2.2.0</xxl-job-core.version>
+        <curator-recipes.version>4.2.0</curator-recipes.version>
     </properties>
 
     <distributionManagement>
@@ -224,6 +225,12 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
                 <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator-recipes.version}</version>
             </dependency>
 
         </dependencies>
