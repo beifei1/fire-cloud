@@ -6,7 +6,7 @@
         <groupId>cn.fire</groupId>
         <artifactId>fire-common-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
+        <relativePath>../fire-common-parent</relativePath>
     </parent>
 
     <groupId>cn.fire</groupId>
@@ -58,6 +58,12 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
